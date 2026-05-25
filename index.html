@@ -3,1050 +3,507 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K-pop Academy ✦</title>
+<title>K-pop Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
 <style>
-:root{--pink:#FF6B9D;--purple:#9B59B6;--yellow:#FFD93D;--mint:#6BCB77;--blue:#4D96FF;--orange:#FF9A3C;--bg:#1a0a2e;--card:rgba(255,255,255,0.97);--text:#2D1B4E;--muted:#8B7BA8;--radius:20px;}
+:root{--pink:#FF6B9D;--purple:#9B59B6;--yellow:#FFD93D;--mint:#6BCB77;--blue:#4D96FF;--text:#2D1B4E;--muted:#8B7BA8;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-.bg-scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
-.bg-gradient{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,#3d0066 0%,transparent 55%),radial-gradient(ellipse at 80% 70%,#1a0050 0%,transparent 55%),linear-gradient(160deg,#0d0020 0%,#1a0035 40%,#0a001a 100%);}
-.spotlight{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.18;animation:spotmove 8s ease-in-out infinite alternate;}
-.spotlight.sp1{width:400px;height:400px;background:#ff6b9d;top:-100px;left:-100px;animation-delay:0s;}
-.spotlight.sp2{width:350px;height:350px;background:#9b59b6;top:40%;right:-80px;animation-delay:-3s;}
-.spotlight.sp3{width:300px;height:300px;background:#4d96ff;bottom:-80px;left:30%;animation-delay:-6s;}
-@keyframes spotmove{0%{transform:translate(0,0) scale(1);}100%{transform:translate(40px,30px) scale(1.15);}}
-.floatie{position:absolute;font-size:22px;opacity:0;animation:floatup linear infinite;}
-@keyframes floatup{0%{opacity:0;transform:translateY(0) rotate(0deg);}10%{opacity:0.7;}80%{opacity:0.5;}100%{opacity:0;transform:translateY(-110vh) rotate(360deg);}}
-.stage-light{position:absolute;bottom:0;width:3px;height:45vh;transform-origin:bottom center;opacity:0.12;animation:sway 4s ease-in-out infinite alternate;}
-@keyframes sway{0%{transform:rotate(-12deg);}100%{transform:rotate(12deg);}}
-.stage-bar{position:fixed;bottom:0;left:0;right:0;height:6px;background:linear-gradient(90deg,#ff6b9d,#9b59b6,#4d96ff,#ff6b9d);background-size:200% 100%;animation:barscroll 3s linear infinite;z-index:1;}
-@keyframes barscroll{0%{background-position:0% 0;}100%{background-position:200% 0;}}
-.app-header{position:sticky;top:0;z-index:100;background:rgba(26,10,46,0.92);backdrop-filter:blur(12px);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,107,157,0.3);}
-.app-title{font-family:'Fredoka One',cursive;color:#fff;font-size:22px;text-shadow:0 0 20px rgba(255,107,157,0.6);}
-.app-title .dot{color:var(--yellow);}
-.stats-row{display:flex;gap:10px;}
-.stat-pill{background:rgba(255,255,255,0.1);color:#fff;border-radius:30px;padding:5px 14px;font-size:14px;font-weight:700;border:1px solid rgba(255,107,157,0.3);}
-.game-nav{display:flex;gap:8px;overflow-x:auto;padding:14px 20px 8px;scrollbar-width:none;position:relative;z-index:10;}
-.game-nav::-webkit-scrollbar{display:none;}
-.nav-btn{flex-shrink:0;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:40px;padding:8px 16px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;color:rgba(255,255,255,0.7);transition:all 0.2s;display:flex;align-items:center;gap:5px;}
-.nav-btn:hover{transform:translateY(-2px);background:rgba(255,255,255,0.15);}
-.nav-btn.active{color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(0,0,0,0.3);}
-.nav-btn.active.c1{background:linear-gradient(135deg,#FF6B9D,#e91e8c);}
-.nav-btn.active.c2{background:linear-gradient(135deg,#4D96FF,#2979FF);}
-.nav-btn.active.c3{background:linear-gradient(135deg,#6BCB77,#43A047);}
-.nav-btn.active.c4{background:linear-gradient(135deg,#FFD93D,#FB8C00);}
-.nav-btn.active.c5{background:linear-gradient(135deg,#9B59B6,#6A1B9A);}
-.nav-btn.active.c6{background:linear-gradient(135deg,#FF9A3C,#E64A19);}
-.nav-btn.active.c7{background:linear-gradient(135deg,#26C6DA,#0097A7);}
-.nav-btn.active.c8{background:linear-gradient(135deg,#FF6B9D,#9B59B6);}
-.nav-btn.active.c9{background:linear-gradient(135deg,#FFD93D,#FF9A3C);}
-.nav-btn.active.c10{background:linear-gradient(135deg,#26C6DA,#6BCB77);}
-.main{padding:12px 20px 80px;max-width:700px;margin:0 auto;position:relative;z-index:10;}
-.game-card{background:rgba(255,255,255,0.96);border-radius:var(--radius);padding:22px;box-shadow:0 8px 40px rgba(0,0,0,0.4),0 0 0 1px rgba(255,107,157,0.2);min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;backdrop-filter:blur(4px);}
-.game-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
-.game-card.c1::before{background:linear-gradient(90deg,#FF6B9D,#e91e8c);}
-.game-card.c2::before{background:linear-gradient(90deg,#4D96FF,#2979FF);}
-.game-card.c3::before{background:linear-gradient(90deg,#6BCB77,#43A047);}
-.game-card.c4::before{background:linear-gradient(90deg,#FFD93D,#FB8C00);}
-.game-card.c5::before{background:linear-gradient(90deg,#9B59B6,#6A1B9A);}
-.game-card.c6::before{background:linear-gradient(90deg,#FF9A3C,#E64A19);}
-.game-card.c7::before{background:linear-gradient(90deg,#26C6DA,#0097A7);}
-.game-card.c8::before{background:linear-gradient(90deg,#FF6B9D,#9B59B6);}
-.game-card.c9::before{background:linear-gradient(90deg,#FFD93D,#FF9A3C);}
-.game-card.c10::before{background:linear-gradient(90deg,#26C6DA,#6BCB77);}
-.game-label{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-.big-letter{font-family:'Fredoka One',cursive;font-size:90px;line-height:1;background:linear-gradient(135deg,#FF6B9D,#9B59B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:6px 0;}
-.question{font-size:19px;font-weight:800;text-align:center;margin-bottom:14px;}
-.sub{font-size:13px;color:var(--muted);text-align:center;margin-bottom:14px;}
-.opts-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:420px;}
-.opt{padding:13px 8px;border:2.5px solid #EDE0F5;border-radius:14px;background:#FAFAFA;color:var(--text);font-size:15px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.18s;text-align:center;}
+body{font-family:'Nunito',sans-serif;background:#1a0a2e;color:var(--text);min-height:100vh;overflow-x:hidden;}
+.bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 20% 30%,#3d0066 0%,transparent 55%),radial-gradient(ellipse at 80% 70%,#1a0050 0%,transparent 55%),linear-gradient(160deg,#0d0020,#1a0035,#0a001a);}
+.floatie{position:absolute;opacity:0;animation:floatup linear infinite;}
+@keyframes floatup{0%{opacity:0;transform:translateY(0)}10%{opacity:.7}80%{opacity:.4}100%{opacity:0;transform:translateY(-100vh)}}
+.stage-bar{position:fixed;bottom:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#ff6b9d,#9b59b6,#4d96ff,#ff6b9d);background-size:200%;animation:bar 3s linear infinite;z-index:5;}
+@keyframes bar{0%{background-position:0%}100%{background-position:200%}}
+header{position:sticky;top:0;z-index:100;background:rgba(26,10,46,.93);backdrop-filter:blur(12px);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,107,157,.25);}
+.logo{font-family:'Fredoka One',cursive;color:#fff;font-size:20px;}
+.pills{display:flex;gap:10px;}
+.pill{background:rgba(255,255,255,.1);color:#fff;border-radius:30px;padding:5px 13px;font-size:13px;font-weight:700;border:1px solid rgba(255,107,157,.3);}
+nav{display:flex;gap:7px;overflow-x:auto;padding:12px 16px 6px;scrollbar-width:none;position:relative;z-index:10;}
+nav::-webkit-scrollbar{display:none;}
+.nb{flex-shrink:0;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:40px;padding:7px 14px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;color:rgba(255,255,255,.7);transition:all .2s;}
+.nb:hover{background:rgba(255,255,255,.15);}
+.nb.on{color:#fff;border-color:transparent;}
+.nb.on.c1{background:linear-gradient(135deg,#FF6B9D,#e91e8c);}
+.nb.on.c2{background:linear-gradient(135deg,#4D96FF,#2979FF);}
+.nb.on.c3{background:linear-gradient(135deg,#6BCB77,#43A047);}
+.nb.on.c4{background:linear-gradient(135deg,#FFD93D,#FB8C00);}
+.nb.on.c5{background:linear-gradient(135deg,#9B59B6,#6A1B9A);}
+.nb.on.c6{background:linear-gradient(135deg,#FF9A3C,#E64A19);}
+.nb.on.c7{background:linear-gradient(135deg,#26C6DA,#0097A7);}
+.nb.on.c8{background:linear-gradient(135deg,#FF6B9D,#9B59B6);}
+.nb.on.c9{background:linear-gradient(135deg,#FFD93D,#FF9A3C);}
+.nb.on.c10{background:linear-gradient(135deg,#26C6DA,#6BCB77);}
+main{padding:10px 16px 80px;max-width:680px;margin:0 auto;position:relative;z-index:10;}
+.card{background:rgba(255,255,255,.97);border-radius:20px;padding:20px;box-shadow:0 8px 40px rgba(0,0,0,.4);min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.card.c1::before{background:linear-gradient(90deg,#FF6B9D,#e91e8c);}
+.card.c2::before{background:linear-gradient(90deg,#4D96FF,#2979FF);}
+.card.c3::before{background:linear-gradient(90deg,#6BCB77,#43A047);}
+.card.c4::before{background:linear-gradient(90deg,#FFD93D,#FB8C00);}
+.card.c5::before{background:linear-gradient(90deg,#9B59B6,#6A1B9A);}
+.card.c6::before{background:linear-gradient(90deg,#FF9A3C,#E64A19);}
+.card.c7::before{background:linear-gradient(90deg,#26C6DA,#0097A7);}
+.card.c8::before{background:linear-gradient(90deg,#FF6B9D,#9B59B6);}
+.card.c9::before{background:linear-gradient(90deg,#FFD93D,#FF9A3C);}
+.card.c10::before{background:linear-gradient(90deg,#26C6DA,#6BCB77);}
+.glabel{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.biglet{font-family:'Fredoka One',cursive;font-size:88px;line-height:1;background:linear-gradient(135deg,#FF6B9D,#9B59B6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:4px 0;}
+.qtxt{font-size:18px;font-weight:800;text-align:center;margin-bottom:12px;}
+.sub{font-size:12px;color:var(--muted);text-align:center;margin-bottom:12px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;max-width:400px;}
+.opt{padding:12px 8px;border:2.5px solid #EDE0F5;border-radius:14px;background:#FAFAFA;color:var(--text);font-size:14px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s;text-align:center;}
 .opt:hover:not(:disabled){border-color:var(--pink);transform:translateY(-2px);background:#FFF0F8;}
-.opt.correct{background:#E8F5E9;border-color:#43A047;color:#1B5E20;}
-.opt.wrong{background:#FFEBEE;border-color:#E53935;color:#7F0000;}
+.opt.ok{background:#E8F5E9;border-color:#43A047;color:#1B5E20;}
+.opt.no{background:#FFEBEE;border-color:#E53935;color:#7F0000;}
 .opt:disabled{cursor:default;}
-.opt-emoji{font-size:28px;display:block;margin-bottom:4px;}
-.opt-text{font-size:12px;}
-.feedback{margin-top:12px;font-size:17px;font-weight:800;text-align:center;min-height:26px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,0.5);}
-.feedback.ok{color:#6BCB77;}
-.feedback.no{color:#FF6B9D;}
-.next-btn{margin-top:14px;background:linear-gradient(135deg,#FF6B9D,#9B59B6);color:#fff;border:none;border-radius:40px;padding:11px 30px;font-size:15px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:transform 0.15s;box-shadow:0 4px 15px rgba(155,89,182,0.4);}
-.next-btn:hover{transform:scale(1.05);}
-.word-display{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin:10px 0;}
-.wchar{width:40px;height:50px;border-bottom:4px solid #9B59B6;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;font-family:'Fredoka One',cursive;}
-.wchar.blank{color:var(--pink);border-bottom-color:var(--pink);}
-.letter-pool{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
-.lbtn{width:48px;height:48px;border:2.5px solid #EDE0F5;border-radius:12px;background:#FAFAFA;color:var(--text);font-size:21px;font-weight:800;font-family:'Fredoka One',cursive;cursor:pointer;transition:all 0.15s;}
+.fb{margin-top:10px;font-size:16px;font-weight:800;text-align:center;min-height:24px;}
+.fb.ok{color:#43A047;}
+.fb.no{color:#E53935;}
+.nxt{margin-top:12px;background:linear-gradient(135deg,#FF6B9D,#9B59B6);color:#fff;border:none;border-radius:40px;padding:10px 28px;font-size:15px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:transform .15s;box-shadow:0 4px 15px rgba(155,89,182,.35);}
+.nxt:hover{transform:scale(1.05);}
+.wdisp{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin:8px 0;}
+.wch{width:38px;height:48px;border-bottom:4px solid #9B59B6;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;font-family:'Fredoka One',cursive;}
+.wch.bl{color:var(--pink);border-bottom-color:var(--pink);}
+.lpool{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:8px;}
+.lbtn{width:46px;height:46px;border:2.5px solid #EDE0F5;border-radius:12px;background:#FAFAFA;color:var(--text);font-size:20px;font-weight:800;font-family:'Fredoka One',cursive;cursor:pointer;transition:all .15s;}
 .lbtn:hover:not(:disabled){border-color:var(--pink);background:#FFF0F8;}
-.lbtn.correct{background:#E8F5E9;border-color:#43A047;color:#1B5E20;}
-.lbtn.wrong{background:#FFEBEE;border-color:#E53935;color:#7F0000;}
-.slots-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0 14px;}
-.slot{width:42px;height:50px;border-bottom:4px solid var(--pink);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--text);font-family:'Fredoka One',cursive;}
+.lbtn.ok{background:#E8F5E9;border-color:#43A047;color:#1B5E20;}
+.lbtn.no{background:#FFEBEE;border-color:#E53935;color:#7F0000;}
+.slots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:7px 0 12px;}
+.slot{width:40px;height:48px;border-bottom:4px solid var(--pink);display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:800;color:var(--text);font-family:'Fredoka One',cursive;}
 .slot.filled{background:#FFF0F8;border-radius:8px 8px 0 0;}
-.syl-pool{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
-.sbtn{padding:9px 14px;border:2.5px solid #EDE0F5;border-radius:12px;background:#FAFAFA;color:var(--text);font-size:19px;font-weight:800;font-family:'Fredoka One',cursive;cursor:pointer;transition:all 0.15s;}
-.sbtn:hover:not(.used){border-color:var(--pink);background:#FFF0F8;transform:translateY(-2px);}
-.sbtn.used{opacity:0.3;pointer-events:none;}
-.math-eq{font-family:'Fredoka One',cursive;font-size:52px;text-align:center;margin:10px 0;color:var(--purple);}
-.math-eq .qm{color:var(--pink);}
-.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;width:100%;max-width:360px;}
-.mem-card{aspect-ratio:1;border-radius:12px;border:2.5px solid #EDE0F5;display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;position:relative;transform-style:preserve-3d;}
-.mem-card .mfront,.mem-card .mback{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;transition:transform 0.4s;}
-.mem-card .mfront{background:linear-gradient(135deg,#9B59B6,#6A1B9A);font-size:22px;color:rgba(255,255,255,0.3);}
-.mem-card .mback{background:#fff;font-size:30px;transform:rotateY(180deg);border:2px solid #EDE0F5;}
-.mem-card.flipped .mfront{transform:rotateY(180deg);}
-.mem-card.flipped .mback{transform:rotateY(0deg);}
-.mem-card.matched{opacity:0.45;pointer-events:none;}
-.shape-display{margin:10px 0;}
-.color-opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
-.color-btn{width:56px;height:56px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform 0.15s;}
-.color-btn:hover{transform:scale(1.15);}
-.color-btn.correct{border-color:#43A047;box-shadow:0 0 0 4px #A5D6A7;}
-.color-btn.wrong{border-color:#E53935;box-shadow:0 0 0 4px #FFCDD2;}
-.simon-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:200px;height:200px;}
-.simon-btn{border-radius:50%;border:none;cursor:pointer;transition:filter 0.15s,transform 0.1s;filter:brightness(0.7);}
-.simon-btn.s0{background:#E53935;}.simon-btn.s1{background:#43A047;}
-.simon-btn.s2{background:#FFD600;}.simon-btn.s3{background:#4D96FF;}
-.simon-btn.lit{filter:brightness(1.5);transform:scale(1.08);}
-.simon-info{font-size:14px;font-weight:700;color:var(--muted);margin-top:10px;text-align:center;}
-.animal-big{font-size:72px;margin:6px 0;}
-.animal-name{font-size:20px;font-weight:800;color:var(--purple);margin-bottom:10px;}
-
-/* ══ PIŠKVORKY ══ */
-.ttt-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;}
-
-/* MODE PICKER */
-.ttt-mode-pick{display:flex;flex-direction:column;align-items:center;gap:14px;padding:8px 0;}
-.ttt-mode-pick h3{font-size:17px;font-weight:800;color:var(--text);}
-.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:380px;}
-.mode-card{border:2.5px solid #EDE0F5;border-radius:16px;padding:16px 10px;background:#FAFAFA;cursor:pointer;text-align:center;transition:all 0.18s;display:flex;flex-direction:column;align-items:center;gap:6px;}
-.mode-card:hover{border-color:var(--pink);background:#FFF0F8;transform:translateY(-3px);}
-.mode-card .mc-icon{font-size:36px;}
-.mode-card .mc-title{font-size:14px;font-weight:800;color:var(--text);}
-.mode-card .mc-sub{font-size:11px;color:var(--muted);}
-
-/* DIFFICULTY */
-.diff-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.diff-btn{padding:8px 18px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:13px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.15s;}
-.diff-btn:hover{border-color:var(--purple);color:var(--purple);}
-.diff-btn.active{border-color:var(--purple);background:var(--purple);color:#fff;}
-
-/* TURN INDICATOR */
-.turn-bar{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 16px;border-radius:30px;font-size:14px;font-weight:800;width:100%;max-width:320px;}
-.turn-bar.tA{background:#FFF0F8;color:#e91e8c;border:2px solid #FFB3C6;}
-.turn-bar.tB{background:#F3E5FF;color:#7B1FA2;border:2px solid #CE93D8;}
-.turn-bar.thinking{background:#EEF4FF;color:#1565C0;border:2px solid #90CAF9;animation:pulse 0.8s ease-in-out infinite alternate;}
-@keyframes pulse{0%{opacity:0.7;}100%{opacity:1;}}
-
-/* BOARD */
-.ttt-board{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:290px;}
-.ttt-cell{aspect-ratio:1;border:2.5px solid #EDE0F5;border-radius:14px;background:#FAFAFA;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.15s,transform 0.15s;}
-.ttt-cell:hover:not(.taken):not(.blocked){background:#FFF0F8;border-color:var(--pink);transform:scale(1.05);}
-.ttt-cell.taken,.ttt-cell.blocked{cursor:default;}
-.ttt-cell.win-cell{background:linear-gradient(135deg,#FFF0F8,#F3E5FF);border-color:var(--pink);animation:wincell 0.5s ease;}
-@keyframes wincell{0%{transform:scale(0.9);}60%{transform:scale(1.08);}100%{transform:scale(1);}}
-.ttt-cell.place-anim{animation:placeIn 0.25s ease;}
-@keyframes placeIn{0%{transform:scale(0.5);opacity:0.5;}100%{transform:scale(1);opacity:1;}}
-
-/* SCORE */
-.ttt-scorebar{display:flex;gap:8px;justify-content:center;width:100%;max-width:320px;}
-.ttt-sc{flex:1;text-align:center;background:#F8F0FF;border-radius:12px;padding:7px 6px;}
-.ttt-sc .lbl{font-size:10px;color:var(--muted);font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;}
-.ttt-sc .val{font-size:20px;font-weight:900;color:var(--purple);}
-
-/* ACTION BTNS */
-.ttt-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
-.ttt-btn{padding:8px 18px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.15s;}
-.ttt-btn:hover{border-color:var(--pink);color:var(--pink);}
-.ttt-btn.primary{background:linear-gradient(135deg,#FF6B9D,#9B59B6);border-color:transparent;color:#fff;}
-.ttt-btn.primary:hover{transform:scale(1.04);}
-
-@media(max-width:480px){.big-letter{font-size:68px;}.math-eq{font-size:38px;}.memory-grid{gap:5px;}.simon-grid{width:170px;height:170px;}.ttt-board{max-width:250px;}.mode-cards{grid-template-columns:1fr 1fr;}}
-
-/* tales */
-.tales-card{width:100%;max-width:460px;}
-.tales-char{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:12px;}
-.tales-char-name{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:1px;}
-.tales-question{font-size:17px;font-weight:800;color:var(--text);text-align:center;margin-bottom:14px;line-height:1.4;}
-.tales-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}
-.tales-opt{padding:13px 8px;border:2.5px solid #EDE0F5;border-radius:14px;background:#FAFAFA;color:var(--text);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.18s;text-align:center;line-height:1.3;}
-.tales-opt:hover:not(:disabled){border-color:#FFD93D;transform:translateY(-2px);background:#FFFDE7;}
-.tales-opt.correct{background:#E8F5E9;border-color:#43A047;color:#1B5E20;}
-.tales-opt.wrong{background:#FFEBEE;border-color:#E53935;color:#7F0000;}
-.tales-opt:disabled{cursor:default;}
-.tales-streak{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:6px;text-align:center;}
-.tales-hint{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;font-style:italic;min-height:18px;}
-
-
-/* ══ PSANÍ ══ */
-.write-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;}
-.write-target{font-family:'Fredoka One',cursive;font-size:100px;line-height:1;background:linear-gradient(135deg,#26C6DA,#6BCB77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:2px 0;user-select:none;}
-.write-label{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
-.write-sublabel{font-size:13px;color:var(--muted);text-align:center;}
-.canvas-wrap{position:relative;border:3px dashed #26C6DA;border-radius:18px;background:#f8fffe;touch-action:none;overflow:hidden;cursor:crosshair;}
-canvas.draw-canvas{display:block;}
-.canvas-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;}
-.tool-btn{padding:7px 16px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.15s;}
-.tool-btn:hover{border-color:#26C6DA;color:#26C6DA;}
-.tool-btn.active{background:#26C6DA;border-color:#26C6DA;color:white;}
-.color-row{display:flex;gap:6px;align-items:center;}
-.pen-color{width:26px;height:26px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform 0.15s;}
-.pen-color:hover{transform:scale(1.2);}
-.pen-color.active{border-color:#333;}
-.size-row{display:flex;gap:6px;align-items:center;}
-.size-btn{width:34px;height:34px;border-radius:50%;border:2px solid #EDE0F5;background:#FAFAFA;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
-.size-btn:hover{border-color:#26C6DA;}
-.size-btn.active{border-color:#26C6DA;background:#e0f7fa;}
-.write-check-btn{background:linear-gradient(135deg,#26C6DA,#6BCB77);color:white;border:none;border-radius:40px;padding:12px 32px;font-size:16px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:transform 0.15s;box-shadow:0 4px 15px rgba(38,198,218,0.35);}
-.write-check-btn:hover{transform:scale(1.05);}
-.write-result{font-size:18px;font-weight:800;text-align:center;margin-top:4px;}
-.write-result.ok{color:#43A047;}
-.write-result.no{color:#E53935;}
-.write-mode-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:6px;}
-.wm-btn{padding:7px 16px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.15s;}
-.wm-btn.active{background:linear-gradient(135deg,#26C6DA,#6BCB77);border-color:transparent;color:white;}
-.write-progress{font-size:12px;color:var(--muted);font-weight:700;}
-.guide-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;}
-.guide-char{font-family:'Fredoka One',cursive;font-size:120px;color:rgba(38,198,218,0.1);user-select:none;line-height:1;}
-
-
-/* ══ SPOTIFY PLAYER ══ */
-.spotify-player{
-  position:fixed;bottom:14px;right:14px;z-index:999;
-  display:flex;flex-direction:column;align-items:flex-end;gap:6px;
-}
-.spotify-toggle{
-  background:linear-gradient(135deg,#1DB954,#1aa34a);
-  color:white;border:none;border-radius:30px;
-  padding:10px 18px;font-size:13px;font-weight:800;
-  font-family:'Nunito',sans-serif;cursor:pointer;
-  box-shadow:0 4px 20px rgba(29,185,84,0.45);
-  display:flex;align-items:center;gap:8px;
-  transition:transform 0.15s;
-  white-space:nowrap;
-}
-.spotify-toggle:hover{transform:scale(1.05);}
-.spotify-toggle .note{animation:notebounce 0.8s ease-in-out infinite alternate;}
-@keyframes notebounce{0%{transform:translateY(0);}100%{transform:translateY(-3px);}}
-.spotify-embed{
-  border-radius:16px;overflow:hidden;
-  box-shadow:0 8px 32px rgba(0,0,0,0.5);
-  transition:all 0.3s ease;
-  transform-origin:bottom right;
-}
-.spotify-embed.hidden{
-  transform:scale(0.8);opacity:0;pointer-events:none;height:0;
-}
-.spotify-embed.visible{
-  transform:scale(1);opacity:1;
-}
-
+.spool{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;}
+.sbtn{padding:8px 13px;border:2.5px solid #EDE0F5;border-radius:12px;background:#FAFAFA;color:var(--text);font-size:18px;font-weight:800;font-family:'Fredoka One',cursive;cursor:pointer;transition:all .15s;}
+.sbtn:hover:not(.used){border-color:var(--pink);background:#FFF0F8;}
+.sbtn.used{opacity:.3;pointer-events:none;}
+.math{font-family:'Fredoka One',cursive;font-size:50px;text-align:center;margin:8px 0;color:var(--purple);}
+.math .q{color:var(--pink);}
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:340px;}
+.mc{aspect-ratio:1;border-radius:12px;border:2.5px solid #EDE0F5;cursor:pointer;position:relative;transform-style:preserve-3d;}
+.mc .mf,.mc .mb{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;transition:transform .4s;}
+.mc .mf{background:linear-gradient(135deg,#9B59B6,#6A1B9A);font-size:20px;color:rgba(255,255,255,.3);}
+.mc .mb{background:#fff;font-size:28px;transform:rotateY(180deg);border:2px solid #EDE0F5;}
+.mc.flip .mf{transform:rotateY(180deg);}
+.mc.flip .mb{transform:rotateY(0);}
+.mc.mat{opacity:.45;pointer-events:none;}
+.copts{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+.cbtn{width:54px;height:54px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .15s;}
+.cbtn:hover{transform:scale(1.15);}
+.cbtn.ok{border-color:#43A047;box-shadow:0 0 0 4px #A5D6A7;}
+.cbtn.no{border-color:#E53935;box-shadow:0 0 0 4px #FFCDD2;}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px;width:190px;height:190px;}
+.sbtn2{border-radius:50%;border:none;cursor:pointer;filter:brightness(.7);transition:filter .15s,transform .1s;}
+.sbtn2.s0{background:#E53935;}.sbtn2.s1{background:#43A047;}.sbtn2.s2{background:#FFD600;}.sbtn2.s3{background:#4D96FF;}
+.sbtn2.lit{filter:brightness(1.5);transform:scale(1.08);}
+.anim{font-size:68px;margin:5px 0;}
+.aname{font-size:18px;font-weight:800;color:var(--purple);margin-bottom:8px;}
+/* TTT */
+.ttt-wrap{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%;}
+.mc-cards{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;max-width:360px;}
+.mc-card{border:2.5px solid #EDE0F5;border-radius:16px;padding:14px 8px;background:#FAFAFA;cursor:pointer;text-align:center;transition:all .18s;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.mc-card:hover{border-color:var(--pink);background:#FFF0F8;transform:translateY(-3px);}
+.mc-card .mci{font-size:32px;}
+.mc-card .mct{font-size:13px;font-weight:800;color:var(--text);}
+.mc-card .mcs{font-size:11px;color:var(--muted);}
+.diff-row{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.dbtn{padding:7px 16px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .15s;}
+.dbtn:hover{border-color:var(--purple);color:var(--purple);}
+.tbar{display:flex;align-items:center;justify-content:center;gap:9px;padding:7px 14px;border-radius:30px;font-size:13px;font-weight:800;width:100%;max-width:300px;}
+.tbar.tA{background:#FFF0F8;color:#e91e8c;border:2px solid #FFB3C6;}
+.tbar.tB{background:#F3E5FF;color:#7B1FA2;border:2px solid #CE93D8;}
+.tbar.think{background:#EEF4FF;color:#1565C0;border:2px solid #90CAF9;animation:pulse .8s ease-in-out infinite alternate;}
+@keyframes pulse{0%{opacity:.7}100%{opacity:1}}
+.tboard{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;width:100%;max-width:280px;}
+.tcell{aspect-ratio:1;border:2.5px solid #EDE0F5;border-radius:14px;background:#FAFAFA;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.tcell:hover:not(.taken):not(.blocked){background:#FFF0F8;border-color:var(--pink);transform:scale(1.05);}
+.tcell.taken,.tcell.blocked{cursor:default;}
+.tcell.win{background:linear-gradient(135deg,#FFF0F8,#F3E5FF);border-color:var(--pink);animation:wc .5s ease;}
+@keyframes wc{0%{transform:scale(.9)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+.tsc{display:flex;gap:7px;justify-content:center;width:100%;max-width:300px;}
+.tsc-item{flex:1;text-align:center;background:#F8F0FF;border-radius:12px;padding:6px 5px;}
+.tsc-item .tsl{font-size:10px;color:var(--muted);font-weight:700;}
+.tsc-item .tsv{font-size:19px;font-weight:900;color:var(--purple);}
+.tact{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;}
+.tbtn{padding:7px 16px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .15s;}
+.tbtn:hover{border-color:var(--pink);color:var(--pink);}
+/* TALES */
+.tales-wrap{width:100%;max-width:440px;}
+.tchar{display:flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:10px;}
+.tchar-name{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px;}
+.tq{font-size:16px;font-weight:800;text-align:center;margin-bottom:12px;line-height:1.4;}
+.topts{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;}
+.topt{padding:12px 8px;border:2.5px solid #EDE0F5;border-radius:14px;background:#FAFAFA;color:var(--text);font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .18s;text-align:center;line-height:1.3;}
+.topt:hover:not(:disabled){border-color:#FFD93D;transform:translateY(-2px);background:#FFFDE7;}
+.topt.ok{background:#E8F5E9;border-color:#43A047;color:#1B5E20;}
+.topt.no{background:#FFEBEE;border-color:#E53935;color:#7F0000;}
+.topt:disabled{cursor:default;}
+.tstreak{font-size:12px;color:var(--muted);font-weight:700;margin-bottom:5px;text-align:center;}
+.thint{font-size:12px;color:var(--muted);text-align:center;margin-top:7px;font-style:italic;min-height:16px;}
+/* PSANI */
+.pw{display:flex;flex-direction:column;align-items:center;gap:9px;width:100%;}
+.pmodes{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.pmbtn{padding:7px 15px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:all .15s;}
+.pmbtn.on{background:linear-gradient(135deg,#26C6DA,#6BCB77);border-color:transparent;color:#fff;}
+.ptarget{font-family:'Fredoka One',cursive;font-size:90px;line-height:1;background:linear-gradient(135deg,#26C6DA,#6BCB77);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:2px 0;}
+.ptip{font-size:12px;color:var(--muted);text-align:center;}
+.psc{font-size:12px;color:var(--muted);font-weight:700;}
+.canvaswrap{position:relative;width:100%;max-width:330px;}
+.canvaswrap canvas{display:block;border-radius:16px;border:3px dashed #26C6DA;background:#f0fffe;touch-action:none;cursor:crosshair;}
+.guidetxt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-family:'Fredoka One',cursive;font-size:100px;color:rgba(38,198,218,.09);line-height:1;user-select:none;}
+.ptools{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;}
+.pcol{width:24px;height:24px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:transform .15s;}
+.pcol:hover{transform:scale(1.2);}
+.pcol.on{border-color:#333;}
+.psz{width:30px;height:30px;border-radius:50%;border:2px solid #EDE0F5;background:#FAFAFA;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.psz.on{border-color:#26C6DA;background:#e0f7fa;}
+.pcheck{background:linear-gradient(135deg,#26C6DA,#6BCB77);color:#fff;border:none;border-radius:40px;padding:11px 28px;font-size:15px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;transition:transform .15s;box-shadow:0 4px 15px rgba(38,198,218,.35);}
+.pcheck:hover{transform:scale(1.05);}
+.pres{font-size:16px;font-weight:800;text-align:center;}
+.pres.ok{color:#43A047;}
+.pres.no{color:#E53935;}
+.ptool2{padding:6px 14px;border:2px solid #EDE0F5;border-radius:30px;background:#FAFAFA;color:var(--muted);font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;cursor:pointer;}
+/* Spotify */
+.spwrap{position:fixed;bottom:14px;right:14px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.sptoggle{background:linear-gradient(135deg,#1DB954,#1aa34a);color:white;border:none;border-radius:30px;padding:9px 16px;font-size:12px;font-weight:800;font-family:'Nunito',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(29,185,84,.45);display:flex;align-items:center;gap:7px;transition:transform .15s;}
+.sptoggle:hover{transform:scale(1.05);}
+.spembed{border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5);transition:all .3s;transform-origin:bottom right;}
+.spembed.hide{transform:scale(.8);opacity:0;pointer-events:none;height:0;}
 </style>
 </head>
 <body>
-
-<div class="bg-scene">
-  <div class="bg-gradient"></div>
-  <div class="spotlight sp1"></div>
-  <div class="spotlight sp2"></div>
-  <div class="spotlight sp3"></div>
-  <div id="floaties"></div>
-  <div id="stagelights"></div>
-</div>
+<div class="bg" id="bg"></div>
 <div class="stage-bar"></div>
-
-<header class="app-header">
-  <div class="app-title" style="display:flex;align-items:center;gap:8px;"><span style="display:inline-flex;align-items:center;gap:2px;" id="header-girls"></span><span>K-pop Academy<span class="dot">✦</span></span></div>
-  <div class="stats-row">
-    <div class="stat-pill">⭐ <span id="score">0</span></div>
-    <div class="stat-pill">✅ <span id="correct">0</span></div>
+<header>
+  <div class="logo">🎤 K-pop Academy✦</div>
+  <div class="pills">
+    <div class="pill">⭐ <span id="sc">0</span></div>
+    <div class="pill">✅ <span id="co">0</span></div>
   </div>
 </header>
-
-<nav class="game-nav">
-  <button class="nav-btn active c1" onclick="setMode('abc')">🔤 Abeceda</button>
-  <button class="nav-btn c2" onclick="setMode('math')">🔢 Počítání</button>
-  <button class="nav-btn c3" onclick="setMode('memory')">🧩 Paměť</button>
-  <button class="nav-btn c4" onclick="setMode('colors')">🎨 Barvy</button>
-  <button class="nav-btn c5" onclick="setMode('animals')">🐾 Zvířata</button>
-  <button class="nav-btn c6" onclick="setMode('simon')">🎵 Rytmus</button>
-  <button class="nav-btn c7" onclick="setMode('world')">🌍 Svět</button>
-  <button class="nav-btn c8" onclick="setMode('ttt')">💜 Piškvorky</button>
-  <button class="nav-btn c9" onclick="setMode('tales')">🧚 Pohádky</button>
-  <button class="nav-btn c10" onclick="setMode('write')">✏️ Psaní</button>
+<nav>
+  <button class="nb on c1" onclick="go('abc')">🔤 Abeceda</button>
+  <button class="nb c2" onclick="go('math')">🔢 Počítání</button>
+  <button class="nb c3" onclick="go('mem')">🧩 Paměť</button>
+  <button class="nb c4" onclick="go('col')">🎨 Barvy</button>
+  <button class="nb c5" onclick="go('ani')">🐾 Zvířata</button>
+  <button class="nb c6" onclick="go('sim')">🎵 Rytmus</button>
+  <button class="nb c7" onclick="go('wld')">🌍 Svět</button>
+  <button class="nb c8" onclick="go('ttt')">💜 Piškvorky</button>
+  <button class="nb c9" onclick="go('tal')">🧚 Pohádky</button>
+  <button class="nb c10" onclick="go('wri')">✏️ Psaní</button>
 </nav>
-
-<main class="main">
-  <div class="game-card c1" id="game-card">
-    <div id="game-content" style="width:100%;display:flex;flex-direction:column;align-items:center;"></div>
+<main>
+  <div class="card c1" id="card">
+    <div id="gc" style="width:100%;display:flex;flex-direction:column;align-items:center;"></div>
   </div>
-  <div class="feedback" id="feedback"></div>
-  <div style="display:flex;justify-content:center;margin-top:12px" id="nav-row"></div>
+  <div class="fb" id="fb" style="color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);margin-top:10px;"></div>
+  <div style="display:flex;justify-content:center;margin-top:11px;" id="nr"></div>
 </main>
-
+<div class="spwrap">
+  <div class="spembed hide" id="spe">
+    <iframe src="https://open.spotify.com/embed/album/14JkAa6IiFaOh5s0nMyMU9?utm_source=generator&theme=0" width="290" height="152" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy" style="border-radius:16px;"></iframe>
+  </div>
+  <button class="sptoggle" onclick="toggleSp()">🎵 <span id="sptxt">K-pop Demon Hunters ♪</span></button>
+</div>
 <script>
-// ══ BACKGROUND ══
+// ── BG ──
 (function(){
-  const items=['🎤','🎵','⭐','💜','🌸','✨','🎀','💫','🎶','🌟'];
-  const fc=document.getElementById('floaties');
-  for(let i=0;i<18;i++){
-    const d=document.createElement('div');d.className='floatie';
+  var bg=document.getElementById('bg');
+  var items=['🎤','🎵','⭐','💜','🌸','✨','🎀','💫','🎶','🌟'];
+  for(var i=0;i<16;i++){
+    var d=document.createElement('div');
+    d.className='floatie';
     d.textContent=items[Math.floor(Math.random()*items.length)];
-    d.style.left=Math.random()*100+'%';d.style.bottom='-40px';
-    d.style.fontSize=(16+Math.random()*18)+'px';
-    d.style.animationDuration=(8+Math.random()*14)+'s';
-    d.style.animationDelay=(-Math.random()*15)+'s';
-    fc.appendChild(d);
-  }
-  const slc=document.getElementById('stagelights');
-  const cols=['#ff6b9d','#9b59b6','#4d96ff','#ffd93d','#ff9a3c','#6bcb77'];
-  for(let i=0;i<8;i++){
-    const d=document.createElement('div');d.className='stage-light';
-    d.style.left=(8+i*12)+'%';d.style.background=cols[i%cols.length];
-    d.style.animationDuration=(3+Math.random()*3)+'s';
-    d.style.animationDelay=(-Math.random()*4)+'s';
-    slc.appendChild(d);
+    d.style.cssText='left:'+Math.random()*100+'%;bottom:-40px;font-size:'+(14+Math.random()*16)+'px;animation-duration:'+(9+Math.random()*13)+'s;animation-delay:'+(-Math.random()*14)+'s;position:absolute;';
+    bg.appendChild(d);
   }
 })();
 
-// ══ SVG CHARACTERS ══
-function girlA(sz){sz=sz||52;return`<svg width="${sz}" height="${sz}" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="22" rx="14" ry="16" fill="#FF6B9D"/><ellipse cx="13" cy="20" rx="5" ry="9" fill="#FF6B9D" transform="rotate(-15,13,20)"/><ellipse cx="43" cy="20" rx="5" ry="9" fill="#FF6B9D" transform="rotate(15,43,20)"/><ellipse cx="28" cy="23" rx="11" ry="12" fill="#FFE0CC"/><ellipse cx="28" cy="13" rx="11" ry="5" fill="#FF6B9D"/><ellipse cx="23" cy="23" rx="2.5" ry="3" fill="#2D1B4E"/><ellipse cx="33" cy="23" rx="2.5" ry="3" fill="#2D1B4E"/><circle cx="24" cy="22" r="1" fill="white"/><circle cx="34" cy="22" r="1" fill="white"/><ellipse cx="19" cy="27" rx="3" ry="2" fill="#FFB3C6" opacity="0.6"/><ellipse cx="37" cy="27" rx="3" ry="2" fill="#FFB3C6" opacity="0.6"/><path d="M24 29 Q28 33 32 29" stroke="#e91e8c" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M17 48 Q17 36 28 36 Q39 36 39 48Z" fill="#FF6B9D"/><text x="28" y="46" text-anchor="middle" font-size="9" fill="white">★</text><rect x="38" y="30" width="4" height="8" rx="2" fill="#9B59B6"/><circle cx="40" cy="29" r="3" fill="#C39BD3"/></svg>`;}
-function girlB(sz){sz=sz||52;return`<svg width="${sz}" height="${sz}" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><path d="M14 22 Q14 8 28 8 Q42 8 42 22" stroke="#4D96FF" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="13" cy="23" rx="5" ry="6" fill="#4D96FF"/><ellipse cx="43" cy="23" rx="5" ry="6" fill="#4D96FF"/><ellipse cx="28" cy="22" rx="13" ry="15" fill="#9B59B6"/><ellipse cx="28" cy="24" rx="10" ry="11" fill="#FFE0CC"/><path d="M18 16 Q22 11 28 14 Q34 11 38 16" fill="#9B59B6"/><ellipse cx="23" cy="24" rx="2.5" ry="3" fill="#2D1B4E"/><path d="M30 23 Q33 21 36 23" stroke="#2D1B4E" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="24" cy="23" r="1" fill="white"/><ellipse cx="19" cy="28" rx="3" ry="2" fill="#FFB3C6" opacity="0.5"/><ellipse cx="37" cy="28" rx="3" ry="2" fill="#FFB3C6" opacity="0.5"/><path d="M24 30 Q28 35 32 30" stroke="#9B59B6" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M18 48 Q18 37 28 37 Q38 37 38 48Z" fill="#9B59B6"/><text x="28" y="46" text-anchor="middle" font-size="9" fill="white">♪</text></svg>`;}
+// ── SPOTIFY ──
+var spOpen=false;
+function toggleSp(){
+  spOpen=!spOpen;
+  var el=document.getElementById('spe');
+  var tx=document.getElementById('sptxt');
+  if(spOpen){el.classList.remove('hide');tx.textContent='Schovat ✕';}
+  else{el.classList.add('hide');tx.textContent='K-pop Demon Hunters ♪';}
+}
 
-// ══ STATE ══
-let score=0,correct=0,mode='abc',answered=false;
-function updStats(){document.getElementById('score').textContent=score;document.getElementById('correct').textContent=correct;}
-function setFeedback(ok,msg){const f=document.getElementById('feedback');f.textContent=msg;f.className='feedback '+(ok?'ok':'no');}
-function clearFeedback(){document.getElementById('feedback').textContent='';}
-function rand(arr){return arr[Math.floor(Math.random()*arr.length)];}
-function shuffle(arr){return[...arr].sort(()=>Math.random()-0.5);}
-function showNext(fn){const row=document.getElementById('nav-row');row.innerHTML='';const b=document.createElement('button');b.className='next-btn';b.textContent='Další ➤';b.onclick=fn;row.appendChild(b);}
-function clearNav(){document.getElementById('nav-row').innerHTML='';}
-function setMode(m){
+// ── HELPERS ──
+var score=0,corr=0,mode='abc',answered=false;
+function ust(){document.getElementById('sc').textContent=score;document.getElementById('co').textContent=corr;}
+function sfb(ok,msg){var f=document.getElementById('fb');f.textContent=msg;f.className='fb '+(ok?'ok':'no');}
+function cfb(){document.getElementById('fb').textContent='';}
+function rnd(a){return a[Math.floor(Math.random()*a.length)];}
+function shu(a){return a.slice().sort(function(){return Math.random()-.5;});}
+function shownxt(fn){
+  var r=document.getElementById('nr');r.innerHTML='';
+  var b=document.createElement('button');b.className='nxt';b.textContent='Další ➤';
+  b.onclick=fn;r.appendChild(b);
+}
+function clrnr(){document.getElementById('nr').innerHTML='';}
+function go(m){
   mode=m;
-  document.querySelectorAll('.nav-btn').forEach((b,i)=>{
-    const ms=['abc','math','memory','colors','animals','simon','world','ttt','tales','write'];
-    b.classList.toggle('active',ms[i]===m);
+  document.querySelectorAll('.nb').forEach(function(b,i){
+    var ms=['abc','math','mem','col','ani','sim','wld','ttt','tal','wri'];
+    b.classList.toggle('on',ms[i]===m);
   });
-  const cls={abc:'c1',math:'c2',memory:'c3',colors:'c4',animals:'c5',simon:'c6',world:'c7',ttt:'c8',tales:'c9',write:'c10'};
-  document.getElementById('game-card').className='game-card '+(cls[m]||'c1');
-  clearFeedback();clearNav();answered=false;dispatch();
+  var cls={abc:'c1',math:'c2',mem:'c3',col:'c4',ani:'c5',sim:'c6',wld:'c7',ttt:'c8',tal:'c9',wri:'c10'};
+  document.getElementById('card').className='card '+(cls[m]||'c1');
+  cfb();clrnr();answered=false;
+  dispatch();
 }
 function dispatch(){
-  if(mode==='abc')// Init header postavičky
-const hg = document.getElementById('header-girls');
-if(hg){ hg.innerHTML = girlA(28) + girlB(28) + girlC(28); }
-nextABC();else if(mode==='math')nextMath();else if(mode==='memory')nextMemory();
-  else if(mode==='colors')nextColors();else if(mode==='animals')nextAnimals();
-  else if(mode==='simon')nextSimon();else if(mode==='world')nextWorld();
-  else if(mode==='ttt')showTTTPicker();else if(mode==='tales')nextTales();
+  if(mode==='abc')abcNext();
+  else if(mode==='math')mathNext();
+  else if(mode==='mem')memNext();
+  else if(mode==='col')colNext();
+  else if(mode==='ani')aniNext();
+  else if(mode==='sim')simNext();
+  else if(mode==='wld')wldNext();
+  else if(mode==='ttt')tttPick();
+  else if(mode==='tal')talNext();
+  else if(mode==='wri')wriNext();
 }
 
-// ══ ABC ══
-const LETTERS=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','V','Z'];
-const PIC=[{l:'A',e:'🚗',w:'auto'},{l:'B',e:'🍌',w:'banán'},{l:'C',e:'🍋',w:'citron'},{l:'D',e:'🌈',w:'duha'},{l:'E',e:'🐘',w:'slon'},{l:'F',e:'🍓',w:'jahoda'},{l:'G',e:'⚽',w:'gól'},{l:'H',e:'⭐',w:'hvězda'},{l:'I',e:'🦋',w:'motýl'},{l:'J',e:'🍎',w:'jablko'},{l:'K',e:'🐱',w:'kočka'},{l:'L',e:'🦁',w:'lev'},{l:'M',e:'🌙',w:'měsíc'},{l:'N',e:'✂️',w:'nůžky'},{l:'O',e:'🔥',w:'oheň'},{l:'P',e:'🐕',w:'pes'},{l:'R',e:'🌹',w:'růže'},{l:'S',e:'☀️',w:'slunce'},{l:'T',e:'🐯',w:'tygr'},{l:'U',e:'👂',w:'ucho'},{l:'V',e:'🐝',w:'včela'},{l:'Z',e:'🦊',w:'zvíře'}];
-const WORDS_BUILD=[{w:'KOČKA',s:['K','O','Č','K','A']},{w:'AUTO',s:['A','U','T','O']},{w:'LES',s:['L','E','S']},{w:'DŮM',s:['D','Ů','M']},{w:'PES',s:['P','E','S']},{w:'MÍČ',s:['M','Í','Č']},{w:'NOS',s:['N','O','S']},{w:'KŮŇ',s:['K','Ů','Ň']}];
-const MISSING_W=[{f:'KOČKA',d:['_','O','Č','K','A'],m:'K',h:'Mňau!'},{f:'AUTO',d:['A','U','_','O'],m:'T',h:'Jede po silnici'},{f:'LES',d:['L','_','S'],m:'E',h:'Plný stromů'},{f:'PES',d:['P','E','_'],m:'S',h:'Haf haf!'},{f:'MÍČ',d:['_','Í','Č'],m:'M',h:'Kopnem do něj'},{f:'DŮM',d:['_','Ů','M'],m:'D',h:'Bydlíme v něm'},{f:'NOS',d:['N','_','S'],m:'O',h:'Cítím jím!'},{f:'HVĚZDA',d:['H','V','_','Z','D','A'],m:'Ě',h:'Září na obloze'}];
-function nextABC(){clearFeedback();clearNav();answered=false;const sub=Math.floor(Math.random()*4);const el=document.getElementById('game-content');if(sub===0)showRecognize(el);else if(sub===1)showPicture(el);else if(sub===2)showMissingL(el);else showBuild(el);}
-function showRecognize(el){const letter=rand(LETTERS);const opts=shuffle([letter,...shuffle(LETTERS.filter(l=>l!==letter)).slice(0,3)]);el.innerHTML=`<div class="game-label">Jaké je toto písmeno?</div><div class="big-letter">${letter}</div><div class="opts-2" id="opts"></div>`;opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>pickOpt(o,letter,b,'opts',nextABC);el.querySelector('#opts').appendChild(b);});}
-function showPicture(el){const item=rand(PIC);const wrongs=shuffle(PIC.filter(p=>p.l!==item.l)).slice(0,3);const opts=shuffle([item,...wrongs]);el.innerHTML=`<div class="game-label">Co začíná tímto písmenem?</div><div class="big-letter">${item.l}</div><div class="opts-2" id="opts"></div>`;opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="opt-emoji">${o.e}</span><span class="opt-text">${o.w}</span>`;b.onclick=()=>pickOpt(o.l,item.l,b,'opts',nextABC);el.querySelector('#opts').appendChild(b);});}
-function showMissingL(el){const q=rand(MISSING_W);const opts=shuffle([q.m,...shuffle(LETTERS.filter(l=>l!==q.m)).slice(0,3)]);const disp=q.d.map(c=>c==='_'?`<div class="wchar blank">?</div>`:`<div class="wchar">${c}</div>`).join('');el.innerHTML=`<div class="game-label">Doplň chybějící písmeno</div><div class="word-display">${disp}</div><div class="sub">${q.h}</div><div class="letter-pool" id="lp"></div>`;opts.forEach(o=>{const b=document.createElement('button');b.className='lbtn';b.textContent=o;b.onclick=()=>{if(answered)return;answered=true;const ok=o===q.m;b.classList.add(ok?'correct':'wrong');el.querySelectorAll('.lbtn').forEach(x=>{if(x.textContent===q.m)x.classList.add('correct');x.disabled=true;});if(ok){score+=10;correct++;setFeedback(true,rand(['⭐ Skvělé!','🎉 Bravo!','✨ Perfekt!']));setTimeout(nextABC,1000);}else{setFeedback(false,`Správně: ${q.m}`);showNext(nextABC);}updStats();};el.querySelector('#lp').appendChild(b);});}
-function showBuild(el){const q=rand(WORDS_BUILD);const sh=shuffle([...q.s]);let built=[];el.innerHTML=`<div class="game-label">Poskládej slovo</div><div class="slots-row" id="slots">${q.s.map((_,i)=>`<div class="slot" id="sl${i}"></div>`).join('')}</div><div class="syl-pool" id="sp"></div>`;sh.forEach(ch=>{const b=document.createElement('button');b.className='sbtn';b.textContent=ch;b.onclick=()=>{if(answered||b.classList.contains('used'))return;built.push(ch);b.classList.add('used');const sl=document.getElementById('sl'+(built.length-1));if(sl){sl.textContent=ch;sl.classList.add('filled');}if(built.length===q.s.length){const ok=built.join('')===q.w;answered=true;if(ok){score+=15;correct++;setFeedback(true,'🎉 '+q.w);setTimeout(nextABC,1100);}else{setFeedback(false,'Zkus znovu!');showNext(nextABC);}updStats();}};el.querySelector('#sp').appendChild(b);});}
-function pickOpt(chosen,cv,btn,pid,next){if(answered)return;answered=true;const ok=chosen===cv;btn.classList.add(ok?'correct':'wrong');document.querySelectorAll('#'+pid+' .opt').forEach(b=>b.disabled=true);if(ok){score+=10;correct++;setFeedback(true,rand(['⭐ Skvělé!','🎉 Super!','✨ Wow!','🌟 Bravo!']));setTimeout(next,1000);}else{setFeedback(false,'Zkus znovu!');showNext(next);}updStats();}
-
-// ══ MATH ══
-function nextMath(){clearFeedback();clearNav();answered=false;const op=rand(['+','-']);let a,b,ans;if(op==='+'){a=Math.floor(Math.random()*10)+1;b=Math.floor(Math.random()*10)+1;ans=a+b;}else{a=Math.floor(Math.random()*10)+5;b=Math.floor(Math.random()*5)+1;ans=a-b;}const ws=new Set();while(ws.size<3){const w=ans+rand([-3,-2,-1,1,2,3]);if(w>=0&&w!==ans)ws.add(w);}const opts=shuffle([ans,...ws]);const el=document.getElementById('game-content');el.innerHTML=`<div class="game-label">Kolik je to?</div><div class="math-eq">${a} ${op} ${b} = <span class="qm">?</span></div><div class="opts-2" id="opts"></div>`;opts.forEach(o=>{const b2=document.createElement('button');b2.className='opt';b2.textContent=o;b2.onclick=()=>{if(answered)return;answered=true;const ok=o===ans;b2.classList.add(ok?'correct':'wrong');document.querySelectorAll('#opts .opt').forEach(x=>x.disabled=true);if(ok){score+=10;correct++;setFeedback(true,rand(['⭐ Správně!','🎉 Výborně!','✨ Skvělé!']));setTimeout(nextMath,1000);}else{setFeedback(false,`Správně: ${ans}`);showNext(nextMath);}updStats();};el.querySelector('#opts').appendChild(b2);});}
-
-// ══ MEMORY ══
-const MEM_PAIRS=['🎤','🌟','🎵','💜','🌸','🦋','🎀','🌈'];
-let memCards=[],memFlipped=[],memMatched=0,memLock=false;
-function nextMemory(){clearFeedback();clearNav();answered=false;memFlipped=[];memMatched=0;memLock=false;const pairs=shuffle([...MEM_PAIRS,...MEM_PAIRS]);memCards=pairs.map((e,i)=>({id:i,emoji:e,flipped:false,matched:false}));const el=document.getElementById('game-content');el.innerHTML=`<div class="game-label">Najdi stejné dvojice!</div><div class="memory-grid" id="mgrid"></div><div class="sub" style="margin-top:10px">Nalezeno: <b id="mfound">0</b> / ${MEM_PAIRS.length}</div>`;const grid=el.querySelector('#mgrid');memCards.forEach((_,i)=>{const d=document.createElement('div');d.className='mem-card';d.innerHTML=`<div class="mfront">✦</div><div class="mback">${memCards[i].emoji}</div>`;d.onclick=()=>flipCard(i);grid.appendChild(d);});}
-function flipCard(i){if(memLock||memCards[i].flipped||memCards[i].matched)return;memCards[i].flipped=true;memFlipped.push(i);updateMemGrid();if(memFlipped.length===2){memLock=true;const[a,b]=memFlipped;if(memCards[a].emoji===memCards[b].emoji){setTimeout(()=>{memCards[a].matched=memCards[b].matched=true;memFlipped=[];memMatched++;memLock=false;score+=15;correct++;updStats();updateMemGrid();document.getElementById('mfound').textContent=memMatched;if(memMatched===MEM_PAIRS.length){setFeedback(true,'🎉 Výborně!');showNext(nextMemory);}},500);}else{setTimeout(()=>{memCards[a].flipped=memCards[b].flipped=false;memFlipped=[];memLock=false;updateMemGrid();},900);}}}
-function updateMemGrid(){const grid=document.getElementById('mgrid');if(!grid)return;const cards=grid.querySelectorAll('.mem-card');memCards.forEach((card,i)=>{cards[i].className='mem-card'+(card.flipped||card.matched?' flipped':'')+(card.matched?' matched':'');});}
-
-// ══ COLORS ══
-const COLORS_DATA=[{name:'červená',hex:'#E53935'},{name:'modrá',hex:'#1E88E5'},{name:'zelená',hex:'#43A047'},{name:'žlutá',hex:'#FFD600'},{name:'oranžová',hex:'#FB8C00'},{name:'fialová',hex:'#8E24AA'},{name:'růžová',hex:'#E91E63'},{name:'hnědá',hex:'#795548'}];
-const SHAPES=[{name:'kruh',svg:'<circle cx="60" cy="60" r="50"/>'},{name:'čtverec',svg:'<rect x="10" y="10" width="100" height="100" rx="6"/>'},{name:'trojúhelník',svg:'<polygon points="60,10 110,110 10,110"/>'},{name:'hvězda',svg:'<polygon points="60,10 72,42 105,42 80,62 89,95 60,75 31,95 40,62 15,42 48,42"/>'},{name:'srdce',svg:'<path d="M60,90 C60,90 15,60 15,35 C15,22 25,12 40,15 C50,17 60,25 60,25 C60,25 70,17 80,15 C95,12 105,22 105,35 C105,60 60,90 60,90Z"/>'}];
-function nextColors(){clearFeedback();clearNav();answered=false;const shape=rand(SHAPES);const color=rand(COLORS_DATA);const wrongs=shuffle(COLORS_DATA.filter(c=>c.name!==color.name)).slice(0,3);const opts=shuffle([color,...wrongs]);const el=document.getElementById('game-content');el.innerHTML=`<div class="game-label">Jakou barvu má tento tvar?</div><div class="shape-display"><svg viewBox="0 0 120 120" width="110" height="110" style="display:block;margin:0 auto"><g fill="${color.hex}">${shape.svg}</g></svg></div><div class="sub">Je to ${shape.name}. Jaká je barva?</div><div class="color-opts" id="copts"></div>`;opts.forEach(o=>{const b=document.createElement('button');b.className='color-btn';b.style.background=o.hex;b.title=o.name;b.onclick=()=>{if(answered)return;answered=true;const ok=o.name===color.name;b.classList.add(ok?'correct':'wrong');document.querySelectorAll('.color-btn').forEach(x=>x.style.pointerEvents='none');if(ok){score+=10;correct++;setFeedback(true,'🎨 '+color.name+'!');setTimeout(nextColors,1000);}else{setFeedback(false,'Správně: '+color.name);showNext(nextColors);}updStats();};el.querySelector('#copts').appendChild(b);});}
-
-// ══ ANIMALS ══
-const ANIMALS=[{e:'🐱',n:'kočka',sound:'Mňau',lives:'doma',eats:'ryby'},{e:'🐕',n:'pes',sound:'Haf',lives:'doma',eats:'maso'},{e:'🐄',n:'kráva',sound:'Bú',lives:'na farmě',eats:'trávu'},{e:'🐸',n:'žába',sound:'Kvák',lives:'u rybníka',eats:'hmyz'},{e:'🦁',n:'lev',sound:'Rrr',lives:'v Africe',eats:'maso'},{e:'🐘',n:'slon',sound:'Troubí',lives:'v Africe',eats:'rostliny'},{e:'🐧',n:'tučňák',sound:'Kvák',lives:'v Antarktidě',eats:'ryby'},{e:'🦊',n:'liška',sound:'Štěká',lives:'v lese',eats:'vše'},{e:'🐴',n:'kůň',sound:'Iiíhá',lives:'na farmě',eats:'seno'},{e:'🐇',n:'králík',sound:'Tch',lives:'doma',eats:'zeleninu'}];
-const ANI_QS=[(a,all)=>({q:`Jak dělá ${a.n}?`,ans:a.sound,opts:shuffle([a.sound,...shuffle(all.filter(x=>x.n!==a.n).map(x=>x.sound)).slice(0,3)])}),(a,all)=>({q:`Kde žije ${a.n}?`,ans:a.lives,opts:shuffle([a.lives,...shuffle(all.filter(x=>x.n!==a.n).map(x=>x.lives)).slice(0,3)])}),(a,all)=>({q:`Co jí ${a.n}?`,ans:a.eats,opts:shuffle([a.eats,...shuffle(all.filter(x=>x.n!==a.n).map(x=>x.eats)).slice(0,3)])})];
-function nextAnimals(){clearFeedback();clearNav();answered=false;const animal=rand(ANIMALS);const{q,ans,opts}=rand(ANI_QS)(animal,ANIMALS);const el=document.getElementById('game-content');el.innerHTML=`<div class="game-label">Poznáváme zvířata</div><div class="animal-big">${animal.e}</div><div class="animal-name">${animal.n.charAt(0).toUpperCase()+animal.n.slice(1)}</div><div class="question">${q}</div><div class="opts-2" id="opts"></div>`;const seen=new Set();opts.filter(o=>{if(seen.has(o))return false;seen.add(o);return true;}).slice(0,4).forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>pickOpt(o,ans,b,'opts',nextAnimals);el.querySelector('#opts').appendChild(b);});}
-
-// ══ SIMON ══
-let simonSeq=[],simonPlayer=[],simonRound=0;
-function nextSimon(){clearFeedback();clearNav();answered=false;simonSeq=[];simonPlayer=[];simonRound=0;const el=document.getElementById('game-content');el.innerHTML=`<div class="game-label">Opakuj sekvenci barev!</div><div class="simon-grid" id="sgrid"><button class="simon-btn s0" id="sb0"></button><button class="simon-btn s1" id="sb1"></button><button class="simon-btn s2" id="sb2"></button><button class="simon-btn s3" id="sb3"></button></div><div class="simon-info" id="sinfo">Připravit...</div>`;[0,1,2,3].forEach(i=>document.getElementById('sb'+i).onclick=()=>simonPress(i));setTimeout(simonAdd,900);}
-function simonAdd(){simonSeq.push(Math.floor(Math.random()*4));simonPlayer=[];simonRound++;document.getElementById('sinfo').textContent=`Kolo ${simonRound} — sleduj!`;setSimonBtns(false);playSeq(0);}
-function playSeq(i){if(i>=simonSeq.length){setSimonBtns(true);document.getElementById('sinfo').textContent='Teď ty!';return;}const btn=document.getElementById('sb'+simonSeq[i]);setTimeout(()=>{btn.classList.add('lit');setTimeout(()=>{btn.classList.remove('lit');playSeq(i+1);},500);},i*750);}
-function setSimonBtns(on){[0,1,2,3].forEach(i=>{document.getElementById('sb'+i).style.pointerEvents=on?'auto':'none';});}
-function simonPress(i){const btn=document.getElementById('sb'+i);btn.classList.add('lit');setTimeout(()=>btn.classList.remove('lit'),200);simonPlayer.push(i);const pos=simonPlayer.length-1;if(simonPlayer[pos]!==simonSeq[pos]){setFeedback(false,`Chyba! Kolo ${simonRound}`);score+=simonRound;correct++;updStats();showNext(nextSimon);return;}if(simonPlayer.length===simonSeq.length){score+=10;correct++;updStats();setFeedback(true,`🎵 Kolo ${simonRound}!`);setSimonBtns(false);setTimeout(simonAdd,1200);}}
-
-// ══ WORLD ══
-const WORLD=[{e:'🗼',n:'Eiffelova věž',country:'Francie',continent:'Evropa'},{e:'🗽',n:'Socha svobody',country:'USA',continent:'Amerika'},{e:'🏔️',n:'Mount Everest',country:'Nepál',continent:'Asie'},{e:'🦘',n:'klokan',country:'Austrálie',continent:'Austrálie'},{e:'🐼',n:'panda',country:'Čína',continent:'Asie'},{e:'🌴',n:'palma',country:'tropické země',continent:'v teplých krajích'},{e:'🏜️',n:'poušť Sahara',country:'Afrika',continent:'Afrika'},{e:'❄️',n:'iglú',country:'Arktida',continent:'Sever'},{e:'🦁',n:'lev',country:'Afrika',continent:'Afrika'},{e:'🌋',n:'sopka',country:'různé země',continent:'všude'}];
-const WORLD_QS=[(w,all)=>({q:`Kde najdeme ${w.n}?`,ans:w.country,opts:shuffle([w.country,...shuffle(all.filter(x=>x.n!==w.n).map(x=>x.country)).slice(0,3)])}),(w,all)=>({q:`Na jakém kontinentě je ${w.n}?`,ans:w.continent,opts:shuffle([w.continent,...shuffle(all.filter(x=>x.n!==w.n).map(x=>x.continent)).slice(0,3)])})];
-function nextWorld(){clearFeedback();clearNav();answered=false;const item=rand(WORLD);const{q,ans,opts}=rand(WORLD_QS)(item,WORLD);const seen=new Set();const uOpts=opts.filter(o=>{if(seen.has(o))return false;seen.add(o);return true;}).slice(0,4);const el=document.getElementById('game-content');el.innerHTML=`<div class="game-label">Poznáváme svět</div><div class="animal-big">${item.e}</div><div class="animal-name">${item.n}</div><div class="question">${q}</div><div class="opts-2" id="opts"></div>`;uOpts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>pickOpt(o,ans,b,'opts',nextWorld);el.querySelector('#opts').appendChild(b);});}
-
-// ══════════════════════════════════════════
-// ══         PIŠKVORKY S AI               ══
-// ══════════════════════════════════════════
-let tttBoard, tttTurn, tttActive, tttVsAI, tttDifficulty, tttPlayerMark, tttAIMark;
-let tttScores={player:0,ai:0,p2:0,draw:0};
-const WIN_LINES=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-
-function showTTTPicker(){
-  clearFeedback();clearNav();answered=true;
-  const el=document.getElementById('game-content');
-  el.innerHTML=`
-    <div class="ttt-mode-pick">
-      <div class="game-label">Vyber způsob hry</div>
-      <div class="mode-cards">
-        <div class="mode-card" onclick="startTTT(false)">
-          <div class="mc-icon">${girlA(38)}${girlB(38)}</div>
-          <div class="mc-title">2 hráči</div>
-          <div class="mc-sub">Hraj s kamarádem nebo taťkou!</div>
-        </div>
-        <div class="mode-card" onclick="showDiffPicker()">
-          <div class="mc-icon">🤖</div>
-          <div class="mc-title">Proti tabletu</div>
-          <div class="mc-sub">Hraj sám proti počítači!</div>
-        </div>
-      </div>
-    </div>`;
+// ── SVG POSTAVIČKY ──
+function gA(sz){
+  sz=sz||50;var h=Math.round(sz*1.15);
+  return '<svg width="'+sz+'" height="'+h+'" viewBox="0 0 90 104" xmlns="http://www.w3.org/2000/svg">'
+  +'<path d="M22 62 Q4 58 4 80 L4 104 L86 104 L86 80 Q86 58 68 62Z" fill="#F5C518"/>'
+  +'<path d="M22 62 Q45 72 45 80 L28 62Z" fill="#E0AE00"/>'
+  +'<path d="M68 62 Q45 72 45 80 L62 62Z" fill="#E0AE00"/>'
+  +'<rect x="34" y="60" width="22" height="10" rx="3" fill="#1565C0"/>'
+  +'<path d="M68 64 Q80 58 82 46" stroke="#FFE0CC" stroke-width="9" stroke-linecap="round" fill="none"/>'
+  +'<line x1="82" y1="46" x2="84" y2="34" stroke="#FFE0CC" stroke-width="6" stroke-linecap="round"/>'
+  +'<line x1="82" y1="47" x2="88" y2="36" stroke="#FFE0CC" stroke-width="6" stroke-linecap="round"/>'
+  +'<path d="M22 64 Q10 70 10 82" stroke="#FFE0CC" stroke-width="9" stroke-linecap="round" fill="none"/>'
+  +'<rect x="39" y="50" width="12" height="16" rx="5" fill="#FFE0CC"/>'
+  +'<ellipse cx="45" cy="34" rx="28" ry="30" fill="#FFE0CC"/>'
+  +'<ellipse cx="45" cy="16" rx="28" ry="16" fill="#9B59B6"/>'
+  +'<ellipse cx="45" cy="6" rx="16" ry="14" fill="#9B59B6"/>'
+  +'<ellipse cx="45" cy="4" rx="11" ry="9" fill="#B069D0"/>'
+  +'<path d="M17 20 Q8 32 10 46" stroke="#9B59B6" stroke-width="7" stroke-linecap="round" fill="none"/>'
+  +'<path d="M73 20 Q82 32 80 46" stroke="#9B59B6" stroke-width="7" stroke-linecap="round" fill="none"/>'
+  +'<path d="M17 16 Q22 8 32 12 Q38 6 45 9 Q52 6 58 12 Q68 8 73 16" fill="#9B59B6"/>'
+  +'<path d="M28 28 Q34 24 40 27" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'<path d="M50 27 Q56 24 62 28" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'<ellipse cx="34" cy="36" rx="8" ry="9" fill="white"/>'
+  +'<ellipse cx="56" cy="36" rx="8" ry="9" fill="white"/>'
+  +'<ellipse cx="34" cy="37" rx="5.5" ry="6.5" fill="#9B59B6"/>'
+  +'<ellipse cx="56" cy="37" rx="5.5" ry="6.5" fill="#9B59B6"/>'
+  +'<circle cx="34" cy="35" r="2.5" fill="#1a1a2e"/>'
+  +'<circle cx="56" cy="35" r="2.5" fill="#1a1a2e"/>'
+  +'<circle cx="35.2" cy="33.5" r="1.4" fill="white"/>'
+  +'<circle cx="57.2" cy="33.5" r="1.4" fill="white"/>'
+  +'<ellipse cx="26" cy="44" rx="7" ry="4" fill="#FFB3C6" opacity="0.5"/>'
+  +'<ellipse cx="64" cy="44" rx="7" ry="4" fill="#FFB3C6" opacity="0.5"/>'
+  +'<ellipse cx="45" cy="46" rx="3.5" ry="2" fill="#F0C0A0"/>'
+  +'<path d="M35 52 Q45 60 55 52" stroke="#E8605A" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'<circle cx="17" cy="40" r="2.5" fill="#FFD93D"/>'
+  +'</svg>';
+}
+function gB(sz){
+  sz=sz||50;var h=Math.round(sz*1.15);
+  return '<svg width="'+sz+'" height="'+h+'" viewBox="0 0 90 104" xmlns="http://www.w3.org/2000/svg">'
+  +'<path d="M22 62 Q4 58 4 80 L4 104 L86 104 L86 80 Q86 58 68 62Z" fill="#7B2D8B"/>'
+  +'<polygon points="35,68 42,80 28,80" fill="#9B3DAB"/>'
+  +'<polygon points="50,68 57,80 43,80" fill="#9B3DAB"/>'
+  +'<rect x="34" y="58" width="22" height="8" rx="3" fill="#9B3DAB"/>'
+  +'<path d="M22 64 Q8 72 10 88" stroke="#FFE0CC" stroke-width="9" stroke-linecap="round" fill="none"/>'
+  +'<path d="M68 64 Q82 72 80 88" stroke="#FFE0CC" stroke-width="9" stroke-linecap="round" fill="none"/>'
+  +'<rect x="39" y="50" width="12" height="16" rx="5" fill="#FFE0CC"/>'
+  +'<ellipse cx="45" cy="34" rx="28" ry="30" fill="#FFE0CC"/>'
+  +'<ellipse cx="45" cy="16" rx="28" ry="16" fill="#FF6B9D"/>'
+  +'<ellipse cx="14" cy="38" rx="8" ry="22" fill="#FF6B9D" transform="rotate(-8,14,38)"/>'
+  +'<ellipse cx="76" cy="38" rx="8" ry="22" fill="#FF6B9D" transform="rotate(8,76,38)"/>'
+  +'<circle cx="10" cy="44" r="5" fill="#FFD93D"/><circle cx="80" cy="44" r="5" fill="#FFD93D"/>'
+  +'<circle cx="10" cy="44" r="3" fill="#FF6B9D"/><circle cx="80" cy="44" r="3" fill="#FF6B9D"/>'
+  +'<path d="M17 16 Q22 8 32 13 Q38 7 45 10 Q52 7 58 13 Q68 8 73 16" fill="#FF6B9D"/>'
+  +'<path d="M28 27 Q34 23 40 26" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'<path d="M50 26 Q56 23 62 27" stroke="#1a1a2e" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'<ellipse cx="34" cy="36" rx="8" ry="9" fill="white"/>'
+  +'<ellipse cx="56" cy="36" rx="8" ry="9" fill="white"/>'
+  +'<ellipse cx="34" cy="37" rx="5.5" ry="6.5" fill="#E91E63"/>'
+  +'<ellipse cx="56" cy="37" rx="5.5" ry="6.5" fill="#E91E63"/>'
+  +'<circle cx="34" cy="35" r="2.5" fill="#1a1a2e"/>'
+  +'<circle cx="56" cy="35" r="2.5" fill="#1a1a2e"/>'
+  +'<circle cx="35.2" cy="33.5" r="1.4" fill="white"/>'
+  +'<circle cx="57.2" cy="33.5" r="1.4" fill="white"/>'
+  +'<ellipse cx="24" cy="43" rx="8" ry="5" fill="#FFB3C6" opacity="0.6"/>'
+  +'<ellipse cx="66" cy="43" rx="8" ry="5" fill="#FFB3C6" opacity="0.6"/>'
+  +'<ellipse cx="45" cy="46" rx="3.5" ry="2" fill="#F0C0A0"/>'
+  +'<path d="M34 52 Q45 63 56 52" stroke="#E8605A" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'</svg>';
+}
+function gC(sz){
+  sz=sz||50;var h=Math.round(sz*1.15);
+  return '<svg width="'+sz+'" height="'+h+'" viewBox="0 0 90 104" xmlns="http://www.w3.org/2000/svg">'
+  +'<path d="M22 62 Q4 58 4 80 L4 104 L86 104 L86 80 Q86 58 68 62Z" fill="#00ACC1"/>'
+  +'<path d="M22 65 Q45 58 68 65" stroke="#00838F" stroke-width="2" fill="none"/>'
+  +'<circle cx="32" cy="74" r="5" fill="#00838F"/>'
+  +'<circle cx="58" cy="74" r="5" fill="#00838F"/>'
+  +'<rect x="8" y="80" width="14" height="12" rx="3" fill="#00838F"/>'
+  +'<rect x="68" y="80" width="14" height="12" rx="3" fill="#00838F"/>'
+  +'<path d="M68 64 Q80 60 82 48" stroke="#FFE0CC" stroke-width="9" stroke-linecap="round" fill="none"/>'
+  +'<line x1="82" y1="48" x2="84" y2="36" stroke="#FFE0CC" stroke-width="6" stroke-linecap="round"/>'
+  +'<line x1="82" y1="49" x2="88" y2="38" stroke="#FFE0CC" stroke-width="6" stroke-linecap="round"/>'
+  +'<path d="M22 64 Q10 70 10 84" stroke="#FFE0CC" stroke-width="9" stroke-linecap="round" fill="none"/>'
+  +'<rect x="39" y="50" width="12" height="16" rx="5" fill="#FFE0CC"/>'
+  +'<ellipse cx="45" cy="34" rx="28" ry="30" fill="#FFE0CC"/>'
+  +'<ellipse cx="45" cy="16" rx="28" ry="17" fill="#1a1a2e"/>'
+  +'<path d="M17 18 Q24 10 36 15 Q40 8 45 11 Q50 8 54 15 Q66 10 73 18 L73 26 Q58 22 45 24 Q32 22 17 26Z" fill="#1a1a2e"/>'
+  +'<path d="M17 20 Q6 36 8 58" stroke="#1a1a2e" stroke-width="12" stroke-linecap="round" fill="none"/>'
+  +'<path d="M73 20 Q84 36 82 58" stroke="#1a1a2e" stroke-width="12" stroke-linecap="round" fill="none"/>'
+  +'<path d="M22 16 Q45 8 68 16" stroke="#4D96FF" stroke-width="2.5" fill="none" opacity="0.7" stroke-linecap="round"/>'
+  +'<rect x="27" y="27" width="14" height="3" rx="1.5" fill="#1a1a2e"/>'
+  +'<rect x="49" y="27" width="14" height="3" rx="1.5" fill="#1a1a2e"/>'
+  +'<ellipse cx="34" cy="37" rx="9" ry="8" fill="white"/>'
+  +'<ellipse cx="56" cy="37" rx="9" ry="8" fill="white"/>'
+  +'<ellipse cx="34" cy="38" rx="6.5" ry="6" fill="#00ACC1"/>'
+  +'<ellipse cx="56" cy="38" rx="6.5" ry="6" fill="#00ACC1"/>'
+  +'<circle cx="34" cy="36" r="2.8" fill="#1a1a2e"/>'
+  +'<circle cx="56" cy="36" r="2.8" fill="#1a1a2e"/>'
+  +'<circle cx="35.5" cy="34.5" r="1.5" fill="white"/>'
+  +'<circle cx="57.5" cy="34.5" r="1.5" fill="white"/>'
+  +'<ellipse cx="26" cy="44" rx="7" ry="4" fill="#FFB3C6" opacity="0.4"/>'
+  +'<ellipse cx="64" cy="44" rx="7" ry="4" fill="#FFB3C6" opacity="0.4"/>'
+  +'<ellipse cx="45" cy="46" rx="3" ry="2" fill="#F0C0A0"/>'
+  +'<path d="M37 52 Q45 59 53 52" stroke="#E8605A" stroke-width="2.5" fill="none" stroke-linecap="round"/>'
+  +'<circle cx="17" cy="40" r="4" fill="none" stroke="#00ACC1" stroke-width="2"/>'
+  +'<circle cx="17" cy="52" r="2.5" fill="#FFD93D"/>'
+  +'</svg>';
 }
 
-function showDiffPicker(){
-  const el=document.getElementById('game-content');
-  el.innerHTML=`
-    <div class="ttt-mode-pick">
-      <div class="game-label">Jak těžký soupeř?</div>
-      <div class="mode-cards">
-        <div class="mode-card" onclick="startTTT(true,'easy')">
-          <div class="mc-icon">😊</div>
-          <div class="mc-title">Lehká</div>
-          <div class="mc-sub">Tablet hraje náhodně</div>
-        </div>
-        <div class="mode-card" onclick="startTTT(true,'medium')">
-          <div class="mc-icon">🤔</div>
-          <div class="mc-title">Střední</div>
-          <div class="mc-sub">Tablet někdy blokuje</div>
-        </div>
-        <div class="mode-card" onclick="startTTT(true,'hard')">
-          <div class="mc-icon">🤖</div>
-          <div class="mc-title">Těžká</div>
-          <div class="mc-sub">Tablet hraje perfektně!</div>
-        </div>
-        <div class="mode-card" onclick="showTTTPicker()">
-          <div class="mc-icon">←</div>
-          <div class="mc-title">Zpět</div>
-          <div class="mc-sub"></div>
-        </div>
-      </div>
-    </div>`;
-}
+// ── ABECEDA ──
+var LTRS=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','R','S','T','U','V','Z'];
+var PIC=[{l:'A',e:'🚗',w:'auto'},{l:'B',e:'🍌',w:'banán'},{l:'C',e:'🍋',w:'citron'},{l:'D',e:'🌈',w:'duha'},{l:'E',e:'🐘',w:'slon'},{l:'F',e:'🍓',w:'jahoda'},{l:'G',e:'⚽',w:'gól'},{l:'H',e:'⭐',w:'hvězda'},{l:'I',e:'🦋',w:'motýl'},{l:'J',e:'🍎',w:'jablko'},{l:'K',e:'🐱',w:'kočka'},{l:'L',e:'🦁',w:'lev'},{l:'M',e:'🌙',w:'měsíc'},{l:'N',e:'✂️',w:'nůžky'},{l:'O',e:'🔥',w:'oheň'},{l:'P',e:'🐕',w:'pes'},{l:'R',e:'🌹',w:'růže'},{l:'S',e:'☀️',w:'slunce'},{l:'T',e:'🐯',w:'tygr'},{l:'U',e:'👂',w:'ucho'},{l:'V',e:'🐝',w:'včela'},{l:'Z',e:'🦊',w:'zvíře'}];
+var WB=[{w:'KOČKA',s:['K','O','Č','K','A']},{w:'AUTO',s:['A','U','T','O']},{w:'LES',s:['L','E','S']},{w:'PES',s:['P','E','S']},{w:'MÍČ',s:['M','Í','Č']},{w:'DŮM',s:['D','Ů','M']},{w:'NOS',s:['N','O','S']},{w:'KŮŇ',s:['K','Ů','Ň']}];
+var MW=[{f:'KOČKA',d:['_','O','Č','K','A'],m:'K',h:'Mňau!'},{f:'AUTO',d:['A','U','_','O'],m:'T',h:'Jede po silnici'},{f:'LES',d:['L','_','S'],m:'E',h:'Plný stromů'},{f:'PES',d:['P','E','_'],m:'S',h:'Haf haf!'},{f:'MÍČ',d:['_','Í','Č'],m:'M',h:'Kopnem do něj'},{f:'DŮM',d:['_','Ů','M'],m:'D',h:'Bydlíme v něm'}];
+function abcNext(){cfb();clrnr();answered=false;var t=Math.floor(Math.random()*4);var el=document.getElementById('gc');if(t===0)abcRecognize(el);else if(t===1)abcPic(el);else if(t===2)abcMissing(el);else abcBuild(el);}
+function abcRecognize(el){var l=rnd(LTRS);var opts=shu([l].concat(shu(LTRS.filter(function(x){return x!==l;})).slice(0,3)));el.innerHTML='<div class="glabel">Jaké je toto písmeno?</div><div class="biglet">'+l+'</div><div class="g2" id="op"></div>';opts.forEach(function(o){var b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=function(){pickOpt(o,l,b,'op',abcNext);};el.querySelector('#op').appendChild(b);});}
+function abcPic(el){var item=rnd(PIC);var wr=shu(PIC.filter(function(p){return p.l!==item.l;})).slice(0,3);var opts=shu([item].concat(wr));el.innerHTML='<div class="glabel">Co začíná tímto písmenem?</div><div class="biglet">'+item.l+'</div><div class="g2" id="op"></div>';opts.forEach(function(o){var b=document.createElement('button');b.className='opt';b.innerHTML='<span style="font-size:26px;display:block;">'+o.e+'</span><span style="font-size:12px;">'+o.w+'</span>';b.onclick=function(){pickOpt(o.l,item.l,b,'op',abcNext);};el.querySelector('#op').appendChild(b);});}
+function abcMissing(el){var q=rnd(MW);var opts=shu([q.m].concat(shu(LTRS.filter(function(l){return l!==q.m;})).slice(0,3)));var disp=q.d.map(function(c){return c==='_'?'<div class="wch bl">?</div>':'<div class="wch">'+c+'</div>';}).join('');el.innerHTML='<div class="glabel">Doplň chybějící písmeno</div><div class="wdisp">'+disp+'</div><div class="sub">'+q.h+'</div><div class="lpool" id="lp"></div>';opts.forEach(function(o){var b=document.createElement('button');b.className='lbtn';b.textContent=o;b.onclick=function(){if(answered)return;answered=true;var ok=o===q.m;b.classList.add(ok?'ok':'no');el.querySelectorAll('.lbtn').forEach(function(x){if(x.textContent===q.m)x.classList.add('ok');x.disabled=true;});if(ok){score+=10;corr++;sfb(true,rnd(['⭐ Skvělé!','🎉 Bravo!','✨ Perfekt!']));setTimeout(abcNext,1000);}else{sfb(false,'Správně: '+q.m);shownxt(abcNext);}ust();};el.querySelector('#lp').appendChild(b);});}
+function abcBuild(el){var q=rnd(WB);var sh=shu(q.s);var built=[];el.innerHTML='<div class="glabel">Poskládej slovo</div><div class="slots" id="sl">'+q.s.map(function(_,i){return '<div class="slot" id="sl'+i+'"></div>';}).join('')+'</div><div class="spool" id="sp"></div>';sh.forEach(function(ch){var b=document.createElement('button');b.className='sbtn';b.textContent=ch;b.onclick=function(){if(answered||b.classList.contains('used'))return;built.push(ch);b.classList.add('used');var s=document.getElementById('sl'+(built.length-1));if(s){s.textContent=ch;s.classList.add('filled');}if(built.length===q.s.length){var ok=built.join('')===q.w;answered=true;if(ok){score+=15;corr++;sfb(true,'🎉 '+q.w+'!');setTimeout(abcNext,1100);}else{sfb(false,'Zkus znovu!');shownxt(abcNext);}ust();}};el.querySelector('#sp').appendChild(b);});}
+function pickOpt(chosen,correct,btn,pid,next){if(answered)return;answered=true;var ok=chosen===correct;btn.classList.add(ok?'ok':'no');document.querySelectorAll('#'+pid+' .opt').forEach(function(b){b.disabled=true;});if(ok){score+=10;corr++;sfb(true,rnd(['⭐ Skvělé!','🎉 Super!','✨ Wow!','🌟 Bravo!']));setTimeout(next,1000);}else{sfb(false,'Zkus znovu!');shownxt(next);}ust();}
 
-function startTTT(vsAI, difficulty){
-  tttBoard=Array(9).fill(null);
-  tttTurn='A';
-  tttActive=true;
-  tttVsAI=vsAI;
-  tttDifficulty=difficulty||'easy';
-  tttPlayerMark='A';
-  tttAIMark='B';
-  renderTTT();
-}
+// ── MATH ──
+function mathNext(){cfb();clrnr();answered=false;var op=rnd(['+','-']);var a,b,ans;if(op==='+'){a=Math.floor(Math.random()*10)+1;b=Math.floor(Math.random()*10)+1;ans=a+b;}else{a=Math.floor(Math.random()*10)+5;b=Math.floor(Math.random()*5)+1;ans=a-b;}var ws=new Set();while(ws.size<3){var w=ans+rnd([-3,-2,-1,1,2,3]);if(w>=0&&w!==ans)ws.add(w);}var opts=shu([ans].concat(Array.from(ws)));var el=document.getElementById('gc');el.innerHTML='<div class="glabel">Kolik je to?</div><div class="math">'+a+' '+op+' '+b+' = <span class="q">?</span></div><div class="g2" id="op"></div>';opts.forEach(function(o){var b2=document.createElement('button');b2.className='opt';b2.textContent=o;b2.onclick=function(){if(answered)return;answered=true;var ok=o===ans;b2.classList.add(ok?'ok':'no');document.querySelectorAll('#op .opt').forEach(function(x){x.disabled=true;});if(ok){score+=10;corr++;sfb(true,rnd(['⭐ Správně!','🎉 Výborně!','✨ Skvělé!']));setTimeout(mathNext,1000);}else{sfb(false,'Správně: '+ans);shownxt(mathNext);}ust();};el.querySelector('#op').appendChild(b2);});}
 
-// ── MINIMAX ──
-function checkWinner(board){
-  for(const[a,b,c] of WIN_LINES){
-    if(board[a]&&board[a]===board[b]&&board[a]===board[c])return board[a];
-  }
-  return board.every(c=>c)?'draw':null;
-}
+// ── MEMORY ──
+var MP=['🎤','🌟','🎵','💜','🌸','🦋','🎀','🌈'];
+var mCards=[],mFlip=[],mMat=0,mLock=false;
+function memNext(){cfb();clrnr();answered=false;mFlip=[];mMat=0;mLock=false;var pairs=shu(MP.concat(MP));mCards=pairs.map(function(e,i){return{id:i,e:e,fl:false,ma:false};});var el=document.getElementById('gc');el.innerHTML='<div class="glabel">Najdi stejné dvojice!</div><div class="mgrid" id="mg"></div><div class="sub" style="margin-top:8px;">Nalezeno: <b id="mf">0</b> / '+MP.length+'</div>';var g=el.querySelector('#mg');mCards.forEach(function(_,i){var d=document.createElement('div');d.className='mc';d.innerHTML='<div class="mf">✦</div><div class="mb">'+mCards[i].e+'</div>';d.onclick=function(){memFlip(i);};g.appendChild(d);});}
+function memFlip(i){if(mLock||mCards[i].fl||mCards[i].ma)return;mCards[i].fl=true;mFlip.push(i);memUpd();if(mFlip.length===2){mLock=true;var a=mFlip[0],b=mFlip[1];if(mCards[a].e===mCards[b].e){setTimeout(function(){mCards[a].ma=mCards[b].ma=true;mFlip=[];mMat++;mLock=false;score+=15;corr++;ust();memUpd();document.getElementById('mf').textContent=mMat;if(mMat===MP.length){sfb(true,'🎉 Výborně! Všechny páry!');shownxt(memNext);}},500);}else{setTimeout(function(){mCards[a].fl=mCards[b].fl=false;mFlip=[];mLock=false;memUpd();},900);}}}
+function memUpd(){var g=document.getElementById('mg');if(!g)return;var cs=g.querySelectorAll('.mc');mCards.forEach(function(c,i){cs[i].className='mc'+(c.fl||c.ma?' flip':'')+(c.ma?' mat':'');});}
 
-function minimax(board, isMax, depth, alpha, beta){
-  const result=checkWinner(board);
-  if(result==='B')return 10-depth;
-  if(result==='A')return depth-10;
-  if(result==='draw')return 0;
-  const empty=board.map((v,i)=>v===null?i:-1).filter(i=>i>=0);
-  if(isMax){
-    let best=-Infinity;
-    for(const i of empty){
-      board[i]='B'; const val=minimax(board,false,depth+1,alpha,beta); board[i]=null;
-      best=Math.max(best,val); alpha=Math.max(alpha,val);
-      if(beta<=alpha)break;
-    }
-    return best;
-  } else {
-    let best=Infinity;
-    for(const i of empty){
-      board[i]='A'; const val=minimax(board,true,depth+1,alpha,beta); board[i]=null;
-      best=Math.min(best,val); beta=Math.min(beta,val);
-      if(beta<=alpha)break;
-    }
-    return best;
-  }
-}
+// ── COLORS ──
+var COLS=[{n:'červená',h:'#E53935'},{n:'modrá',h:'#1E88E5'},{n:'zelená',h:'#43A047'},{n:'žlutá',h:'#FFD600'},{n:'oranžová',h:'#FB8C00'},{n:'fialová',h:'#8E24AA'},{n:'růžová',h:'#E91E63'},{n:'hnědá',h:'#795548'}];
+var SHP=[{n:'kruh',s:'<circle cx="60" cy="60" r="50"/>'},{n:'čtverec',s:'<rect x="10" y="10" width="100" height="100" rx="6"/>'},{n:'trojúhelník',s:'<polygon points="60,10 110,110 10,110"/>'},{n:'hvězda',s:'<polygon points="60,10 72,42 105,42 80,62 89,95 60,75 31,95 40,62 15,42 48,42"/>'},{n:'srdce',s:'<path d="M60,90 C60,90 15,60 15,35 C15,22 25,12 40,15 C50,17 60,25 60,25 C60,25 70,17 80,15 C95,12 105,22 105,35 C105,60 60,90 60,90Z"/>'}];
+function colNext(){cfb();clrnr();answered=false;var shp=rnd(SHP);var col=rnd(COLS);var wr=shu(COLS.filter(function(c){return c.n!==col.n;})).slice(0,3);var opts=shu([col].concat(wr));var el=document.getElementById('gc');el.innerHTML='<div class="glabel">Jakou barvu má tento tvar?</div><svg viewBox="0 0 120 120" width="110" height="110" style="display:block;margin:4px auto"><g fill="'+col.h+'">'+shp.s+'</g></svg><div class="sub">Je to '+shp.n+'. Jaká barva?</div><div class="copts" id="co"></div>';opts.forEach(function(o){var b=document.createElement('button');b.className='cbtn';b.style.background=o.h;b.title=o.n;b.onclick=function(){if(answered)return;answered=true;var ok=o.n===col.n;b.classList.add(ok?'ok':'no');document.querySelectorAll('.cbtn').forEach(function(x){x.style.pointerEvents='none';});if(ok){score+=10;corr++;sfb(true,'🎨 '+col.n+'!');setTimeout(colNext,1000);}else{sfb(false,'Správně: '+col.n);shownxt(colNext);}ust();};el.querySelector('#co').appendChild(b);});}
 
-function aiMove(){
-  const empty=tttBoard.map((v,i)=>v===null?i:-1).filter(i=>i>=0);
-  if(!empty.length)return;
+// ── ANIMALS ──
+var ANI=[{e:'🐱',n:'kočka',snd:'Mňau',lv:'doma',et:'ryby'},{e:'🐕',n:'pes',snd:'Haf',lv:'doma',et:'maso'},{e:'🐄',n:'kráva',snd:'Bú',lv:'na farmě',et:'trávu'},{e:'🐸',n:'žába',snd:'Kvák',lv:'u rybníka',et:'hmyz'},{e:'🦁',n:'lev',snd:'Rrr',lv:'v Africe',et:'maso'},{e:'🐘',n:'slon',snd:'Troubí',lv:'v Africe',et:'rostliny'},{e:'🐧',n:'tučňák',snd:'Kvák',lv:'v Antarktidě',et:'ryby'},{e:'🦊',n:'liška',snd:'Štěká',lv:'v lese',et:'vše'},{e:'🐴',n:'kůň',snd:'Iiíhá',lv:'na farmě',et:'seno'},{e:'🐇',n:'králík',snd:'Tch',lv:'doma',et:'zeleninu'}];
+function aniNext(){cfb();clrnr();answered=false;var a=rnd(ANI);var qt=Math.floor(Math.random()*3);var q,ans,opts;if(qt===0){q='Jak dělá '+a.n+'?';ans=a.snd;opts=shu([a.snd].concat(shu(ANI.filter(function(x){return x.n!==a.n;}).map(function(x){return x.snd;})).slice(0,3)));}else if(qt===1){q='Kde žije '+a.n+'?';ans=a.lv;opts=shu([a.lv].concat(shu(ANI.filter(function(x){return x.n!==a.n;}).map(function(x){return x.lv;})).slice(0,3)));}else{q='Co jí '+a.n+'?';ans=a.et;opts=shu([a.et].concat(shu(ANI.filter(function(x){return x.n!==a.n;}).map(function(x){return x.et;})).slice(0,3)));}var seen=new Set();var uopts=opts.filter(function(o){if(seen.has(o))return false;seen.add(o);return true;}).slice(0,4);var el=document.getElementById('gc');el.innerHTML='<div class="glabel">Poznáváme zvířata</div><div class="anim">'+a.e+'</div><div class="aname">'+a.n.charAt(0).toUpperCase()+a.n.slice(1)+'</div><div class="qtxt">'+q+'</div><div class="g2" id="op"></div>';uopts.forEach(function(o){var b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=function(){pickOpt(o,ans,b,'op',aniNext);};el.querySelector('#op').appendChild(b);});}
 
-  let idx;
-  if(tttDifficulty==='easy'){
-    // Pure random
-    idx=rand(empty);
-  } else if(tttDifficulty==='medium'){
-    // 60% smart, 40% random
-    if(Math.random()<0.6){
-      idx=getBestMove();
-    } else {
-      idx=rand(empty);
-    }
-  } else {
-    // Perfect minimax
-    idx=getBestMove();
-  }
-  placeAt(idx,'B');
-}
+// ── SIMON ──
+var simSeq=[],simPl=[],simRnd=0;
+function simNext(){cfb();clrnr();answered=false;simSeq=[];simPl=[];simRnd=0;var el=document.getElementById('gc');el.innerHTML='<div class="glabel">Opakuj sekvenci!</div><div class="sgrid" id="sg"><button class="sbtn2 s0" id="s0"></button><button class="sbtn2 s1" id="s1"></button><button class="sbtn2 s2" id="s2"></button><button class="sbtn2 s3" id="s3"></button></div><div class="sub" id="si" style="margin-top:9px;">Připravit...</div>';[0,1,2,3].forEach(function(i){document.getElementById('s'+i).onclick=function(){simPress(i);};});setTimeout(simAdd,900);}
+function simAdd(){simSeq.push(Math.floor(Math.random()*4));simPl=[];simRnd++;document.getElementById('si').textContent='Kolo '+simRnd+' — sleduj!';simBtns(false);simPlay(0);}
+function simPlay(i){if(i>=simSeq.length){simBtns(true);document.getElementById('si').textContent='Teď ty!';return;}var b=document.getElementById('s'+simSeq[i]);setTimeout(function(){b.classList.add('lit');setTimeout(function(){b.classList.remove('lit');simPlay(i+1);},500);},i*750);}
+function simBtns(on){[0,1,2,3].forEach(function(i){document.getElementById('s'+i).style.pointerEvents=on?'auto':'none';});}
+function simPress(i){var b=document.getElementById('s'+i);b.classList.add('lit');setTimeout(function(){b.classList.remove('lit');},200);simPl.push(i);var pos=simPl.length-1;if(simPl[pos]!==simSeq[pos]){sfb(false,'Chyba! Kolo '+simRnd);score+=simRnd;corr++;ust();shownxt(simNext);return;}if(simPl.length===simSeq.length){score+=10;corr++;ust();sfb(true,'🎵 Kolo '+simRnd+'!');simBtns(false);setTimeout(simAdd,1200);}}
 
-function getBestMove(){
-  const empty=tttBoard.map((v,i)=>v===null?i:-1).filter(i=>i>=0);
-  let best=-Infinity, bestIdx=empty[0];
-  for(const i of empty){
-    tttBoard[i]='B';
-    const val=minimax(tttBoard,false,0,-Infinity,Infinity);
-    tttBoard[i]=null;
-    if(val>best){best=val;bestIdx=i;}
-  }
-  return bestIdx;
-}
+// ── WORLD ──
+var WLD=[{e:'🗼',n:'Eiffelova věž',c:'Francie',k:'Evropa'},{e:'🗽',n:'Socha svobody',c:'USA',k:'Amerika'},{e:'🏔️',n:'Mount Everest',c:'Nepál',k:'Asie'},{e:'🦘',n:'klokan',c:'Austrálie',k:'Austrálie'},{e:'🐼',n:'panda',c:'Čína',k:'Asie'},{e:'🌴',n:'palma',c:'tropické země',k:'v teplých krajích'},{e:'🏜️',n:'Sahara',c:'Afrika',k:'Afrika'},{e:'❄️',n:'iglú',c:'Arktida',k:'Sever'},{e:'🦁',n:'lev',c:'Afrika',k:'Afrika'},{e:'🌋',n:'sopka',c:'různé země',k:'všude'}];
+function wldNext(){cfb();clrnr();answered=false;var w=rnd(WLD);var qt=Math.random()<.5;var q,ans,opts;if(qt){q='Kde najdeme '+w.n+'?';ans=w.c;opts=shu([w.c].concat(shu(WLD.filter(function(x){return x.n!==w.n;}).map(function(x){return x.c;})).slice(0,3)));}else{q='Na jakém kontinentě je '+w.n+'?';ans=w.k;opts=shu([w.k].concat(shu(WLD.filter(function(x){return x.n!==w.n;}).map(function(x){return x.k;})).slice(0,3)));}var seen=new Set();var uopts=opts.filter(function(o){if(seen.has(o))return false;seen.add(o);return true;}).slice(0,4);var el=document.getElementById('gc');el.innerHTML='<div class="glabel">Poznáváme svět</div><div class="anim">'+w.e+'</div><div class="aname">'+w.n+'</div><div class="qtxt">'+q+'</div><div class="g2" id="op"></div>';uopts.forEach(function(o){var b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=function(){pickOpt(o,ans,b,'op',wldNext);};el.querySelector('#op').appendChild(b);});}
 
-function placeAt(idx, mark){
-  tttBoard[idx]=mark;
-  // animate
-  const cells=document.querySelectorAll('.ttt-cell');
-  if(cells[idx]){
-    cells[idx].classList.add('taken','place-anim');
-    cells[idx].innerHTML=mark==='A'?girlA(46):girlB(46);
-  }
-  const result=checkWinner(tttBoard);
-  if(result&&result!=='draw'){
-    tttActive=false;
-    highlightWin(result);
-    setTimeout(()=>{
-      if(tttVsAI){
-        if(result===tttPlayerMark){tttScores.player++;setFeedback(true,'🎉 Vyhrála jsi! Rumi je nejlepší!');}
-        else{tttScores.ai++;setFeedback(false,'😈 Mira vyhrála! Zkus to znovu!');}
-      } else {
-        const name=result==='A'?'Hráč 1 💗':'Hráč 2 💜';
-        if(result==='A')tttScores.player++;else tttScores.p2++;
-        setFeedback(true,`🎉 Vyhrál${result==='A'?'a':''} ${name}!`);
-      }
-      setTimeout(()=>renderTTT(true),800);
-    },400);
-    return;
-  }
-  if(result==='draw'){
-    tttActive=false;
-    tttScores.draw++;
-    setTimeout(()=>{setFeedback(false,'🤝 Remíza!');setTimeout(()=>renderTTT(true),800);},300);
-    return;
-  }
-  tttTurn=tttTurn==='A'?'B':'A';
-  updateTurnBar();
-  // AI moves
-  if(tttVsAI&&tttTurn==='B'&&tttActive){
-    setTimeout(()=>{
-      updateTurnBar(true);
-      setTimeout(aiMove,600);
-    },200);
-  }
-}
+// ── PIŠKVORKY ──
+var tB,tTurn,tAct,tVsAI,tDiff;
+var tSc={p:0,ai:0,p2:0,d:0};
+var WL=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+function tttPick(){cfb();clrnr();answered=true;var el=document.getElementById('gc');el.innerHTML='<div class="ttt-wrap"><div class="glabel">Vyber způsob hry</div><div class="mc-cards"><div class="mc-card" onclick="tttStart(false)"><div class="mci">'+gA(36)+gB(36)+'</div><div class="mct">2 hráči</div><div class="mcs">Rumi vs Zoey!</div></div><div class="mc-card" onclick="tttDiff()"><div class="mci">'+gC(36)+'</div><div class="mct">Proti Miře</div><div class="mcs">Hraj proti AI!</div></div></div></div>';}
+function tttDiff(){var el=document.getElementById('gc');el.innerHTML='<div class="ttt-wrap"><div class="glabel">Jak těžká Mira?</div><div class="mc-cards"><div class="mc-card" onclick="tttStart(true,\'easy\')"><div class="mci">😊</div><div class="mct">Lehká</div><div class="mcs">Mira hraje náhodně</div></div><div class="mc-card" onclick="tttStart(true,\'medium\')"><div class="mci">🤔</div><div class="mct">Střední</div><div class="mcs">Mira někdy blokuje</div></div><div class="mc-card" onclick="tttStart(true,\'hard\')"><div class="mci">🤖</div><div class="mct">Těžká</div><div class="mcs">Mira hraje perfektně!</div></div><div class="mc-card" onclick="tttPick()"><div class="mci">←</div><div class="mct">Zpět</div><div class="mcs"></div></div></div></div>';}
+function tttStart(ai,diff){tB=Array(9).fill(null);tTurn='A';tAct=true;tVsAI=ai;tDiff=diff||'easy';tttRender();}
+function tttWinner(b){for(var i=0;i<WL.length;i++){var l=WL[i];if(b[l[0]]&&b[l[0]]===b[l[1]]&&b[l[0]]===b[l[2]])return b[l[0]];}return b.every(function(c){return c;})?'draw':null;}
+function minimax(b,isMax,d,al,be){var r=tttWinner(b);if(r==='B')return 10-d;if(r==='A')return d-10;if(r==='draw')return 0;var em=b.reduce(function(a,v,i){if(v===null)a.push(i);return a;},[]);if(isMax){var best=-Infinity;for(var i=0;i<em.length;i++){b[em[i]]='B';var v=minimax(b,false,d+1,al,be);b[em[i]]=null;if(v>best)best=v;if(v>al)al=v;if(be<=al)break;}return best;}else{var best2=Infinity;for(var j=0;j<em.length;j++){b[em[j]]='A';var v2=minimax(b,true,d+1,al,be);b[em[j]]=null;if(v2<best2)best2=v2;if(v2<be)be=v2;if(be<=al)break;}return best2;}}
+function tttBest(){var em=tB.reduce(function(a,v,i){if(v===null)a.push(i);return a;},[]);var best=-Infinity,bi=em[0];for(var i=0;i<em.length;i++){tB[em[i]]='B';var v=minimax(tB,false,0,-Infinity,Infinity);tB[em[i]]=null;if(v>best){best=v;bi=em[i];}}return bi;}
+function tttPlace(i,m){tB[i]=m;var cs=document.querySelectorAll('.tcell');if(cs[i]){cs[i].classList.add('taken');cs[i].innerHTML=m==='A'?gA(44):(tVsAI?gC(44):gB(44));}var r=tttWinner(tB);if(r&&r!=='draw'){tAct=false;for(var k=0;k<WL.length;k++){var l=WL[k];if(tB[l[0]]===r&&tB[l[1]]===r&&tB[l[2]]===r){l.forEach(function(x){if(cs[x])cs[x].classList.add('win');});break;}}setTimeout(function(){if(tVsAI){if(r==='A'){tSc.p++;sfb(true,'🎉 Vyhrála jsi! Rumi je nejlepší!');}else{tSc.ai++;sfb(false,'😈 Mira vyhrála! Zkus znovu!');}}else{if(r==='A'){tSc.p++;sfb(true,'🎉 Vyhrála Rumi!');}else{tSc.p2++;sfb(true,'🎉 Vyhrála Zoey!');}}setTimeout(function(){tttRender(true);},800);},400);return;}if(r==='draw'){tAct=false;tSc.d++;setTimeout(function(){sfb(false,'🤝 Remíza!');setTimeout(function(){tttRender(true);},800);},300);return;}tTurn=tTurn==='A'?'B':'A';tttBar();if(tVsAI&&tTurn==='B'&&tAct){setTimeout(function(){tttBar(true);setTimeout(function(){var idx;if(tDiff==='easy'){var em=tB.reduce(function(a,v,i){if(v===null)a.push(i);return a;},[]);idx=rnd(em);}else if(tDiff==='medium'){idx=Math.random()<.6?tttBest():rnd(tB.reduce(function(a,v,i){if(v===null)a.push(i);return a;},[]));}else{idx=tttBest();}tttPlace(idx,'B');},600);},200);}}
+function tttBar(think){var bar=document.getElementById('tbar');if(!bar)return;if(think){bar.className='tbar think';bar.innerHTML=gC(22)+' Mira přemýšlí...';return;}if(tVsAI){if(tTurn==='A'){bar.className='tbar tA';bar.innerHTML=gA(22)+' Tvůj tah! (Rumi)';}else{bar.className='tbar tB';bar.innerHTML=gC(22)+' Mira hraje...';}}else{if(tTurn==='A'){bar.className='tbar tA';bar.innerHTML=gA(22)+' Rumi na tahu';}else{bar.className='tbar tB';bar.innerHTML=gB(22)+' Zoey na tahu';}}}
+function tttRender(newG){if(newG){tB=Array(9).fill(null);tTurn='A';tAct=true;}cfb();var p1=tVsAI?gA(22)+' Ty':gA(22)+' Rumi';var p2=tVsAI?gC(22)+' Mira':gB(22)+' Zoey';var el=document.getElementById('gc');el.innerHTML='<div class="ttt-wrap"><div class="glabel">K-pop piškvorky'+(tVsAI?' · '+(tDiff==='easy'?'😊':tDiff==='medium'?'🤔':'🤖'):'')+' </div><div class="tsc"><div class="tsc-item"><div class="tsl">'+p1+'</div><div class="tsv">'+(tVsAI?tSc.p:tSc.p)+'</div></div><div class="tsc-item"><div class="tsl">🤝</div><div class="tsv">'+tSc.d+'</div></div><div class="tsc-item"><div class="tsl">'+p2+'</div><div class="tsv">'+(tVsAI?tSc.ai:tSc.p2)+'</div></div></div><div class="tbar tA" id="tbar"></div><div class="tboard" id="tb"></div><div class="tact"><button class="tbtn" onclick="tttRender(true)">🔄 Nová hra</button><button class="tbtn" onclick="tttPick()">← Zpět</button></div></div>';tttBar();var tb=el.querySelector('#tb');tB.forEach(function(_,i){var d=document.createElement('div');d.className='tcell'+(tB[i]?' taken':'');if(tB[i]==='A')d.innerHTML=gA(44);else if(tB[i]==='B')d.innerHTML=tVsAI?gC(44):gB(44);d.onclick=function(){if(!tAct||tB[i]||(tVsAI&&tTurn==='B'))return;tttPlace(i,'A');};tb.appendChild(d);});}
 
-function highlightWin(winner){
-  const cells=document.querySelectorAll('.ttt-cell');
-  for(const[a,b,c] of WIN_LINES){
-    if(tttBoard[a]===winner&&tttBoard[b]===winner&&tttBoard[c]===winner){
-      [a,b,c].forEach(i=>{ if(cells[i])cells[i].classList.add('win-cell'); });
-      break;
-    }
-  }
-}
-
-function updateTurnBar(thinking=false){
-  const bar=document.getElementById('turn-bar');
-  if(!bar)return;
-  if(thinking){
-    bar.className='turn-bar thinking';
-    bar.innerHTML=`🤖 Tablet přemýšlí...`;
-    return;
-  }
-  if(tttVsAI){
-    if(tttTurn==='A'){bar.className='turn-bar tA';bar.innerHTML=`${girlA(24)} Rumi — tvůj tah!`;}
-    else{bar.className='turn-bar tB';bar.innerHTML=`${girlC(24)} Mira přemýšlí...`;}
-  } else {
-    if(tttTurn==='A'){bar.className='turn-bar tA';bar.innerHTML=`${girlA(24)} Rumi na tahu`;}
-    else{bar.className='turn-bar tB';bar.innerHTML=`${girlB(24)} Zoey na tahu`;}
-  }
-}
-
-function renderTTT(newGame=false){
-  if(newGame){
-    tttBoard=Array(9).fill(null);
-    tttTurn='A';
-    tttActive=true;
-  }
-  clearFeedback();
-  const el=document.getElementById('game-content');
-  const diffLabel=tttVsAI?` · ${tttDifficulty==='easy'?'😊 Lehká':tttDifficulty==='medium'?'🤔 Střední':'🤖 Těžká'}`:'';
-
-  const p1Label=tttVsAI?`${girlA(22)} Ty (Rumi)`:`${girlA(22)} Hráč 1 (Rumi)`;
-  const p2Label=tttVsAI?`${girlC(22)} Tablet (Mira)`:`${girlB(22)} Hráč 2 (Zoey)`;
-
-  el.innerHTML=`
-    <div class="ttt-wrap">
-      <div class="game-label">K-pop piškvorky${diffLabel}</div>
-      <div class="ttt-scorebar">
-        <div class="ttt-sc"><div class="lbl">${p1Label}</div><div class="val">${tttVsAI?tttScores.player:tttScores.player}</div></div>
-        <div class="ttt-sc"><div class="lbl">🤝 Remíza</div><div class="val">${tttScores.draw}</div></div>
-        <div class="ttt-sc"><div class="lbl">${p2Label}</div><div class="val">${tttVsAI?tttScores.ai:tttScores.p2}</div></div>
-      </div>
-      <div class="turn-bar tA" id="turn-bar">${tttVsAI?`${girlA(24)} Tvůj tah!`:`${girlA(24)} Hráč 1 na tahu`}</div>
-      <div class="ttt-board" id="ttt-board"></div>
-      <div class="ttt-actions">
-        <button class="ttt-btn" onclick="renderTTT(true)">🔄 Nová hra</button>
-        <button class="ttt-btn" onclick="showTTTPicker()">← Zpět</button>
-      </div>
-    </div>`;
-
-  const board=el.querySelector('#ttt-board');
-  tttBoard.forEach((cell,i)=>{
-    const d=document.createElement('div');
-    d.className='ttt-cell'+(cell?' taken':'');
-    if(cell==='A')d.innerHTML=girlA(46);
-    else if(cell==='B')d.innerHTML=(tttVsAI?girlC(46):girlB(46));
-    d.onclick=()=>{
-      if(!tttActive||tttBoard[i]||(tttVsAI&&tttTurn==='B'))return;
-      placeAt(i,'A');
-    };
-    board.appendChild(d);
-  });
-}
-
-
-// TALES
-
-const TALES=[
-  // ── ČESKÉ ──
-  {name:'Krteček',film:'Krteček',wrong:['Pat a Mat','Bob a Bobek','Pohádky z mechu'],hint:'Malý černý kamarád, který rád kopá díry a pomáhá přátelům!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="65" rx="22" ry="26" fill="#3a3a3a"/><circle cx="45" cy="35" r="22" fill="#3a3a3a"/><ellipse cx="45" cy="47" rx="14" ry="10" fill="#c49a7a"/><ellipse cx="37" cy="34" rx="5" ry="6" fill="white"/><ellipse cx="53" cy="34" rx="5" ry="6" fill="white"/><circle cx="37" cy="35" r="3" fill="#111"/><circle cx="53" cy="35" r="3" fill="#111"/><circle cx="38" cy="34" r="1" fill="white"/><circle cx="54" cy="34" r="1" fill="white"/><ellipse cx="45" cy="49" rx="5" ry="3.5" fill="#c4806a"/><path d="M40 53 Q45 57 50 53" stroke="#a06050" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="30" y1="45" x2="14" y2="40" stroke="#3a3a3a" stroke-width="2.5"/><line x1="30" y1="47" x2="13" y2="47" stroke="#3a3a3a" stroke-width="2.5"/><line x1="60" y1="45" x2="76" y2="40" stroke="#3a3a3a" stroke-width="2.5"/><line x1="60" y1="47" x2="77" y2="47" stroke="#3a3a3a" stroke-width="2.5"/><ellipse cx="24" cy="82" rx="10" ry="6" fill="#3a3a3a"/><ellipse cx="66" cy="82" rx="10" ry="6" fill="#3a3a3a"/><ellipse cx="24" cy="80" rx="7" ry="4" fill="#c49a7a"/><ellipse cx="66" cy="80" rx="7" ry="4" fill="#c49a7a"/></svg>'},
-  {name:'Pat a Mat',film:'Pat a Mat',wrong:['Krteček','Bob a Bobek','Večerníček'],hint:'Dva kutilové, kteří vždy způsobí chaos, ale nakonec to vyřeší!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="27" cy="72" rx="16" ry="20" fill="#4D96FF"/><circle cx="27" cy="40" r="15" fill="#FFE0CC"/><rect x="14" y="28" width="26" height="8" rx="4" fill="#4D96FF"/><circle cx="21" cy="41" r="3" fill="#111"/><circle cx="33" cy="41" r="3" fill="#111"/><circle cx="22" cy="40" r="1" fill="white"/><circle cx="34" cy="40" r="1" fill="white"/><path d="M22 49 Q27 53 32 49" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="63" cy="72" rx="16" ry="20" fill="#E53935"/><circle cx="63" cy="40" r="15" fill="#FFE0CC"/><rect x="50" y="28" width="26" height="8" rx="4" fill="#8B4513"/><circle cx="57" cy="41" r="3" fill="#111"/><circle cx="69" cy="41" r="3" fill="#111"/><circle cx="58" cy="40" r="1" fill="white"/><circle cx="70" cy="40" r="1" fill="white"/><path d="M58 49 Q63 53 68 49" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="8" y1="58" x2="4" y2="78" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/><ellipse cx="6" cy="56" rx="5" ry="4" fill="#8B6914"/></svg>'},
-  {name:'Bob a Bobek',film:'Bob a Bobek',wrong:['Krteček','Tom a Jerry','Pat a Mat'],hint:'Dva bílí králíci, kteří žijí v klobouku kouzelníka!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="96" rx="36" ry="7" fill="#1a1030"/><rect x="24" y="64" width="42" height="34" rx="4" fill="#2D1B4E"/><rect x="20" y="60" width="50" height="10" rx="3" fill="#1a1030"/><line x1="20" y1="65" x2="70" y2="65" stroke="#FFD93D" stroke-width="2"/><ellipse cx="28" cy="56" rx="13" ry="17" fill="white"/><circle cx="28" cy="42" r="12" fill="white"/><ellipse cx="24" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="32" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="24" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><ellipse cx="32" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><circle cx="24" cy="42" r="3" fill="#111"/><circle cx="32" cy="42" r="3" fill="#111"/><circle cx="25" cy="41" r="1" fill="white"/><circle cx="33" cy="41" r="1" fill="white"/><ellipse cx="28" cy="49" rx="5" ry="3" fill="#FFB3C6"/><ellipse cx="62" cy="56" rx="13" ry="17" fill="white"/><circle cx="62" cy="42" r="12" fill="white"/><ellipse cx="58" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="66" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="58" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><ellipse cx="66" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><circle cx="58" cy="42" r="3" fill="#111"/><circle cx="66" cy="42" r="3" fill="#111"/><circle cx="59" cy="41" r="1" fill="white"/><circle cx="67" cy="41" r="1" fill="white"/><ellipse cx="62" cy="49" rx="5" ry="3" fill="#FFB3C6"/></svg>'},
-  {name:'Červená karkulka',film:'Červená karkulka',wrong:['Popelka','Šípková Růženka','Sněhurka'],hint:'Holčička s červenou čepičkou, která nesla košík babičce do lesa!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 100 Q18 65 45 62 Q72 65 72 100Z" fill="#4CAF50"/><ellipse cx="45" cy="39" rx="18" ry="20" fill="#FFE0CC"/><path d="M18 27 Q18 8 45 8 Q72 8 72 27 L70 39 Q62 31 45 31 Q28 31 20 39Z" fill="#E53935"/><ellipse cx="36" cy="40" rx="3.5" ry="4" fill="#111"/><ellipse cx="54" cy="40" rx="3.5" ry="4" fill="#111"/><circle cx="37.5" cy="39" r="1.2" fill="white"/><circle cx="55.5" cy="39" r="1.2" fill="white"/><ellipse cx="32" cy="46" rx="5" ry="3" fill="#FFB3C6" opacity="0.5"/><ellipse cx="58" cy="46" rx="5" ry="3" fill="#FFB3C6" opacity="0.5"/><path d="M39 51 Q45 56 51 51" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="60" y="56" width="16" height="14" rx="3" fill="#F5DEB3"/><path d="M56 56 Q67 50 79 56" stroke="#8B6914" stroke-width="2" fill="none"/></svg>'},
-  {name:'Popelka',film:'Popelka',wrong:['Červená karkulka','Sněhurka','Šípková Růženka'],hint:'Dívka, která ztratila střevíček na plese a princ ji hledal!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M14 100 Q14 68 45 64 Q76 68 76 100Z" fill="#90CAF9"/><path d="M14 80 Q14 100 45 100 Q76 100 76 80 Q62 90 45 90 Q28 90 14 80Z" fill="#64B5F6" opacity="0.8"/><ellipse cx="45" cy="39" rx="17" ry="19" fill="#FFE0CC"/><path d="M28 24 Q28 10 45 9 Q62 10 62 24" fill="#F5C518"/><ellipse cx="45" cy="13" rx="17" ry="8" fill="#F5C518"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="39" r="1" fill="white"/><circle cx="55" cy="39" r="1" fill="white"/><ellipse cx="31" cy="46" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><ellipse cx="59" cy="46" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><path d="M39 50 Q45 54 51 50" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="63" cy="96" rx="9" ry="5" fill="#E3F2FD"/></svg>'},
-  {name:'Sněhurka',film:'Sněhurka a 7 trpaslíků',wrong:['Popelka','Šípková Růženka','Ledové království'],hint:'Princezna s kůží bílou jako sníh, bydlela se sedmi trpaslíky!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 100 Q18 68 45 64 Q72 68 72 100Z" fill="#FFD93D"/><path d="M18 78 Q18 100 45 100 Q72 100 72 78 Q60 88 45 88 Q30 88 18 78Z" fill="#1565C0"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="24" rx="18" ry="10" fill="#1a1a2e"/><path d="M27 28 Q20 34 22 42" stroke="#1a1a2e" stroke-width="6" fill="none"/><path d="M63 28 Q70 34 68 42" stroke="#1a1a2e" stroke-width="6" fill="none"/><ellipse cx="36" cy="41" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="41" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="40" r="1" fill="white"/><circle cx="55" cy="40" r="1" fill="white"/><ellipse cx="31" cy="47" rx="5" ry="3" fill="#FFB3C6" opacity="0.6"/><ellipse cx="59" cy="47" rx="5" ry="3" fill="#FFB3C6" opacity="0.6"/><path d="M39 51 Q45 55 51 51" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
-  {name:'Šípková Růženka',film:'Šípková Růženka',wrong:['Popelka','Sněhurka','Ledové království'],hint:'Princezna, která usnula na 100 let po píchnutí do vřetena!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 68 45 64 Q73 68 73 100Z" fill="#E91E63"/><path d="M17 82 Q30 93 45 93 Q60 93 73 82 L73 100 L17 100Z" fill="#C2185B"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#FFE0CC"/><path d="M27 26 Q28 9 45 9 Q62 9 63 26" fill="#FFD700"/><path d="M27 26 Q19 34 21 42" stroke="#FFD700" stroke-width="6" fill="none"/><path d="M63 26 Q71 34 69 42" stroke="#FFD700" stroke-width="6" fill="none"/><path d="M27 30 Q15 54 19 68" stroke="#FFD700" stroke-width="5" fill="none"/><path d="M63 30 Q75 54 71 68" stroke="#FFD700" stroke-width="5" fill="none"/><ellipse cx="36" cy="41" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="41" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="40" r="1" fill="white"/><circle cx="55" cy="40" r="1" fill="white"/><ellipse cx="31" cy="47" rx="5" ry="3" fill="#FFB3C6" opacity="0.5"/><ellipse cx="59" cy="47" rx="5" ry="3" fill="#FFB3C6" opacity="0.5"/><path d="M39 51 Q45 55 51 51" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
-  {name:'Pinocchio',film:'Pinocchio',wrong:['Shrek','Mimoni','Lví král'],hint:'Dřevěná loutka, které roste nos, když lže!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="20" ry="26" fill="#4D96FF"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#F5DEB3"/><ellipse cx="45" cy="22" rx="18" ry="10" fill="#E53935"/><circle cx="45" cy="16" r="5" fill="#E53935"/><line x1="45" y1="11" x2="45" y2="4" stroke="#8B6914" stroke-width="2.5"/><circle cx="45" cy="3" r="3" fill="#8B6914"/><ellipse cx="36" cy="41" rx="3.5" ry="4" fill="#111"/><ellipse cx="54" cy="41" rx="3.5" ry="4" fill="#111"/><circle cx="37.5" cy="40" r="1.2" fill="white"/><circle cx="55.5" cy="40" r="1.2" fill="white"/><ellipse cx="45" cy="47" rx="5" ry="3" fill="#E8C49A"/><path d="M50 47 L74 42" stroke="#E8C49A" stroke-width="4" stroke-linecap="round"/><path d="M39 51 Q45 55 51 51" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
-  {name:'Jeníček a Mařenka',film:'Jeníček a Mařenka',wrong:['Červená karkulka','Popelka','Sněhurka'],hint:'Dvě děti, které se ztratily v lese a našly perníkovou chaloupku!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="55" width="40" height="40" rx="5" fill="#F5A623"/><path d="M20 58 L45 35 L70 58Z" fill="#E53935"/><rect x="38" y="75" width="14" height="20" rx="2" fill="#8B4513"/><circle cx="36" cy="80" r="3" fill="#E91E63"/><circle cx="54" cy="80" r="3" fill="#6BCB77"/><circle cx="36" cy="70" r="3" fill="#4D96FF"/><circle cx="54" cy="70" r="3" fill="#FFD93D"/><ellipse cx="28" cy="40" rx="10" ry="11" fill="#FFE0CC"/><circle cx="24" cy="38" r="2" fill="#111"/><circle cx="32" cy="38" r="2" fill="#111"/><path d="M24 44 Q28 47 32 44" stroke="#c0724a" stroke-width="1.2" fill="none" stroke-linecap="round"/><ellipse cx="62" cy="40" rx="10" ry="11" fill="#FFE0CC"/><circle cx="58" cy="38" r="2" fill="#111"/><circle cx="66" cy="38" r="2" fill="#111"/><path d="M58 44 Q62 47 66 44" stroke="#c0724a" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M62 28 Q62 18 56 16" stroke="#8B4513" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M62 26 Q68 18 74 18" stroke="#8B4513" stroke-width="4" fill="none" stroke-linecap="round"/></svg>'},
-  {name:'Pohádka o Budulínkovi',film:'Budulínek',wrong:['Křemílek a Vochomůrka','Krteček','Večerníček'],hint:'Hodný kluk, který poslouchal lišku a ta ho odnesla do lesa!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="70" rx="22" ry="26" fill="#4CAF50"/><ellipse cx="45" cy="38" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="22" rx="16" ry="9" fill="#FFD93D"/><path d="M29 28 Q22 34 24 40" stroke="#FFD93D" stroke-width="5" fill="none"/><path d="M61 28 Q68 34 66 40" stroke="#FFD93D" stroke-width="5" fill="none"/><ellipse cx="37" cy="39" rx="3" ry="3.5" fill="#111"/><ellipse cx="53" cy="39" rx="3" ry="3.5" fill="#111"/><circle cx="38" cy="38" r="1" fill="white"/><circle cx="54" cy="38" r="1" fill="white"/><ellipse cx="32" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><ellipse cx="58" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><path d="M40 49 Q45 53 50 49" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="68" cy="62" rx="14" ry="10" fill="#E8A830"/><circle cx="62" cy="58" r="4" fill="#E8A830"/><ellipse cx="60" cy="56" rx="3" ry="4" fill="#E8A830"/><circle cx="74" cy="60" r="2" fill="#111"/><path d="M62 64 Q68 68 74 64" stroke="#8B4513" stroke-width="1.2" fill="none"/><ellipse cx="70" cy="50" rx="3" ry="6" fill="#E8A830"/></svg>'},
-  {name:'Křemílek a Vochomůrka',film:'Křemílek a Vochomůrka',wrong:['Bob a Bobek','Krteček','Kubula a Kuba'],hint:'Dva kamarádi — malý houbičkový skřítek a velký! Bydlí v přírodě.',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="28" cy="68" rx="15" ry="22" fill="#FF9A3C"/><circle cx="28" cy="38" r="17" fill="#FFE0CC"/><ellipse cx="28" cy="22" rx="15" ry="9" fill="#FF6B9D"/><circle cx="22" cy="39" r="3" fill="#111"/><circle cx="34" cy="39" r="3" fill="#111"/><path d="M22 46 Q28 50 34 46" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="62" cy="65" rx="18" ry="25" fill="#9B59B6"/><circle cx="62" cy="33" r="20" fill="#FFE0CC"/><ellipse cx="62" cy="14" rx="18" ry="10" fill="#6BCB77"/><path d="M44 22 Q37 30 39 38" stroke="#6BCB77" stroke-width="5" fill="none"/><path d="M80 22 Q87 30 85 38" stroke="#6BCB77" stroke-width="5" fill="none"/><circle cx="55" cy="34" r="3.5" fill="#111"/><circle cx="69" cy="34" r="3.5" fill="#111"/><circle cx="56" cy="33" r="1.2" fill="white"/><circle cx="70" cy="33" r="1.2" fill="white"/><path d="M55 42 Q62 47 69 42" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
-  // ── SVĚTOVÉ ANIMÁKY ──
-  {name:'Mimoň',film:'Mimoni / Já, padouch',wrong:['Ledové království','Shrek','Toy Story'],hint:'Žluté malé bytosti, které milují banány a slouží padouchům!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="62" rx="28" ry="34" fill="#FFD93D"/><ellipse cx="45" cy="34" rx="22" ry="22" fill="#FFD93D"/><rect x="27" y="28" width="36" height="16" rx="8" fill="#8B6914" opacity="0.9"/><circle cx="45" cy="34" r="10" fill="white"/><circle cx="45" cy="35" r="6" fill="#3a3a3a"/><circle cx="47" cy="33" r="2" fill="white"/><rect x="18" y="54" width="54" height="10" rx="5" fill="#A0845C"/><ellipse cx="20" cy="76" rx="8" ry="5" fill="#FFD93D"/><ellipse cx="70" cy="76" rx="8" ry="5" fill="#FFD93D"/><path d="M33 85 Q45 93 57 85" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round"/><line x1="38" y1="13" x2="36" y2="2" stroke="#FFD93D" stroke-width="3" stroke-linecap="round"/><line x1="52" y1="13" x2="54" y2="2" stroke="#FFD93D" stroke-width="3" stroke-linecap="round"/></svg>'},
-  {name:'Shrek',film:'Shrek',wrong:['Mimoni','Doba ledová','Madagaskar'],hint:'Zelený obr, který bydlí v bažině. Říká, že má vrstvy jako cibule!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="32" ry="28" fill="#6BCB77"/><ellipse cx="45" cy="38" rx="27" ry="28" fill="#6BCB77"/><ellipse cx="25" cy="32" rx="7" ry="10" fill="#6BCB77"/><ellipse cx="65" cy="32" rx="7" ry="10" fill="#6BCB77"/><ellipse cx="25" cy="30" rx="4" ry="6" fill="#5ab568"/><ellipse cx="65" cy="30" rx="4" ry="6" fill="#5ab568"/><ellipse cx="34" cy="40" rx="7" ry="6" fill="white"/><ellipse cx="56" cy="40" rx="7" ry="6" fill="white"/><circle cx="34" cy="41" r="4" fill="#5a3e1b"/><circle cx="56" cy="41" r="4" fill="#5a3e1b"/><circle cx="35" cy="40" r="1.5" fill="white"/><circle cx="57" cy="40" r="1.5" fill="white"/><path d="M36 57 Q45 64 54 57" stroke="#4a9455" stroke-width="2.5" fill="none" stroke-linecap="round"/><ellipse cx="19" cy="88" rx="13" ry="8" fill="#6BCB77"/><ellipse cx="71" cy="88" rx="13" ry="8" fill="#6BCB77"/></svg>'},
-  {name:'Elsa',film:'Ledové království',wrong:['Šípková Růženka','Popelka','Shrek'],hint:'Princezna, která kouzlí ledem a sněhem. Pustit to musí!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="38" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="20" rx="18" ry="10" fill="#B8E4FF"/><path d="M27 23 Q19 28 21 38" stroke="#B8E4FF" stroke-width="4" fill="none"/><path d="M63 23 Q71 28 69 38" stroke="#B8E4FF" stroke-width="4" fill="none"/><ellipse cx="36" cy="38" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="38" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="37" r="1" fill="white"/><circle cx="55" cy="37" r="1" fill="white"/><ellipse cx="33" cy="43" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><ellipse cx="57" cy="43" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><path d="M39 47 Q45 51 51 47" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M45 58 L29 61 L19 100 L45 96 L71 100 L61 61 Z" fill="#4ECDC4" opacity="0.9"/><path d="M34 61 L23 57 L20 80 L34 74Z" fill="#7DD8D3"/><path d="M56 61 L67 57 L70 80 L56 74Z" fill="#7DD8D3"/><text x="45" y="82" text-anchor="middle" font-size="14" fill="white" opacity="0.6">❄</text></svg>'},
-  {name:'Anna',film:'Ledové království',wrong:['Popelka','Šípková Růženka','Červená karkulka'],hint:'Veselá sestra Elsy, která zachrání království silou lásky!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 67 45 63 Q73 67 73 100Z" fill="#1565C0"/><path d="M17 80 Q30 92 45 92 Q60 92 73 80 L73 100 L17 100Z" fill="#0D47A1"/><ellipse cx="45" cy="38" rx="17" ry="19" fill="#FFE0CC"/><ellipse cx="45" cy="21" rx="15" ry="8" fill="#E8A830"/><path d="M30 25 Q22 32 24 40" stroke="#E8A830" stroke-width="5" fill="none"/><path d="M60 25 Q68 32 66 40" stroke="#E8A830" stroke-width="5" fill="none"/><ellipse cx="36" cy="39" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="39" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="38" r="1" fill="white"/><circle cx="55" cy="38" r="1" fill="white"/><ellipse cx="31" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.6"/><ellipse cx="59" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.6"/><path d="M39 49 Q45 53 51 49" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="33" cy="36" r="2" fill="#FF8A65" opacity="0.6"/><circle cx="57" cy="36" r="2" fill="#FF8A65" opacity="0.6"/></svg>'},
-  {name:'Simba',film:'Lví král',wrong:['Madagaskar','Kniha džunglí','Doba ledová'],hint:'Malý lvíček, který se stane králem Afriky! Hakuna Matata!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="70" rx="27" ry="22" fill="#E8A830"/><circle cx="45" cy="37" r="26" fill="#F5BC45"/><circle cx="32" cy="37" r="5" fill="#111"/><circle cx="58" cy="37" r="5" fill="#111"/><circle cx="33.5" cy="35.5" r="2" fill="white"/><circle cx="59.5" cy="35.5" r="2" fill="white"/><ellipse cx="45" cy="48" rx="9" ry="7" fill="#F0AC3A"/><ellipse cx="45" cy="49" rx="6" ry="4.5" fill="#E8906B"/><path d="M39 54 Q45 59 51 54" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M18 33 Q13 23 19 16 Q25 23 21 33Z" fill="#E8A830"/><path d="M72 33 Q77 23 71 16 Q65 23 69 33Z" fill="#E8A830"/><ellipse cx="29" cy="86" rx="11" ry="7" fill="#E8A830"/><ellipse cx="61" cy="86" rx="11" ry="7" fill="#E8A830"/></svg>'},
-  {name:'Nemo',film:'Hledá se Nemo',wrong:['Lví král','Madagaskar','Oceán'],hint:'Malá rybička s ploutví, kterou zachraňuje tatínek Marlin!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="55" rx="30" ry="28" fill="#FF6B35"/><ellipse cx="45" cy="55" rx="24" ry="22" fill="#FF8C55"/><line x1="20" y1="45" x2="70" y2="45" stroke="white" stroke-width="4"/><line x1="18" y1="55" x2="72" y2="55" stroke="white" stroke-width="4"/><line x1="20" y1="65" x2="70" y2="65" stroke="white" stroke-width="4"/><ellipse cx="45" cy="32" rx="12" ry="8" fill="#FF6B35"/><circle cx="38" cy="38" r="6" fill="white"/><circle cx="38" cy="38" r="4" fill="#111"/><circle cx="39.5" cy="36.5" r="1.5" fill="white"/><path d="M15 55 Q5 40 10 25 Q18 38 15 55Z" fill="#FF6B35"/><path d="M75 55 Q85 40 80 25 Q72 38 75 55Z" fill="#FF6B35"/><path d="M32 80 Q45 95 58 80" fill="#E8551A"/><ellipse cx="58" cy="42" rx="4" ry="3" fill="#FF6B35" opacity="0.5"/></svg>'},
-  {name:'Woody',film:'Toy Story',wrong:['Mimoni','Shrek','Lví král'],hint:'Kovbojská panenka — Andy ho má nejraději! Kamarád Buzze!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="22" ry="26" fill="#FFD93D"/><ellipse cx="45" cy="38" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="20" rx="17" ry="9" fill="#8B4513"/><path d="M28 26 Q20 33 22 40" stroke="#8B4513" stroke-width="5" fill="none"/><path d="M62 26 Q70 33 68 40" stroke="#8B4513" stroke-width="5" fill="none"/><ellipse cx="36" cy="39" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="39" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="38" r="1" fill="white"/><circle cx="55" cy="38" r="1" fill="white"/><ellipse cx="31" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.4"/><ellipse cx="59" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.4"/><path d="M39 49 Q45 53 51 49" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="35" y1="65" x2="35" y2="95" stroke="#8B4513" stroke-width="3"/><line x1="55" y1="65" x2="55" y2="95" stroke="#8B4513" stroke-width="3"/><text x="45" y="80" text-anchor="middle" font-size="10" fill="#8B4513">★</text></svg>'},
-  {name:'Buzz Rakeťák',film:'Toy Story',wrong:['Mimoni','Spiderman','Wall-E'],hint:'Vesmírný průzkumník — hračka, která si myslí, že je doopravdy!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="24" ry="26" fill="white"/><path d="M21 72 Q21 88 30 98 L45 100 L60 98 Q69 88 69 72Z" fill="#4D96FF"/><ellipse cx="45" cy="38" rx="18" ry="20" fill="white"/><ellipse cx="45" cy="22" rx="16" ry="10" fill="#4D96FF"/><ellipse cx="36" cy="38" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="38" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="37" r="1" fill="white"/><circle cx="55" cy="37" r="1" fill="white"/><path d="M39 46 Q45 50 51 46" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="34" y="55" width="22" height="16" rx="4" fill="#E8E8E8"/><ellipse cx="45" cy="63" rx="7" ry="6" fill="#4D96FF" opacity="0.5"/><path d="M21 65 L8 55" stroke="white" stroke-width="5" stroke-linecap="round"/><path d="M69 65 L82 55" stroke="white" stroke-width="5" stroke-linecap="round"/></svg>'},
-  {name:'Spiderman',film:'Spider-Man',wrong:['Batman','Superman','Iron Man'],hint:'Superhrdina, který šplhá po zdech a stříká pavučiny! Byl kousen pavoukem!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="24" ry="26" fill="#E53935"/><path d="M21 72 Q21 88 30 100 L45 100 L60 100 Q69 88 69 72Z" fill="#1565C0"/><circle cx="45" cy="36" r="22" fill="#E53935"/><path d="M23 36 Q45 23 67 36" stroke="#1565C0" stroke-width="2" fill="none"/><path d="M23 36 Q45 49 67 36" stroke="#1565C0" stroke-width="2" fill="none"/><path d="M45 14 L45 58" stroke="#1565C0" stroke-width="2"/><path d="M23 26 L67 46" stroke="#1565C0" stroke-width="1.5"/><path d="M23 46 L67 26" stroke="#1565C0" stroke-width="1.5"/><ellipse cx="36" cy="36" rx="8" ry="9" fill="white" opacity="0.9"/><ellipse cx="54" cy="36" rx="8" ry="9" fill="white" opacity="0.9"/><ellipse cx="36" cy="36" rx="5" ry="6" fill="#1565C0"/><ellipse cx="54" cy="36" rx="5" ry="6" fill="#1565C0"/></svg>'},
-  {name:'Hermiona',film:'Harry Potter',wrong:['Narnia','Pán prstenů','Fantastická zvířata'],hint:'Chytrá čarodějka z Bradavic s kouzelnou hůlkou a mnoha kouzly!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 100 Q20 68 45 64 Q70 68 70 100Z" fill="#1a1a1a"/><path d="M20 78 Q20 100 45 100 Q70 100 70 78 Q60 90 45 90 Q30 90 20 78Z" fill="#2D1B4E"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="24" rx="18" ry="14" fill="#8B4513"/><path d="M27 26 Q19 34 21 44" stroke="#8B4513" stroke-width="6" fill="none"/><path d="M63 26 Q71 34 69 44" stroke="#8B4513" stroke-width="6" fill="none"/><path d="M27 30 Q17 52 21 66" stroke="#8B4513" stroke-width="5" fill="none"/><path d="M63 30 Q73 52 69 66" stroke="#8B4513" stroke-width="5" fill="none"/><ellipse cx="36" cy="41" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="41" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="40" r="1" fill="white"/><circle cx="55" cy="40" r="1" fill="white"/><path d="M39 49 Q45 53 51 49" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="19" y1="66" x2="58" y2="53" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/><rect x="32" y="54" width="26" height="4" rx="2" fill="#CC0000"/></svg>'},
-  {name:'Kung Fu Panda',film:'Kung Fu Panda',wrong:['Madagaskar','Shrek','Lví král'],hint:'Tučný panda, který se naučil kung-fu a stal se Dračím bojovníkem!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="75" rx="28" ry="24" fill="#f0f0f0"/><circle cx="45" cy="38" r="27" fill="#f0f0f0"/><ellipse cx="31" cy="34" rx="10" ry="10" fill="#2D2D2D"/><ellipse cx="59" cy="34" rx="10" ry="10" fill="#2D2D2D"/><ellipse cx="31" cy="36" rx="6" ry="6" fill="white"/><ellipse cx="59" cy="36" rx="6" ry="6" fill="white"/><circle cx="30" cy="36" r="3.5" fill="#111"/><circle cx="58" cy="36" r="3.5" fill="#111"/><circle cx="31" cy="35" r="1.2" fill="white"/><circle cx="59" cy="35" r="1.2" fill="white"/><ellipse cx="45" cy="48" rx="11" ry="8" fill="#2D2D2D"/><ellipse cx="45" cy="50" rx="8" ry="5" fill="#e8c09a"/><path d="M39 55 Q45 60 51 55" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="20" cy="30" rx="9" ry="9" fill="#2D2D2D"/><ellipse cx="70" cy="30" rx="9" ry="9" fill="#2D2D2D"/><rect x="29" y="62" width="32" height="19" rx="6" fill="#2D2D2D"/><rect x="31" y="64" width="28" height="15" rx="4" fill="#CC0000"/></svg>'},
-  {name:'Madagaskar',film:'Madagaskar',wrong:['Lví král','Kniha džunglí','Doba ledová'],hint:'Alex lev, Marty zebra, Melman žirafa a Gloria hroch utekli ze ZOO!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><circle cx="45" cy="40" r="28" fill="#F5BC45"/><ellipse cx="45" cy="40" rx="20" ry="20" fill="#F5C842"/><ellipse cx="45" cy="52" rx="12" ry="9" fill="#F0AC3A"/><circle cx="34" cy="36" r="5" fill="#111"/><circle cx="56" cy="36" r="5" fill="#111"/><circle cx="35.5" cy="34.5" r="2" fill="white"/><circle cx="57.5" cy="34.5" r="2" fill="white"/><path d="M38 56 Q45 62 52 56" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M16 36 Q10 24 17 16 Q24 24 20 36Z" fill="#E8A830"/><path d="M74 36 Q80 24 73 16 Q66 24 70 36Z" fill="#E8A830"/><ellipse cx="45" cy="72" rx="26" ry="20" fill="#F5BC45"/><ellipse cx="26" cy="86" rx="11" ry="7" fill="#F5BC45"/><ellipse cx="64" cy="86" rx="11" ry="7" fill="#F5BC45"/><ellipse cx="26" cy="30" rx="8" ry="8" fill="#E8A830"/><ellipse cx="64" cy="30" rx="8" ry="8" fill="#E8A830"/></svg>'},
-  {name:'Doba ledová — Scrat',film:'Doba ledová',wrong:['Madagaskar','Lví král','Ratatouille'],hint:'Veverka, která celé filmy honí svůj žalud!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="20" ry="28" fill="#C4A882"/><ellipse cx="45" cy="36" rx="20" ry="24" fill="#C4A882"/><ellipse cx="45" cy="24" rx="16" ry="10" fill="#C4A882"/><ellipse cx="22" cy="20" rx="8" ry="14" fill="#C4A882"/><ellipse cx="68" cy="20" rx="8" ry="14" fill="#C4A882"/><ellipse cx="22" cy="20" rx="5" ry="10" fill="#D4B896"/><ellipse cx="68" cy="20" rx="5" ry="10" fill="#D4B896"/><ellipse cx="36" cy="40" rx="4" ry="4.5" fill="#111"/><ellipse cx="54" cy="40" rx="4" ry="4.5" fill="#111"/><circle cx="37.5" cy="38.5" r="1.5" fill="white"/><circle cx="55.5" cy="38.5" r="1.5" fill="white"/><path d="M36 48 L38 52" stroke="#C4A882" stroke-width="2"/><path d="M54 48 L52 52" stroke="#C4A882" stroke-width="2"/><ellipse cx="45" cy="52" rx="8" ry="5" fill="#D4B896"/><path d="M37 55 Q45 62 53 55" stroke="#8B6914" stroke-width="1.5" fill="none"/><ellipse cx="28" cy="32" rx="5" ry="12" fill="#E8A830" opacity="0.9" transform="rotate(-15,28,32)"/><ellipse cx="62" cy="32" rx="5" ry="12" fill="#E8A830" opacity="0.9" transform="rotate(15,62,32)"/></svg>'},
-  {name:'Ratatouille',film:'Ratatouille',wrong:['Tajemný les','Madagaskar','Doba ledová'],hint:'Myška Remy, která sní o vaření ve slavné pařížské restauraci!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="22" ry="28" fill="#6B6B8A"/><ellipse cx="45" cy="36" rx="20" ry="22" fill="#6B6B8A"/><ellipse cx="22" cy="20" rx="8" ry="13" fill="#6B6B8A"/><ellipse cx="68" cy="20" rx="8" ry="13" fill="#6B6B8A"/><ellipse cx="22" cy="20" rx="5" ry="9" fill="#FFB3C6"/><ellipse cx="68" cy="20" rx="5" ry="9" fill="#FFB3C6"/><ellipse cx="36" cy="38" rx="3.5" ry="4" fill="#111"/><ellipse cx="54" cy="38" rx="3.5" ry="4" fill="#111"/><circle cx="37.5" cy="37" r="1.2" fill="white"/><circle cx="55.5" cy="37" r="1.2" fill="white"/><ellipse cx="45" cy="48" rx="10" ry="7" fill="#8B8BAA"/><ellipse cx="45" cy="49" rx="6" ry="4" fill="#FFB3C6"/><path d="M39 53 Q45 58 51 53" stroke="#9B5B7A" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M65 75 Q75 60 78 80" stroke="#6B6B8A" stroke-width="4" stroke-linecap="round" fill="none"/><rect x="28" y="55" width="34" height="6" rx="3" fill="#CC0000"/><rect x="30" y="53" width="30" height="4" rx="2" fill="white"/><path d="M35 53 L40 46" stroke="#CC0000" stroke-width="2"/></svg>'},
-  {name:'Wall-E',film:'Wall-E',wrong:['Buzz Rakeťák','Mimoni','Transformers'],hint:'Malý robotek, který třídí odpad na Zemi a zamiluje se!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><rect x="22" y="50" width="46" height="40" rx="6" fill="#C8B560"/><rect x="26" y="54" width="38" height="32" rx="4" fill="#A89840"/><rect x="14" y="65" width="14" height="22" rx="3" fill="#888"/><rect x="62" y="65" width="14" height="22" rx="3" fill="#888"/><circle cx="32" cy="32" r="14" fill="#D4C870"/><circle cx="58" cy="32" r="14" fill="#D4C870"/><circle cx="32" cy="32" r="10" fill="#87CEEB"/><circle cx="58" cy="32" r="10" fill="#87CEEB"/><circle cx="32" cy="32" r="6" fill="#111"/><circle cx="58" cy="32" r="6" fill="#111"/><circle cx="34" cy="30" r="2" fill="white"/><circle cx="60" cy="30" r="2" fill="white"/><rect x="22" y="20" width="46" height="8" rx="3" fill="#B8A850"/><rect x="36" y="68" width="18" height="10" rx="3" fill="#6BCB77"/><line x1="36" y1="73" x2="54" y2="73" stroke="#4CAF50" stroke-width="1.5"/></svg>'},
-  {name:'Moana',film:'Moana / Odvážná Vaiana',wrong:['Lilo a Stitch','Pocahontas','Raya a poslední drak'],hint:'Odvážná dívka z polynéského ostrova, která vypluje na moře!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 67 45 63 Q73 67 73 100Z" fill="#E53935"/><ellipse cx="45" cy="40" rx="17" ry="19" fill="#D4956A"/><ellipse cx="45" cy="22" rx="16" ry="12" fill="#1a1a1a"/><path d="M29 26 Q20 34 22 42" stroke="#1a1a1a" stroke-width="7" fill="none"/><path d="M61 26 Q70 34 68 42" stroke="#1a1a1a" stroke-width="7" fill="none"/><path d="M29 28 Q15 55 18 72" stroke="#1a1a1a" stroke-width="6" fill="none"/><path d="M61 28 Q75 55 72 72" stroke="#1a1a1a" stroke-width="6" fill="none"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="39" r="1" fill="white"/><circle cx="55" cy="39" r="1" fill="white"/><ellipse cx="31" cy="46" rx="4" ry="2.5" fill="#C4845A" opacity="0.6"/><ellipse cx="59" cy="46" rx="4" ry="2.5" fill="#C4845A" opacity="0.6"/><path d="M39 50 Q45 54 51 50" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="45" cy="58" rx="10" ry="5" fill="#E8A830" opacity="0.8"/></svg>'},
-  {name:'Lilo',film:'Lilo a Stitch',wrong:['Moana','Raya','Pocahontas'],hint:'Havajská holčička, která si myslí, že Stitch je pes z útulku!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 67 45 63 Q73 67 73 100Z" fill="#E91E63"/><ellipse cx="45" cy="40" rx="17" ry="20" fill="#D4956A"/><ellipse cx="45" cy="21" rx="16" ry="11" fill="#1a1a1a"/><path d="M29 25 Q21 33 23 41" stroke="#1a1a1a" stroke-width="6" fill="none"/><path d="M61 25 Q69 33 67 41" stroke="#1a1a1a" stroke-width="6" fill="none"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="39" r="1" fill="white"/><circle cx="55" cy="39" r="1" fill="white"/><ellipse cx="31" cy="46" rx="4" ry="2.5" fill="#C4845A" opacity="0.6"/><ellipse cx="59" cy="46" rx="4" ry="2.5" fill="#C4845A" opacity="0.6"/><path d="M39 50 Q45 54 51 50" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="45" cy="16" rx="8" ry="5" fill="#FF6B9D"/><circle cx="38" cy="13" r="3" fill="#FF6B9D"/><circle cx="52" cy="13" r="3" fill="#FF6B9D"/></svg>'},
-  {name:'Stitch',film:'Lilo a Stitch',wrong:['Monsters Inc.','Mimoni','Wall-E'],hint:'Modrý mimozemský experiment č. 626 — vypadá jako pes!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="26" ry="28" fill="#4D96FF"/><ellipse cx="45" cy="38" rx="24" ry="26" fill="#4D96FF"/><ellipse cx="20" cy="24" rx="10" ry="16" fill="#4D96FF" transform="rotate(-20,20,24)"/><ellipse cx="70" cy="24" rx="10" ry="16" fill="#4D96FF" transform="rotate(20,70,24)"/><ellipse cx="20" cy="24" rx="6" ry="11" fill="#6AAEFF" transform="rotate(-20,20,24)"/><ellipse cx="70" cy="24" rx="6" ry="11" fill="#6AAEFF" transform="rotate(20,70,24)"/><ellipse cx="36" cy="40" rx="5" ry="5.5" fill="#111"/><ellipse cx="54" cy="40" rx="5" ry="5.5" fill="#111"/><circle cx="38" cy="38" r="2" fill="white"/><circle cx="56" cy="38" r="2" fill="white"/><ellipse cx="45" cy="52" rx="12" ry="8" fill="#6AAEFF"/><ellipse cx="45" cy="53" rx="8" ry="5" fill="#D4B896"/><path d="M38 57 Q45 63 52 57" stroke="#3a7adf" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="30" y1="46" x2="14" y2="40" stroke="#4D96FF" stroke-width="2.5"/><line x1="30" y1="48" x2="13" y2="48" stroke="#4D96FF" stroke-width="2.5"/><line x1="60" y1="46" x2="76" y2="40" stroke="#4D96FF" stroke-width="2.5"/><line x1="60" y1="48" x2="77" y2="48" stroke="#4D96FF" stroke-width="2.5"/></svg>'},
-  {name:'Sulley',film:'Monsters, Inc.',wrong:['Stitch','Shrek','Kung Fu Panda'],hint:'Modrý chlupatý strašák, který místo strachu přináší smích!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="30" ry="26" fill="#4D96FF"/><circle cx="45" cy="38" r="30" fill="#4D96FF"/><ellipse cx="34" cy="36" rx="6" ry="7" fill="#FFE0CC"/><ellipse cx="56" cy="36" rx="6" ry="7" fill="#FFE0CC"/><circle cx="34" cy="37" r="4" fill="#111"/><circle cx="56" cy="37" r="4" fill="#111"/><circle cx="35.5" cy="35.5" r="1.5" fill="white"/><circle cx="57.5" cy="35.5" r="1.5" fill="white"/><ellipse cx="45" cy="50" rx="11" ry="8" fill="#6AAEFF"/><path d="M37 55 Q45 62 53 55" stroke="#3a7adf" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="22" cy="28" rx="8" ry="12" fill="#9B59B6"/><ellipse cx="68" cy="28" rx="8" ry="12" fill="#9B59B6"/><line x1="30" y1="20" x2="25" y2="8" stroke="#4D96FF" stroke-width="5" stroke-linecap="round"/><line x1="42" y1="18" x2="40" y2="6" stroke="#4D96FF" stroke-width="5" stroke-linecap="round"/><line x1="54" y1="18" x2="56" y2="6" stroke="#4D96FF" stroke-width="5" stroke-linecap="round"/></svg>'},
-  {name:'Rapunzel',film:'Locika / Tangled',wrong:['Popelka','Elsa','Šípková Růženka'],hint:'Princezna s magickými velmi dlouhými vlasy uvězněná ve věži!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 68 45 64 Q73 68 73 100Z" fill="#9B59B6"/><ellipse cx="45" cy="38" rx="17" ry="19" fill="#FFE0CC"/><ellipse cx="45" cy="21" rx="16" ry="10" fill="#FFD700"/><path d="M29 25 Q21 32 23 40" stroke="#FFD700" stroke-width="5" fill="none"/><path d="M61 25 Q69 32 67 40" stroke="#FFD700" stroke-width="5" fill="none"/><path d="M29 28 Q5 70 10 100" stroke="#FFD700" stroke-width="6" fill="none"/><path d="M61 28 Q85 70 80 100" stroke="#FFD700" stroke-width="6" fill="none"/><ellipse cx="36" cy="39" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="39" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="38" r="1" fill="white"/><circle cx="55" cy="38" r="1" fill="white"/><ellipse cx="31" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><ellipse cx="59" cy="45" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.5"/><path d="M39 49 Q45 53 51 49" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
-  {name:'Mulan',film:'Mulan',wrong:['Moana','Locika','Pocahontas'],hint:'Odvážná čínská dívka, která se přestrojila za vojáka!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 67 45 63 Q73 67 73 100Z" fill="#E53935"/><ellipse cx="45" cy="38" rx="17" ry="19" fill="#F5C8A0"/><ellipse cx="45" cy="20" rx="15" ry="10" fill="#1a1a1a"/><path d="M30 24 Q22 30 24 38" stroke="#1a1a1a" stroke-width="5" fill="none"/><path d="M60 24 Q68 30 66 38" stroke="#1a1a1a" stroke-width="5" fill="none"/><ellipse cx="36" cy="38" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="38" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="37" r="1" fill="white"/><circle cx="55" cy="37" r="1" fill="white"/><ellipse cx="31" cy="44" rx="4" ry="2.5" fill="#F5A89A" opacity="0.5"/><ellipse cx="59" cy="44" rx="4" ry="2.5" fill="#F5A89A" opacity="0.5"/><path d="M39 48 Q45 52 51 48" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M36 14 L45 4 L54 14" stroke="#FFD700" stroke-width="2" fill="none"/><circle cx="45" cy="4" r="3" fill="#FFD700"/></svg>'},
-  {name:'Dobby',film:'Harry Potter',wrong:['Pán prstenů','Narnia','Fantastická zvířata'],hint:'Malý domácí skřítek, který miluje ponožky a chce být volný!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="18" ry="28" fill="#C8B98A"/><circle cx="45" cy="34" r="24" fill="#C8B98A"/><ellipse cx="18" cy="22" rx="10" ry="18" fill="#C8B98A" transform="rotate(-15,18,22)"/><ellipse cx="72" cy="22" rx="10" ry="18" fill="#C8B98A" transform="rotate(15,72,22)"/><ellipse cx="18" cy="22" rx="6" ry="12" fill="#D8C99A" transform="rotate(-15,18,22)"/><ellipse cx="72" cy="22" rx="6" ry="12" fill="#D8C99A" transform="rotate(15,72,22)"/><ellipse cx="36" cy="36" rx="5" ry="6" fill="#5a8a3a"/><ellipse cx="54" cy="36" rx="5" ry="6" fill="#5a8a3a"/><circle cx="36" cy="37" r="3.5" fill="#111"/><circle cx="54" cy="37" r="3.5" fill="#111"/><circle cx="37.5" cy="35.5" r="1.5" fill="white"/><circle cx="55.5" cy="35.5" r="1.5" fill="white"/><ellipse cx="45" cy="48" rx="8" ry="5" fill="#D8C99A"/><path d="M38 52 Q45 57 52 52" stroke="#a0896a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="45" cy="53" rx="4" ry="2.5" fill="#e8a090"/><rect x="20" y="88" width="10" height="6" rx="2" fill="#E53935"/><rect x="60" y="88" width="10" height="6" rx="2" fill="#4D96FF"/></svg>'},
-  {name:'Mowgliho',film:'Kniha džunglí',wrong:['Tarzan','Lví král','Madagaskar'],hint:'Dítě vychované vlky v džungli. Kamarádi jsou Baloo a Bagheera!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="38" rx="17" ry="19" fill="#C4845A"/><ellipse cx="45" cy="21" rx="14" ry="9" fill="#1a1a1a"/><path d="M31 25 Q23 31 25 39" stroke="#1a1a1a" stroke-width="5" fill="none"/><path d="M59 25 Q67 31 65 39" stroke="#1a1a1a" stroke-width="5" fill="none"/><ellipse cx="36" cy="38" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="38" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="37" r="1" fill="white"/><circle cx="55" cy="37" r="1" fill="white"/><ellipse cx="31" cy="44" rx="4" ry="2.5" fill="#B07040" opacity="0.6"/><ellipse cx="59" cy="44" rx="4" ry="2.5" fill="#B07040" opacity="0.6"/><path d="M39 48 Q45 52 51 48" stroke="#a06030" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="30" y="56" width="30" height="5" rx="2.5" fill="#E8A830"/><ellipse cx="45" cy="72" rx="16" ry="24" fill="#C4845A"/><ellipse cx="45" cy="75" rx="10" ry="16" fill="#D4956A"/></svg>'},
-  {name:'Aladdin',film:'Aladdin',wrong:['Mulan','Pinocchio','Šípková Růženka'],hint:'Chlapec z tržiště, který najde kouzelnou lampu s džinem!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="38" rx="17" ry="19" fill="#C4845A"/><ellipse cx="45" cy="20" rx="15" ry="10" fill="#9B2335"/><ellipse cx="45" cy="16" rx="13" ry="6" fill="#CC0000"/><path d="M30 24 Q22 30 24 38" stroke="#9B2335" stroke-width="5" fill="none"/><path d="M60 24 Q68 30 66 38" stroke="#9B2335" stroke-width="5" fill="none"/><ellipse cx="36" cy="38" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="38" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="37" r="1" fill="white"/><circle cx="55" cy="37" r="1" fill="white"/><ellipse cx="31" cy="44" rx="4" ry="2.5" fill="#B07040" opacity="0.5"/><ellipse cx="59" cy="44" rx="4" ry="2.5" fill="#B07040" opacity="0.5"/><path d="M39 48 Q45 52 51 48" stroke="#a06030" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M22 55 Q22 70 30 80 L45 85 L60 80 Q68 70 68 55Z" fill="#9B59B6"/><path d="M22 67 Q30 80 45 80 Q60 80 68 67" fill="#7B3994"/></svg>'},
-  {name:'Scooby-Doo',film:'Scooby-Doo',wrong:['Lassie','Pes Balto','Madagaskar'],hint:'Velký hnědý pes, který s partou přátel řeší záhady a strašidla!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="70" rx="28" ry="26" fill="#A0845C"/><circle cx="45" cy="36" r="26" fill="#A0845C"/><ellipse cx="22" cy="28" rx="10" ry="15" fill="#8B6914" transform="rotate(-10,22,28)"/><ellipse cx="68" cy="28" rx="10" ry="15" fill="#8B6914" transform="rotate(10,68,28)"/><ellipse cx="36" cy="38" rx="5" ry="5.5" fill="#111"/><ellipse cx="54" cy="38" rx="5" ry="5.5" fill="#111"/><circle cx="38" cy="36.5" r="2" fill="white"/><circle cx="56" cy="36.5" r="2" fill="white"/><ellipse cx="45" cy="50" rx="12" ry="8" fill="#8B6914"/><ellipse cx="45" cy="51" rx="8" ry="5" fill="#e8c09a"/><path d="M37 55 Q45 62 53 55" stroke="#6B4914" stroke-width="2" fill="none" stroke-linecap="round"/><ellipse cx="30" cy="32" rx="5" ry="3" fill="#FFB3C6" opacity="0.4"/><ellipse cx="60" cy="32" rx="5" ry="3" fill="#FFB3C6" opacity="0.4"/><ellipse cx="45" cy="62" rx="8" ry="5" fill="#6BCB77"/><text x="45" y="65" text-anchor="middle" font-size="7" fill="white" font-weight="bold">SD</text></svg>'},
-  {name:'Simpsonovi',film:'Simpsonovi',wrong:['Futurama','Griffinovi','Táta je doma'],hint:'Žlutá rodinka z Springfieldu — Homer, Marge, Bart, Lisa!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="70" rx="22" ry="26" fill="#FFD700"/><ellipse cx="45" cy="36" rx="22" ry="24" fill="#FFD700"/><ellipse cx="36" cy="36" rx="4" ry="4.5" fill="#111"/><ellipse cx="54" cy="36" rx="4" ry="4.5" fill="#111"/><circle cx="37.5" cy="34.5" r="1.5" fill="white"/><circle cx="55.5" cy="34.5" r="1.5" fill="white"/><ellipse cx="45" cy="48" rx="12" ry="7" fill="#E8B000"/><path d="M36 53 Q45 60 54 53" stroke="#cc9000" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M27 24 Q27 12 45 12 Q63 12 63 24" fill="#FFD700"/><path d="M30 18 Q35 10 40 16" stroke="#FFD700" stroke-width="5" fill="none"/><path d="M50 18 Q55 10 60 16" stroke="#FFD700" stroke-width="5" fill="none"/><rect x="35" y="60" width="20" height="12" rx="3" fill="#1565C0"/><text x="45" y="70" text-anchor="middle" font-size="8" fill="white">D!</text></svg>'},
-  {name:'Peppa Pig',film:'Peppa Pig',wrong:['Palmkitten','Boomerang','Hora Masha'],hint:'Malá růžová prasátko, která miluje skákání do louží!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="26" ry="28" fill="#FFB3C6"/><ellipse cx="45" cy="36" rx="24" ry="22" fill="#FFB3C6"/><ellipse cx="45" cy="20" rx="20" ry="14" fill="#FF8FAB"/><ellipse cx="45" cy="16" rx="14" ry="8" fill="#FF8FAB"/><ellipse cx="36" cy="36" rx="4" ry="4.5" fill="#111"/><ellipse cx="54" cy="36" rx="4" ry="4.5" fill="#111"/><circle cx="37.5" cy="34.5" r="1.5" fill="white"/><circle cx="55.5" cy="34.5" r="1.5" fill="white"/><ellipse cx="45" cy="25" rx="10" ry="7" fill="#FF8FAB"/><circle cx="41" cy="23" r="3" fill="#FF6B9D"/><circle cx="49" cy="23" r="3" fill="#FF6B9D"/><path d="M37 44 Q45 50 53 44" stroke="#FF6B9D" stroke-width="2" fill="none" stroke-linecap="round"/><rect x="30" y="58" width="30" height="12" rx="4" fill="#E53935"/><ellipse cx="22" cy="82" rx="10" ry="7" fill="#FFB3C6"/><ellipse cx="68" cy="82" rx="10" ry="7" fill="#FFB3C6"/></svg>'},
-  {name:'Masha',film:'Máša a medvěd',wrong:['Peppa Pig','Krteček','Bob a Bobek'],hint:'Malá neposedná holčička, která žije v lese s kamarádem medvědem!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M19 100 Q19 68 45 64 Q71 68 71 100Z" fill="#FF8FAB"/><ellipse cx="45" cy="40" rx="17" ry="19" fill="#FFE0CC"/><ellipse cx="45" cy="23" rx="17" ry="10" fill="#FFD93D"/><path d="M30 27 Q22 34 24 41" stroke="#FFD93D" stroke-width="6" fill="none"/><path d="M60 27 Q68 34 66 41" stroke="#FFD93D" stroke-width="6" fill="none"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="39" r="1" fill="white"/><circle cx="55" cy="39" r="1" fill="white"/><ellipse cx="31" cy="46" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.6"/><ellipse cx="59" cy="46" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.6"/><path d="M39 50 Q45 54 51 50" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="31" cy="20" r="7" fill="#E53935"/><circle cx="59" cy="20" r="7" fill="#E53935"/><circle cx="31" cy="20" r="5" fill="#FF6B9D"/><circle cx="59" cy="20" r="5" fill="#FF6B9D"/></svg>'},
-  {name:'Batman',film:'Batman',wrong:['Spiderman','Superman','Iron Man'],hint:'Temný rytíř Gothamu — miliardář Bruce Wayne s plášťkem netopýra!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="24" ry="26" fill="#1a1a1a"/><ellipse cx="45" cy="38" rx="20" ry="22" fill="#1a1a1a"/><path d="M25 22 Q14 8 22 2 Q26 12 32 18Z" fill="#1a1a1a"/><path d="M65 22 Q76 8 68 2 Q64 12 58 18Z" fill="#1a1a1a"/><ellipse cx="36" cy="40" rx="4" ry="4.5" fill="#FFE0CC"/><ellipse cx="54" cy="40" rx="4" ry="4.5" fill="#FFE0CC"/><circle cx="36" cy="41" r="3" fill="#111"/><circle cx="54" cy="41" r="3" fill="#111"/><circle cx="37.5" cy="39.5" r="1.2" fill="white"/><circle cx="55.5" cy="39.5" r="1.2" fill="white"/><path d="M39 50 Q45 55 51 50" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="45" cy="78" rx="16" ry="10" fill="#FFD93D"/><path d="M33 78 Q37 72 41 75 L45 70 L49 75 Q53 72 57 78Z" fill="#1a1a1a"/></svg>'},
-  {name:'Iron Man',film:'Iron Man / Avengers',wrong:['Batman','Spiderman','Superman'],hint:'Tony Stark v červenozlatém obleku s reaktorem v hrudi!',svg:'<svg width="90" height="100" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="26" ry="26" fill="#CC0000"/><path d="M19 72 Q19 90 30 100 L45 100 L60 100 Q71 90 71 72Z" fill="#FFD700"/><circle cx="45" cy="36" r="24" fill="#CC0000"/><ellipse cx="35" cy="32" rx="8" ry="6" fill="#FFD700"/><ellipse cx="55" cy="32" rx="8" ry="6" fill="#FFD700"/><ellipse cx="35" cy="32" rx="5" ry="4" fill="#87CEEB"/><ellipse cx="55" cy="32" rx="5" ry="4" fill="#87CEEB"/><rect x="30" y="40" width="30" height="8" rx="4" fill="#CC2200"/><rect x="32" y="42" width="26" height="4" rx="2" fill="#FFD700"/><circle cx="45" cy="72" r="8" fill="#87CEEB" opacity="0.8"/><circle cx="45" cy="72" r="5" fill="white"/></svg>'},
+// ── POHÁDKY ──
+var TALES=[
+{n:'Krteček',f:'Krteček',w:['Pat a Mat','Bob a Bobek','Večerníček'],h:'Malý černý kamarád, který rád kopá díry!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="65" rx="22" ry="26" fill="#3a3a3a"/><circle cx="45" cy="35" r="22" fill="#3a3a3a"/><ellipse cx="45" cy="47" rx="14" ry="10" fill="#c49a7a"/><ellipse cx="37" cy="34" rx="5" ry="6" fill="white"/><ellipse cx="53" cy="34" rx="5" ry="6" fill="white"/><circle cx="37" cy="35" r="3" fill="#111"/><circle cx="53" cy="35" r="3" fill="#111"/><circle cx="38" cy="34" r="1" fill="white"/><circle cx="54" cy="34" r="1" fill="white"/><ellipse cx="45" cy="49" rx="5" ry="3.5" fill="#c4806a"/><path d="M40 53 Q45 57 50 53" stroke="#a06050" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Pat a Mat',f:'Pat a Mat',w:['Krteček','Bob a Bobek','Večerníček'],h:'Dva kutilové, kteří vždy způsobí chaos!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="27" cy="72" rx="16" ry="20" fill="#4D96FF"/><circle cx="27" cy="40" r="15" fill="#FFE0CC"/><rect x="14" y="28" width="26" height="8" rx="4" fill="#4D96FF"/><circle cx="21" cy="41" r="3" fill="#111"/><circle cx="33" cy="41" r="3" fill="#111"/><path d="M22 49 Q27 53 32 49" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="63" cy="72" rx="16" ry="20" fill="#E53935"/><circle cx="63" cy="40" r="15" fill="#FFE0CC"/><rect x="50" y="28" width="26" height="8" rx="4" fill="#8B4513"/><circle cx="57" cy="41" r="3" fill="#111"/><circle cx="69" cy="41" r="3" fill="#111"/><path d="M58 49 Q63 53 68 49" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Bob a Bobek',f:'Bob a Bobek',w:['Krteček','Tom a Jerry','Pat a Mat'],h:'Dva bílí králíci, kteří žijí v klobouku!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="96" rx="36" ry="7" fill="#1a1030"/><rect x="24" y="64" width="42" height="34" rx="4" fill="#2D1B4E"/><rect x="20" y="60" width="50" height="10" rx="3" fill="#1a1030"/><ellipse cx="28" cy="56" rx="13" ry="17" fill="white"/><circle cx="28" cy="42" r="12" fill="white"/><ellipse cx="24" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="32" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="24" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><ellipse cx="32" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><circle cx="24" cy="42" r="3" fill="#111"/><circle cx="32" cy="42" r="3" fill="#111"/><ellipse cx="62" cy="56" rx="13" ry="17" fill="white"/><circle cx="62" cy="42" r="12" fill="white"/><ellipse cx="58" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="66" cy="22" rx="4" ry="11" fill="white"/><ellipse cx="58" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><ellipse cx="66" cy="22" rx="2.5" ry="7" fill="#FFB3C6"/><circle cx="58" cy="42" r="3" fill="#111"/><circle cx="66" cy="42" r="3" fill="#111"/></svg>'},
+{n:'Červená karkulka',f:'Červená karkulka',w:['Popelka','Šípková Růženka','Sněhurka'],h:'Holčička s červenou čepičkou, která nesla košík babičce!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 100 Q18 65 45 62 Q72 65 72 100Z" fill="#4CAF50"/><ellipse cx="45" cy="39" rx="18" ry="20" fill="#FFE0CC"/><path d="M18 27 Q18 8 45 8 Q72 8 72 27 L70 39 Q62 31 45 31 Q28 31 20 39Z" fill="#E53935"/><ellipse cx="36" cy="40" rx="3.5" ry="4" fill="#111"/><ellipse cx="54" cy="40" rx="3.5" ry="4" fill="#111"/><circle cx="37.5" cy="39" r="1.2" fill="white"/><circle cx="55.5" cy="39" r="1.2" fill="white"/><ellipse cx="32" cy="46" rx="5" ry="3" fill="#FFB3C6" opacity="0.5"/><ellipse cx="58" cy="46" rx="5" ry="3" fill="#FFB3C6" opacity="0.5"/><path d="M39 51 Q45 56 51 51" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Popelka',f:'Popelka',w:['Červená karkulka','Sněhurka','Šípková Růženka'],h:'Dívka, která ztratila střevíček na plese!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M14 100 Q14 68 45 64 Q76 68 76 100Z" fill="#90CAF9"/><path d="M14 80 Q14 100 45 100 Q76 100 76 80 Q62 90 45 90 Q28 90 14 80Z" fill="#64B5F6" opacity="0.8"/><ellipse cx="45" cy="39" rx="17" ry="19" fill="#FFE0CC"/><ellipse cx="45" cy="13" rx="17" ry="8" fill="#F5C518"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><circle cx="37" cy="39" r="1" fill="white"/><circle cx="55" cy="39" r="1" fill="white"/><path d="M39 50 Q45 54 51 50" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Sněhurka',f:'Sněhurka a 7 trpaslíků',w:['Popelka','Šípková Růženka','Ledové království'],h:'Princezna s kůží bílou jako sníh, bydlela se 7 trpaslíky!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M18 100 Q18 68 45 64 Q72 68 72 100Z" fill="#FFD93D"/><path d="M18 78 Q18 100 45 100 Q72 100 72 78 Q60 88 45 88 Q30 88 18 78Z" fill="#1565C0"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="24" rx="18" ry="10" fill="#1a1a2e"/><path d="M27 28 Q20 34 22 42" stroke="#1a1a2e" stroke-width="6" fill="none"/><path d="M63 28 Q70 34 68 42" stroke="#1a1a2e" stroke-width="6" fill="none"/><ellipse cx="36" cy="41" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="41" rx="3" ry="3.5" fill="#111"/><path d="M39 51 Q45 55 51 51" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Šípková Růženka',f:'Šípková Růženka',w:['Popelka','Sněhurka','Ledové království'],h:'Princezna, která usnula na 100 let!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 68 45 64 Q73 68 73 100Z" fill="#E91E63"/><path d="M17 82 Q30 93 45 93 Q60 93 73 82 L73 100 L17 100Z" fill="#C2185B"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#FFE0CC"/><path d="M27 26 Q28 9 45 9 Q62 9 63 26" fill="#FFD700"/><path d="M27 26 Q19 34 21 42" stroke="#FFD700" stroke-width="6" fill="none"/><path d="M63 26 Q71 34 69 42" stroke="#FFD700" stroke-width="6" fill="none"/><ellipse cx="36" cy="41" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="41" rx="3" ry="3.5" fill="#111"/><path d="M39 51 Q45 55 51 51" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Mimoň',f:'Mimoni / Já, padouch',w:['Ledové království','Shrek','Toy Story'],h:'Žluté malé bytosti, které milují banány!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="62" rx="28" ry="34" fill="#FFD93D"/><ellipse cx="45" cy="34" rx="22" ry="22" fill="#FFD93D"/><rect x="27" y="28" width="36" height="16" rx="8" fill="#8B6914" opacity="0.9"/><circle cx="45" cy="34" r="10" fill="white"/><circle cx="45" cy="35" r="6" fill="#3a3a3a"/><circle cx="47" cy="33" r="2" fill="white"/><rect x="18" y="54" width="54" height="10" rx="5" fill="#A0845C"/><path d="M33 85 Q45 93 57 85" stroke="#8B6914" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Shrek',f:'Shrek',w:['Mimoni','Doba ledová','Madagaskar'],h:'Zelený obr z bažiny. Má rád cibuli!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="32" ry="28" fill="#6BCB77"/><ellipse cx="45" cy="38" rx="27" ry="28" fill="#6BCB77"/><ellipse cx="25" cy="32" rx="7" ry="10" fill="#6BCB77"/><ellipse cx="65" cy="32" rx="7" ry="10" fill="#6BCB77"/><ellipse cx="34" cy="40" rx="7" ry="6" fill="white"/><ellipse cx="56" cy="40" rx="7" ry="6" fill="white"/><circle cx="34" cy="41" r="4" fill="#5a3e1b"/><circle cx="56" cy="41" r="4" fill="#5a3e1b"/><path d="M36 57 Q45 64 54 57" stroke="#4a9455" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Elsa',f:'Ledové království',w:['Šípková Růženka','Popelka','Shrek'],h:'Princezna, která kouzlí ledem a sněhem!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="38" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="20" rx="18" ry="10" fill="#B8E4FF"/><path d="M27 23 Q19 28 21 38" stroke="#B8E4FF" stroke-width="4" fill="none"/><path d="M63 23 Q71 28 69 38" stroke="#B8E4FF" stroke-width="4" fill="none"/><ellipse cx="36" cy="38" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="38" rx="3" ry="3.5" fill="#111"/><path d="M39 47 Q45 51 51 47" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M45 58 L29 61 L19 100 L45 96 L71 100 L61 61 Z" fill="#4ECDC4" opacity="0.9"/></svg>'},
+{n:'Simba',f:'Lví král',w:['Madagaskar','Kniha džunglí','Doba ledová'],h:'Malý lvíček, který se stane králem Afriky!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="70" rx="27" ry="22" fill="#E8A830"/><circle cx="45" cy="37" r="26" fill="#F5BC45"/><circle cx="32" cy="37" r="5" fill="#111"/><circle cx="58" cy="37" r="5" fill="#111"/><circle cx="33.5" cy="35.5" r="2" fill="white"/><circle cx="59.5" cy="35.5" r="2" fill="white"/><ellipse cx="45" cy="48" rx="9" ry="7" fill="#F0AC3A"/><ellipse cx="45" cy="49" rx="6" ry="4.5" fill="#E8906B"/><path d="M39 54 Q45 59 51 54" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M18 33 Q13 23 19 16 Q25 23 21 33Z" fill="#E8A830"/><path d="M72 33 Q77 23 71 16 Q65 23 69 33Z" fill="#E8A830"/></svg>'},
+{n:'Pinocchio',f:'Pinocchio',w:['Shrek','Mimoni','Lví král'],h:'Dřevěná loutka, které roste nos, když lže!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="20" ry="26" fill="#4D96FF"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#F5DEB3"/><ellipse cx="45" cy="22" rx="18" ry="10" fill="#E53935"/><circle cx="45" cy="16" r="5" fill="#E53935"/><ellipse cx="36" cy="41" rx="3.5" ry="4" fill="#111"/><ellipse cx="54" cy="41" rx="3.5" ry="4" fill="#111"/><circle cx="37.5" cy="40" r="1.2" fill="white"/><circle cx="55.5" cy="40" r="1.2" fill="white"/><ellipse cx="45" cy="47" rx="5" ry="3" fill="#E8C49A"/><path d="M50 47 L72 42" stroke="#E8C49A" stroke-width="4" stroke-linecap="round"/><path d="M39 51 Q45 55 51 51" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Spiderman',f:'Spider-Man',w:['Batman','Superman','Iron Man'],h:'Superhrdina, který šplhá po zdech a stříká pavučiny!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="24" ry="26" fill="#E53935"/><path d="M21 72 Q21 90 30 100 L45 100 L60 100 Q69 90 69 72Z" fill="#1565C0"/><circle cx="45" cy="36" r="22" fill="#E53935"/><path d="M23 36 Q45 23 67 36" stroke="#1565C0" stroke-width="2" fill="none"/><path d="M23 36 Q45 49 67 36" stroke="#1565C0" stroke-width="2" fill="none"/><path d="M45 14 L45 58" stroke="#1565C0" stroke-width="2"/><ellipse cx="36" cy="36" rx="8" ry="9" fill="white" opacity="0.9"/><ellipse cx="54" cy="36" rx="8" ry="9" fill="white" opacity="0.9"/><ellipse cx="36" cy="36" rx="5" ry="6" fill="#1565C0"/><ellipse cx="54" cy="36" rx="5" ry="6" fill="#1565C0"/></svg>'},
+{n:'Hermiona',f:'Harry Potter',w:['Narnia','Pán prstenů','Fantastická zvířata'],h:'Chytrá čarodějka z Bradavic s kouzelnou hůlkou!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M20 100 Q20 68 45 64 Q70 68 70 100Z" fill="#1a1a1a"/><ellipse cx="45" cy="40" rx="18" ry="20" fill="#FFE0CC"/><ellipse cx="45" cy="24" rx="18" ry="14" fill="#8B4513"/><path d="M27 26 Q19 34 21 44" stroke="#8B4513" stroke-width="6" fill="none"/><path d="M63 26 Q71 34 69 44" stroke="#8B4513" stroke-width="6" fill="none"/><ellipse cx="36" cy="41" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="41" rx="3" ry="3.5" fill="#111"/><path d="M39 49 Q45 53 51 49" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><line x1="19" y1="66" x2="58" y2="53" stroke="#8B6914" stroke-width="3" stroke-linecap="round"/></svg>'},
+{n:'Kung Fu Panda',f:'Kung Fu Panda',w:['Madagaskar','Shrek','Lví král'],h:'Tučný panda, který se naučil kung-fu!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="75" rx="28" ry="24" fill="#f0f0f0"/><circle cx="45" cy="38" r="27" fill="#f0f0f0"/><ellipse cx="31" cy="34" rx="10" ry="10" fill="#2D2D2D"/><ellipse cx="59" cy="34" rx="10" ry="10" fill="#2D2D2D"/><ellipse cx="31" cy="36" rx="6" ry="6" fill="white"/><ellipse cx="59" cy="36" rx="6" ry="6" fill="white"/><circle cx="30" cy="36" r="3.5" fill="#111"/><circle cx="58" cy="36" r="3.5" fill="#111"/><ellipse cx="45" cy="48" rx="11" ry="8" fill="#2D2D2D"/><ellipse cx="45" cy="50" rx="8" ry="5" fill="#e8c09a"/><path d="M39 55 Q45 60 51 55" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="29" y="62" width="32" height="19" rx="6" fill="#2D2D2D"/><rect x="31" y="64" width="28" height="15" rx="4" fill="#CC0000"/></svg>'},
+{n:'Peppa Pig',f:'Peppa Pig',w:['Máša a medvěd','Krteček','Bob a Bobek'],h:'Malá růžová prasátko, která miluje skákání do louží!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="26" ry="28" fill="#FFB3C6"/><ellipse cx="45" cy="36" rx="24" ry="22" fill="#FFB3C6"/><ellipse cx="45" cy="20" rx="20" ry="14" fill="#FF8FAB"/><ellipse cx="36" cy="36" rx="4" ry="4.5" fill="#111"/><ellipse cx="54" cy="36" rx="4" ry="4.5" fill="#111"/><ellipse cx="45" cy="25" rx="10" ry="7" fill="#FF8FAB"/><circle cx="41" cy="23" r="3" fill="#FF6B9D"/><circle cx="49" cy="23" r="3" fill="#FF6B9D"/><path d="M37 44 Q45 50 53 44" stroke="#FF6B9D" stroke-width="2" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Máša',f:'Máša a medvěd',w:['Peppa Pig','Krteček','Bob a Bobek'],h:'Malá neposedná holčička z lesa s kamarádem medvědem!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M19 100 Q19 68 45 64 Q71 68 71 100Z" fill="#FF8FAB"/><ellipse cx="45" cy="40" rx="17" ry="19" fill="#FFE0CC"/><ellipse cx="45" cy="23" rx="17" ry="10" fill="#FFD93D"/><path d="M30 27 Q22 34 24 41" stroke="#FFD93D" stroke-width="6" fill="none"/><path d="M60 27 Q68 34 66 41" stroke="#FFD93D" stroke-width="6" fill="none"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="31" cy="46" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.6"/><ellipse cx="59" cy="46" rx="4" ry="2.5" fill="#FFB3C6" opacity="0.6"/><path d="M39 50 Q45 54 51 50" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/><circle cx="31" cy="20" r="7" fill="#E53935"/><circle cx="59" cy="20" r="7" fill="#E53935"/></svg>'},
+{n:'Batman',f:'Batman',w:['Spiderman','Superman','Iron Man'],h:'Temný rytíř Gothamu — Bruce Wayne s plášťkem netopýra!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="72" rx="24" ry="26" fill="#1a1a1a"/><ellipse cx="45" cy="38" rx="20" ry="22" fill="#1a1a1a"/><path d="M25 22 Q14 8 22 2 Q26 12 32 18Z" fill="#1a1a1a"/><path d="M65 22 Q76 8 68 2 Q64 12 58 18Z" fill="#1a1a1a"/><ellipse cx="36" cy="40" rx="4" ry="4.5" fill="#FFE0CC"/><ellipse cx="54" cy="40" rx="4" ry="4.5" fill="#FFE0CC"/><circle cx="36" cy="41" r="3" fill="#111"/><circle cx="54" cy="41" r="3" fill="#111"/><path d="M39 50 Q45 55 51 50" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/><ellipse cx="45" cy="78" rx="16" ry="10" fill="#FFD93D"/></svg>'},
+{n:'Stitch',f:'Lilo a Stitch',w:['Monsters Inc.','Mimoni','Wall-E'],h:'Modrý mimozemský experiment č. 626 — vypadá jako pes!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><ellipse cx="45" cy="68" rx="26" ry="28" fill="#4D96FF"/><ellipse cx="45" cy="38" rx="24" ry="26" fill="#4D96FF"/><ellipse cx="20" cy="24" rx="10" ry="16" fill="#4D96FF" transform="rotate(-20,20,24)"/><ellipse cx="70" cy="24" rx="10" ry="16" fill="#4D96FF" transform="rotate(20,70,24)"/><ellipse cx="20" cy="24" rx="6" ry="11" fill="#6AAEFF" transform="rotate(-20,20,24)"/><ellipse cx="70" cy="24" rx="6" ry="11" fill="#6AAEFF" transform="rotate(20,70,24)"/><ellipse cx="36" cy="40" rx="5" ry="5.5" fill="#111"/><ellipse cx="54" cy="40" rx="5" ry="5.5" fill="#111"/><circle cx="38" cy="38" r="2" fill="white"/><circle cx="56" cy="38" r="2" fill="white"/><ellipse cx="45" cy="52" rx="12" ry="8" fill="#6AAEFF"/><path d="M38 57 Q45 63 52 57" stroke="#3a7adf" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Moana',f:'Moana / Vaiana',w:['Lilo a Stitch','Pocahontas','Raya'],h:'Odvážná dívka z polynéského ostrova, která vypluje na moře!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 67 45 63 Q73 67 73 100Z" fill="#E53935"/><ellipse cx="45" cy="40" rx="17" ry="19" fill="#D4956A"/><ellipse cx="45" cy="22" rx="16" ry="12" fill="#1a1a1a"/><path d="M29 26 Q20 34 22 42" stroke="#1a1a1a" stroke-width="7" fill="none"/><path d="M61 26 Q70 34 68 42" stroke="#1a1a1a" stroke-width="7" fill="none"/><ellipse cx="36" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="40" rx="3" ry="3.5" fill="#111"/><ellipse cx="31" cy="46" rx="4" ry="2.5" fill="#C4845A" opacity="0.6"/><ellipse cx="59" cy="46" rx="4" ry="2.5" fill="#C4845A" opacity="0.6"/><path d="M39 50 Q45 54 51 50" stroke="#c0724a" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'},
+{n:'Rapunzel',f:'Locika / Tangled',w:['Popelka','Elsa','Šípková Růženka'],h:'Princezna s magickými dlouhými vlasy uvězněná ve věži!',s:'<svg width="80" height="90" viewBox="0 0 90 100" xmlns="http://www.w3.org/2000/svg"><path d="M17 100 Q17 68 45 64 Q73 68 73 100Z" fill="#9B59B6"/><ellipse cx="45" cy="38" rx="17" ry="19" fill="#FFE0CC"/><ellipse cx="45" cy="21" rx="16" ry="10" fill="#FFD700"/><path d="M29 25 Q21 32 23 40" stroke="#FFD700" stroke-width="5" fill="none"/><path d="M61 25 Q69 32 67 40" stroke="#FFD700" stroke-width="5" fill="none"/><path d="M29 28 Q5 70 10 100" stroke="#FFD700" stroke-width="6" fill="none"/><path d="M61 28 Q85 70 80 100" stroke="#FFD700" stroke-width="6" fill="none"/><ellipse cx="36" cy="39" rx="3" ry="3.5" fill="#111"/><ellipse cx="54" cy="39" rx="3" ry="3.5" fill="#111"/><path d="M39 49 Q45 53 51 49" stroke="#d4799e" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>'}
 ];
+var talStreak=0;
+function talNext(){cfb();clrnr();answered=false;var q=rnd(TALES);var opts=shu([q.f].concat(q.w));var el=document.getElementById('gc');el.innerHTML='<div class="tales-wrap"><div class="tstreak">🔥 Série: '+talStreak+'</div><div class="tchar"><div>'+q.s+'</div><div class="tchar-name">'+q.n.toUpperCase()+'</div></div><div class="tq">Z jaké pohádky nebo filmu je tato postavička?</div><div class="topts" id="to"></div><div class="thint" id="th"></div></div>';opts.forEach(function(o){var b=document.createElement('button');b.className='topt';b.textContent=o;b.onclick=function(){if(answered)return;answered=true;var ok=o===q.f;b.classList.add(ok?'ok':'no');document.querySelectorAll('.topt').forEach(function(x){if(x.textContent===q.f)x.classList.add('ok');x.disabled=true;});document.getElementById('th').textContent='💡 '+q.h;if(ok){talStreak++;score+=10+(talStreak>2?5:0);corr++;sfb(true,rnd(['🌟 Správně!','🎉 Výborně!','⭐ Skvělé!','✨ Bravo!']));setTimeout(talNext,1200);}else{talStreak=0;sfb(false,'Správně: '+q.f);shownxt(talNext);}ust();};el.querySelector('#to').appendChild(b);});}
 
-let talesStreak=0;
-function nextTales(){
-  clearFeedback();clearNav();answered=false;
-  const q=rand(TALES);
-  const opts=shuffle([q.film,...q.wrong]);
-  const el=document.getElementById('game-content');
-  el.innerHTML=`<div class="tales-card"><div class="tales-streak">🔥 Série: ${talesStreak}</div><div class="tales-char"><div>${q.svg}</div><div class="tales-char-name">${q.name.toUpperCase()}</div></div><div class="tales-question">Z jaké pohádky nebo filmu je tato postavička?</div><div class="tales-opts" id="talopts"></div><div class="tales-hint" id="talhint"></div></div>`;
-  opts.forEach(o=>{
-    const b=document.createElement('button');b.className='tales-opt';b.textContent=o;
-    b.onclick=()=>{
-      if(answered)return;answered=true;
-      const ok=o===q.film;
-      b.classList.add(ok?'correct':'wrong');
-      document.querySelectorAll('.tales-opt').forEach(x=>{if(x.textContent===q.film)x.classList.add('correct');x.disabled=true;});
-      document.getElementById('talhint').textContent='💡 '+q.hint;
-      if(ok){talesStreak++;score+=10+(talesStreak>2?5:0);correct++;setFeedback(true,rand(['🌟 Správně!','🎉 Výborně!','⭐ Skvělé!','✨ Bravo!']));setTimeout(nextTales,1200);}
-      else{talesStreak=0;setFeedback(false,'Správně: '+q.film);showNext(nextTales);}
-      updStats();
-    };
-    el.querySelector('#talopts').appendChild(b);
-  });
-}
+// ── PSANÍ ──
+var WNUMS=['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','35','40','45','50','55','60','65','70','75','80','85','90','95','100'];
+var WLTRS=['A','B','C','Č','D','E','F','G','H','CH','I','J','K','L','M','N','O','P','R','Ř','S','Š','T','U','V','W','X','Y','Z','Ž'];
+var WTIPS={'0':'Napiš elipsu — jako vajíčko!','1':'Rovná čára dolů!','2':'Oblouk nahoře, pak dolů a vodorovně!','3':'Dva oblouky doprava!','4':'Šikmá, vodorovná, pak dolů!','5':'Čárka dolů, pak oblouk doprava!','6':'Oblouk a kroužek dole!','7':'Vodorovně, pak šikmo dolů!','8':'Jako dvě O na sobě!','9':'Kroužek nahoře, čára dolů!','A':'Dvě šikmé čáry nahoru, uprostřed příčka!','B':'Svislá čára a dva oblouky!','C':'Oblouk doleva — měsíček!','Č':'Jako C s háčkem!','D':'Svislá čára a velký oblouk!','E':'Svislá a tři vodorovné čárky!','F':'Svislá a dvě čárky nahoře!','G':'Jako C s příčkou!','H':'Dvě svislé s příčkou!','CH':'C a H vedle sebe!','I':'Svislá s čárkami!','J':'Svislá se zahnutím!','K':'Svislá a dvě šikmé!','L':'Svislá dolů, pak vodorovně!','M':'Dvě svislé s V uprostřed!','N':'Dvě svislé se šikmou!','O':'Kruh dokola!','P':'Svislá s obloukem nahoře!','R':'Svislá, oblouk a nožička!','Ř':'Jako R s háčkem!','S':'Esíčko — jako had!','Š':'Jako S s háčkem!','T':'Vodorovná nahoře, svislá dolů!','U':'Dvě čáry spojené dole!','V':'Dvě šikmé do špičky!','W':'Jako dvě V!','X':'Dvě šikmé přes sebe!','Y':'Dvě šikmé, pak svislá!','Z':'Vodorovná, šikmá, vodorovná!','Ž':'Jako Z s háčkem!'};
+var wMode='numbers',wCur=null,wCanvas=null,wCtx=null,wDrawing=false,wColor='#9B59B6',wSize=10,wStrokes=[],wCurStroke=[],wLast=null,wScore={ok:0,tot:0};
+function wriNext(){cfb();clrnr();answered=false;wCur=wMode==='numbers'?rnd(WNUMS):rnd(WLTRS);var tip=WTIPS[wCur]||'Napiš hůlkově!';var el=document.getElementById('gc');
+var colBtns=['#9B59B6','#FF6B9D','#E53935','#FF9A3C','#43A047','#1565C0','#1a1a1a'].map(function(c){return '<div onclick="wSetCol(\''+c+'\')" style="width:24px;height:24px;border-radius:50%;background:'+c+';border:3px solid '+(c===wColor?'#fff':'transparent')+';cursor:pointer;flex-shrink:0;"></div>';}).join('');
+var szBtns=[4,9,15].map(function(s){return '<div onclick="wSetSz('+s+')" style="width:'+(s+14)+'px;height:'+(s+14)+'px;border-radius:50%;background:'+(wSize===s?'#9B59B6':'#e8e0f5')+';border:2px solid '+(wSize===s?'#9B59B6':'#ccc')+';cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><div style="width:'+s+'px;height:'+s+'px;border-radius:50%;background:'+(wSize===s?'#fff':'#555')+'"></div></div>';}).join('');
+el.innerHTML='<div class="pw">'
++'<div class="pmodes"><button class="pmbtn'+(wMode==="numbers"?" on":"")+'" onclick="wSetMode(\'numbers\')">🔢 Číslice 0–100</button><button class="pmbtn'+(wMode==="letters"?" on":"")+'" onclick="wSetMode(\'letters\')">🔤 Písmena</button></div>'
++'<div class="psc">Správně: <b>'+wScore.ok+'</b> / <b>'+wScore.tot+'</b></div>'
++'<div class="glabel">Napiš toto:</div>'
++'<div class="ptarget">'+wCur+'</div>'
++'<div class="ptip">'+tip+'</div>'
++'<div class="canvaswrap" id="cwrap"><div class="guidetxt" id="gtxt">'+wCur+'</div><canvas id="wcan"></canvas></div>'
++'<div class="ptools" style="gap:5px;">'
++'<div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:center;">'+colBtns+'</div>'
++'<div style="display:flex;gap:5px;align-items:center;">'+szBtns+'</div>'
++'<button class="ptool2" onclick="wClear()">🗑 Smazat</button>'
++'</div>'
++'<button class="pcheck" onclick="wCheck()">✅ Hotovo!</button>'
++'<div class="pres" id="pres"></div>'
++'</div>';
+wCanvas=document.getElementById('wcan');wCtx=wCanvas.getContext('2d');wStrokes=[];wCurStroke=[];wLast=null;wDrawing=false;wInitCanvas();}
+function wInitCanvas(){var wrap=document.getElementById('cwrap');var W=Math.min(320,wrap.offsetWidth||280);var H=Math.round(W*.6);wCanvas.width=W;wCanvas.height=H;wCanvas.style.width=W+'px';wCanvas.style.height=H+'px';wDrawBg();
+function gp(e){var r=wCanvas.getBoundingClientRect();var sx=wCanvas.width/r.width;var sy=wCanvas.height/r.height;return{x:(e.clientX-r.left)*sx,y:(e.clientY-r.top)*sy};}
+function gt(e){var t=e.touches[0];var r=wCanvas.getBoundingClientRect();var sx=wCanvas.width/r.width;var sy=wCanvas.height/r.height;return{x:(t.clientX-r.left)*sx,y:(t.clientY-r.top)*sy};}
+function sd(p){wDrawing=true;wLast=p;wCurStroke=[p];}
+function mv(p){if(!wDrawing||!wLast)return;wCtx.beginPath();wCtx.moveTo(wLast.x,wLast.y);wCtx.lineTo(p.x,p.y);wCtx.strokeStyle=wColor;wCtx.lineWidth=wSize;wCtx.lineCap='round';wCtx.lineJoin='round';wCtx.stroke();wLast=p;wCurStroke.push(p);}
+function ed(){if(!wDrawing)return;wDrawing=false;if(wCurStroke.length>2)wStrokes.push(wCurStroke.slice());wCurStroke=[];wLast=null;}
+wCanvas.onmousedown=function(e){sd(gp(e));};
+wCanvas.onmousemove=function(e){mv(gp(e));};
+wCanvas.onmouseup=ed;wCanvas.onmouseleave=ed;
+wCanvas.ontouchstart=function(e){e.preventDefault();sd(gt(e));};
+wCanvas.ontouchmove=function(e){e.preventDefault();mv(gt(e));};
+wCanvas.ontouchend=function(e){e.preventDefault();ed();};}
+function wDrawBg(){var W=wCanvas.width,H=wCanvas.height;wCtx.fillStyle='#f8f0ff';wCtx.fillRect(0,0,W,H);wCtx.strokeStyle='rgba(155,89,182,.15)';wCtx.lineWidth=1.5;wCtx.setLineDash([8,8]);wCtx.beginPath();wCtx.moveTo(0,H/2);wCtx.lineTo(W,H/2);wCtx.stroke();wCtx.setLineDash([]);wCtx.strokeStyle='rgba(155,89,182,.07)';wCtx.lineWidth=1;wCtx.beginPath();wCtx.moveTo(0,H*.25);wCtx.lineTo(W,H*.25);wCtx.stroke();wCtx.beginPath();wCtx.moveTo(0,H*.75);wCtx.lineTo(W,H*.75);wCtx.stroke();}
+function wClear(){if(!wCanvas)return;wStrokes=[];wCurStroke=[];wLast=null;wDrawing=false;wDrawBg();var r=document.getElementById('pres');if(r)r.textContent='';wCanvas.style.border='3px dashed #9B59B6';}
+function wSetCol(c){wColor=c;wriNext();}
+function wSetSz(s){wSize=s;wriNext();}
+function wSetMode(m){wMode=m;wriNext();}
+function wCheck(){var r=document.getElementById('pres');if(!r||!wCanvas)return;if(wStrokes.length===0){r.textContent='✏️ Nejprve něco napiš!';r.className='pres no';return;}var minX=9999,maxX=0,minY=9999,maxY=0,pts=0;wStrokes.forEach(function(s){s.forEach(function(p){if(p.x<minX)minX=p.x;if(p.x>maxX)maxX=p.x;if(p.y<minY)minY=p.y;if(p.y>maxY)maxY=p.y;pts++;});});var dw=maxX-minX,dh=maxY-minY;wScore.tot++;var ok=(pts>8&&dw>18&&dh>18);if(ok){wScore.ok++;score+=10;corr++;ust();r.textContent=rnd(['🌟 Výborně! Krásně napsáno!','⭐ Super! Přesně tak!','🎉 Perfektní! Tak dál!','✨ Bravo! Skvělé psaní!']);r.className='pres ok';wCanvas.style.border='3px solid #43A047';var W=wCanvas.width,H=wCanvas.height;wCtx.strokeStyle='rgba(67,160,71,.5)';wCtx.lineWidth=12;wCtx.lineCap='round';wCtx.lineJoin='round';wCtx.beginPath();wCtx.moveTo(W*.2,H*.5);wCtx.lineTo(W*.42,H*.75);wCtx.lineTo(W*.8,H*.22);wCtx.stroke();setTimeout(wriNext,1800);}else{r.textContent='🤔 Zkus to větší! Vyplň celou plochu.';r.className='pres no';wCanvas.style.border='3px solid #E53935';shownxt(wriNext);}}
 
-
-// ══════════════════════════════════════════
-// ══     PSANÍ ČÍSLIC A PÍSMEN            ══
-// ══════════════════════════════════════════
-
-const WRITE_NUMBERS = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
-  21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
-  41,42,43,44,45,46,47,48,49,50,55,60,65,70,75,80,85,90,95,100];
-
-const WRITE_LETTERS = ['A','B','C','Č','D','E','F','G','H','CH','I','J','K','L','M',
-  'N','O','P','R','Ř','S','Š','T','U','V','W','X','Y','Z','Ž'];
-
-const CHAR_TIPS = {
-  '0':'Napiš elipsu — jako vajíčko!',
-  '1':'Rovná čára dolů, nahoře šikmý začátek!',
-  '2':'Oblouk nahoře, pak vlnka dolů a vodorovně!',
-  '3':'Dva oblouky doprava — jako dvě brány!',
-  '4':'Šikmá doleva, vodorovně, pak dolů!',
-  '5':'Čárka, pak dolů a zaoblená doprava!',
-  '6':'Šikmá doleva dolů, pak kroužek!',
-  '7':'Vodorovně doprava, pak šikmo dolů!',
-  '8':'Jako dvě O na sobě!',
-  '9':'Kroužek nahoře, pak čára dolů!',
-  'A':'Dvě šikmé čáry nahoru se spojí, uprostřed příčka!',
-  'B':'Svislá čára, pak dva oblouky doprava!',
-  'C':'Oblouk doleva — jako měsíček!',
-  'Č':'Jako C, nahoře háček!',
-  'D':'Svislá čára a jeden velký oblouk doprava!',
-  'E':'Svislá čára a tři vodorovné čárky!',
-  'F':'Svislá čára a dvě vodorovné čárky nahoře!',
-  'G':'Jako C, ale s příčkou uprostřed vpravo!',
-  'H':'Dvě svislé čáry, uprostřed příčka!',
-  'CH':'Písmeno C a H vedle sebe!',
-  'I':'Svislá čára, nahoře a dole vodorovná!',
-  'J':'Svislá čára dolů se zahnutím doleva!',
-  'K':'Svislá čára, dvě šikmé čáry ven!',
-  'L':'Svislá dolů, pak vodorovně doprava!',
-  'M':'Dvě svislé čáry, uprostřed V tvar!',
-  'N':'Dvě svislé čáry, šikmá spojka!',
-  'O':'Kruh nebo elipsa dokola!',
-  'P':'Svislá čára, nahoře oblouk doprava!',
-  'R':'Svislá čára, oblouk a šikmá nožička!',
-  'Ř':'Jako R, nahoře háček!',
-  'S':'Jako had — esíčko!',
-  'Š':'Jako S, nahoře háček!',
-  'T':'Vodorovná nahoře, svislá dolů!',
-  'U':'Dvě svislé čáry spojené obloukem dole!',
-  'V':'Dvě šikmé čáry dolů do špičky!',
-  'W':'Jako dvě V vedle sebe!',
-  'X':'Dvě šikmé čáry přes sebe!',
-  'Y':'Dvě šikmé dolů, pak svislá dolů!',
-  'Z':'Vodorovná, šikmá dolů, vodorovná!',
-  'Ž':'Jako Z, nahoře háček!',
-};
-
-let writeMode = 'numbers';
-let writeCurrent = null;
-let writeCanvas = null, writeCtx = null;
-let isDrawing = false;
-let penColor = '#26C6DA';
-let penSize = 10;
-let writeStrokes = [];
-let currentStroke = [];
-let writeScore = {correct:0, total:0};
-let lastPos = null;
-
-function nextWrite(){
-  clearFeedback(); clearNav(); answered = false;
-
-  if(writeMode === 'numbers'){
-    writeCurrent = String(rand(WRITE_NUMBERS));
-  } else {
-    writeCurrent = rand(WRITE_LETTERS);
-  }
-
-  const tip = CHAR_TIPS[writeCurrent] || (writeCurrent.length > 1 ? 'Napiš pěkně hůlkově!' : 'Napiš znak co nejhezčí!');
-
-  const el = document.getElementById('game-content');
-  el.innerHTML = `
-    <div class="write-wrap">
-      <div class="write-mode-row">
-        <button class="wm-btn ${writeMode==='numbers'?'active':''}" onclick="setWriteMode('numbers')">🔢 Číslice 0–100</button>
-        <button class="wm-btn ${writeMode==='letters'?'active':''}" onclick="setWriteMode('letters')">🔤 Písmena</button>
-      </div>
-      <div class="write-progress">Správně: <b>${writeScore.correct}</b> z <b>${writeScore.total}</b></div>
-      <div class="write-label">Napiš toto:</div>
-      <div class="write-target">${writeCurrent}</div>
-      <div class="write-sublabel">${tip}</div>
-      <div class="canvas-wrap" id="cwrap" style="position:relative;width:100%;max-width:340px;">
-        <div class="guide-overlay" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-          <span class="guide-char" style="font-family:'Fredoka One',cursive;font-size:110px;color:rgba(38,198,218,0.09);user-select:none;line-height:1;">${writeCurrent}</span>
-        </div>
-        <canvas id="draw-canvas" style="display:block;border-radius:16px;touch-action:none;cursor:crosshair;"></canvas>
-      </div>
-      <div class="canvas-tools">
-        <div class="color-row">
-          ${['#26C6DA','#E53935','#9B59B6','#FF9A3C','#43A047','#1565C0','#1a1a1a'].map(c=>
-            `<div class="pen-color${c===penColor?' active':''}" style="width:26px;height:26px;border-radius:50%;background:${c};border:3px solid ${c===penColor?'#333':'transparent'};cursor:pointer;" onclick="setPenColor('${c}')"></div>`
-          ).join('')}
-        </div>
-        <div style="display:flex;gap:6px;align-items:center;">
-          ${[4,9,15].map(s=>`<div onclick="setPenSize(${s})" style="width:${s+16}px;height:${s+16}px;border-radius:50%;background:${penSize===s?'#26C6DA':'#e0f7fa'};border:2px solid ${penSize===s?'#26C6DA':'#b2ebf2'};cursor:pointer;display:flex;align-items:center;justify-content:center;"><div style="width:${s}px;height:${s}px;border-radius:50%;background:${penSize===s?'white':'#333'};"></div></div>`).join('')}
-        </div>
-        <button class="tool-btn" onclick="clearCanvas()">🗑 Smazat</button>
-      </div>
-      <button class="write-check-btn" onclick="checkWriting()">✅ Hotovo — zkontrolovat!</button>
-      <div class="write-result" id="write-result"></div>
-    </div>`;
-
-  writeCanvas = document.getElementById('draw-canvas');
-  writeCtx = writeCanvas.getContext('2d');
-  writeStrokes = [];
-  currentStroke = [];
-  lastPos = null;
-  setupCanvas();
-}
-
-function setupCanvas(){
-  const wrap = document.getElementById('cwrap');
-  const w = Math.min(340, (wrap.offsetWidth || 300));
-  const h = Math.round(w * 0.62);
-  writeCanvas.width = w;
-  writeCanvas.height = h;
-  writeCanvas.style.width = w + 'px';
-  writeCanvas.style.height = h + 'px';
-  redrawBackground();
-
-  writeCanvas.addEventListener('mousedown', e=>{ isDrawing=true; lastPos=getPos(e); currentStroke=[lastPos]; });
-  writeCanvas.addEventListener('mousemove', e=>{ if(!isDrawing)return; const p=getPos(e); drawSegment(lastPos,p); lastPos=p; currentStroke.push(p); });
-  writeCanvas.addEventListener('mouseup',   e=>{ if(!isDrawing)return; isDrawing=false; if(currentStroke.length>1)writeStrokes.push([...currentStroke]); currentStroke=[]; });
-  writeCanvas.addEventListener('mouseleave',e=>{ if(!isDrawing)return; isDrawing=false; if(currentStroke.length>1)writeStrokes.push([...currentStroke]); currentStroke=[]; });
-
-  writeCanvas.addEventListener('touchstart', e=>{ e.preventDefault(); isDrawing=true; const p=getTouchPos(e); lastPos=p; currentStroke=[p]; },{passive:false});
-  writeCanvas.addEventListener('touchmove',  e=>{ e.preventDefault(); if(!isDrawing)return; const p=getTouchPos(e); drawSegment(lastPos,p); lastPos=p; currentStroke.push(p); },{passive:false});
-  writeCanvas.addEventListener('touchend',   e=>{ e.preventDefault(); isDrawing=false; if(currentStroke.length>1)writeStrokes.push([...currentStroke]); currentStroke=[]; },{passive:false});
-}
-
-function redrawBackground(){
-  const w=writeCanvas.width, h=writeCanvas.height;
-  writeCtx.fillStyle='#f0fffe';
-  writeCtx.fillRect(0,0,w,h);
-  // linka uprostřed
-  writeCtx.strokeStyle='rgba(38,198,218,0.2)';
-  writeCtx.lineWidth=1.5;
-  writeCtx.setLineDash([8,8]);
-  writeCtx.beginPath(); writeCtx.moveTo(0,h/2); writeCtx.lineTo(w,h/2); writeCtx.stroke();
-  writeCtx.setLineDash([]);
-  // čáry jako linkovaný sešit
-  writeCtx.strokeStyle='rgba(38,198,218,0.08)';
-  writeCtx.lineWidth=1;
-  for(let y=h*0.25; y<h; y+=h*0.25){
-    writeCtx.beginPath(); writeCtx.moveTo(0,y); writeCtx.lineTo(w,y); writeCtx.stroke();
-  }
-}
-
-function drawSegment(from, to){
-  writeCtx.beginPath();
-  writeCtx.moveTo(from.x, from.y);
-  writeCtx.lineTo(to.x, to.y);
-  writeCtx.strokeStyle = penColor;
-  writeCtx.lineWidth = penSize;
-  writeCtx.lineCap = 'round';
-  writeCtx.lineJoin = 'round';
-  writeCtx.stroke();
-}
-
-function getPos(e){
-  const r=writeCanvas.getBoundingClientRect();
-  const scaleX=writeCanvas.width/r.width;
-  const scaleY=writeCanvas.height/r.height;
-  return {x:(e.clientX-r.left)*scaleX, y:(e.clientY-r.top)*scaleY};
-}
-function getTouchPos(e){
-  const t=e.touches[0];
-  const r=writeCanvas.getBoundingClientRect();
-  const scaleX=writeCanvas.width/r.width;
-  const scaleY=writeCanvas.height/r.height;
-  return {x:(t.clientX-r.left)*scaleX, y:(t.clientY-r.top)*scaleY};
-}
-
-function clearCanvas(){
-  writeStrokes=[]; currentStroke=[];
-  redrawBackground();
-  document.getElementById('write-result').textContent='';
-  document.getElementById('cwrap').style.borderColor='#26C6DA';
-}
-
-function setPenColor(c){ penColor=c; nextWrite(); }
-function setPenSize(s){ penSize=s; nextWrite(); }
-function setWriteMode(m){ writeMode=m; nextWrite(); }
-
-function analyzeDrawing(){
-  if(writeStrokes.length===0) return null;
-  let minX=9999,maxX=0,minY=9999,maxY=0,totalPts=0;
-  writeStrokes.forEach(s=>s.forEach(p=>{
-    if(p.x<minX)minX=p.x; if(p.x>maxX)maxX=p.x;
-    if(p.y<minY)minY=p.y; if(p.y>maxY)maxY=p.y;
-    totalPts++;
-  }));
-  const dw=maxX-minX, dh=maxY-minY;
-  const W=writeCanvas.width, H=writeCanvas.height;
-  return {
-    dw, dh, totalPts,
-    numStrokes: writeStrokes.length,
-    aspect: dh>0?dw/dh:0,
-    coverage: (dw*dh)/(W*H),
-    relW: dw/W, relH: dh/H
-  };
-}
-
-function checkWriting(){
-  const info = analyzeDrawing();
-  const resDiv = document.getElementById('write-result');
-  const wrap = document.getElementById('cwrap');
-
-  if(!info || info.totalPts < 8){
-    resDiv.textContent = '✏️ Nejprve něco napiš!';
-    resDiv.className = 'write-result no';
-    return;
-  }
-
-  writeScore.total++;
-
-  // Minimální velikost kresby
-  const bigEnough = info.dw > 25 && info.dh > 25;
-  const hasInk = info.coverage > 0.008;
-
-  let ok = false;
-
-  if(!bigEnough || !hasInk){
-    ok = false;
-  } else {
-    ok = shapeOk(writeCurrent, info);
-  }
-
-  if(ok){
-    writeScore.correct++;
-    score += 10; correct++; updStats();
-    resDiv.textContent = rand(['🌟 Výborně! Krásně napsáno!','⭐ Super! Přesně tak!','🎉 Perfektní! Tak dál!','✨ Bravo! Skvělé psaní!']);
-    resDiv.className = 'write-result ok';
-    wrap.style.borderColor = '#43A047';
-    // nakresli zelenou fajfku přes canvas
-    drawTick();
-    setTimeout(()=>{ wrap.style.borderColor='#26C6DA'; nextWrite(); }, 1800);
-  } else {
-    resDiv.textContent = `🤔 Zkus to znovu! Podívej se na vzor: ${writeCurrent}`;
-    resDiv.className = 'write-result no';
-    wrap.style.borderColor = '#E53935';
-    showNext(nextWrite);
-  }
-}
-
-function drawTick(){
-  const w=writeCanvas.width, h=writeCanvas.height;
-  writeCtx.strokeStyle='rgba(67,160,71,0.5)';
-  writeCtx.lineWidth=12;
-  writeCtx.lineCap='round';
-  writeCtx.lineJoin='round';
-  writeCtx.beginPath();
-  writeCtx.moveTo(w*0.2, h*0.5);
-  writeCtx.lineTo(w*0.42, h*0.75);
-  writeCtx.lineTo(w*0.8, h*0.22);
-  writeCtx.stroke();
-}
-
-// Tvarová analýza — tolerantní pro děti 5-7 let
-function shapeOk(ch, info){
-  const {dw, dh, numStrokes, aspect, relW, relH} = info;
-
-  // Vícemístná čísla — musí být širší
-  if(ch.length > 1 && !isNaN(ch)){
-    return dw > 50 && dh > 25 && numStrokes >= 1;
-  }
-
-  // Jednociferná čísla
-  if(ch.length === 1 && !isNaN(ch)){
-    const n = parseInt(ch);
-    if(n === 1) return aspect < 0.7 && dh > 35;   // musí být spíš svislé
-    if(n === 0 || n === 8 || n === 9 || n === 6) return dh > 35 && dw > 20;
-    return dh > 30 && dw > 18;
-  }
-
-  // Písmena
-  if(ch === 'I') return aspect < 0.6 && dh > 35;
-  if(ch === 'O') return aspect < 1.8 && aspect > 0.3 && dh > 30;
-  if(ch === 'T' || ch === 'L' || ch === 'F' || ch === 'E') return dw > 25 && dh > 30;
-  if(ch === 'W' || ch === 'M' || ch === 'X') return dw > 40 && dh > 25;
-  if(ch === 'CH') return dw > 55 && dh > 30;
-  if(ch === 'C' || ch === 'Č' || ch === 'S' || ch === 'Š') return dh > 30 && dw > 18;
-  if(ch === 'A' || ch === 'V' || ch === 'Y') return dh > 35 && dw > 25;
-
-  // Výchozí — cokoliv přiměřeně velkého
-  return dh > 28 && dw > 15;
-}
-
-// ══ INIT ══
-// Init header postavičky
-const hg = document.getElementById('header-girls');
-if(hg){ hg.innerHTML = girlA(28) + girlB(28) + girlC(28); }
-nextABC();
+// ── START ──
+abcNext();
 </script>
-
-<!-- SPOTIFY PLAYER -->
-<div class="spotify-player" id="spotify-player">
-  <div class="spotify-embed hidden" id="spotify-embed">
-    <iframe
-      id="spotify-iframe"
-      src="https://open.spotify.com/embed/album/14JkAa6IiFaOh5s0nMyMU9?utm_source=generator&theme=0"
-      width="300"
-      height="152"
-      frameborder="0"
-      allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy"
-      style="border-radius:16px;">
-    </iframe>
-  </div>
-  <button class="spotify-toggle" id="spotify-btn" onclick="toggleSpotify()">
-    <span class="note">🎵</span>
-    <span id="spotify-btn-text">K-pop Demon Hunters ♪</span>
-  </button>
-</div>
-
-<script>
-let spotifyOpen = false;
-function toggleSpotify(){
-  spotifyOpen = !spotifyOpen;
-  const embed = document.getElementById('spotify-embed');
-  const btn = document.getElementById('spotify-btn-text');
-  if(spotifyOpen){
-    embed.classList.remove('hidden');
-    embed.classList.add('visible');
-    btn.textContent = 'Schovat přehrávač ✕';
-  } else {
-    embed.classList.add('hidden');
-    embed.classList.remove('visible');
-    btn.textContent = 'K-pop Demon Hunters ♪';
-  }
-}
-</script>
-
 </body>
 </html>
